@@ -4,9 +4,15 @@ public class Wall {
 	
 	private int x, y, height, width;
 	
-	public Wall() {
+	public Wall() {}
+	
+	public Wall(int x, int y, int height, int width){
+		this.setHeight(height);
+		this.setWidth(width);
+		this.setX(x);
+		this.setY(y);
 	}
-
+	
 	/**
 	 * @return the x
 	 */
