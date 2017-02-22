@@ -1,4 +1,4 @@
-package edu.neumont.csc50.d.View;
+package edu.neumont.csc150.d.View;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
