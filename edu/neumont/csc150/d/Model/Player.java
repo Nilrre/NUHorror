@@ -2,7 +2,7 @@ package edu.neumont.csc150.d.Model;
 
 public class Player {
 	private int x,y,xVel,yVel;
-	private final int width = 10, height = 10;
+	private final int width = 50, height = 50;
 	
 	public Player(){}
 	
@@ -30,7 +30,7 @@ public class Player {
 	}
 	
 	public void moveRight() {
-        if (x + xVel + height < 1292) {
+        if (x + xVel + height < 2560) {
             x += xVel;
         }
 	}

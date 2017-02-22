@@ -17,7 +17,7 @@ public class Control {
 	}
 	
 	public void ControlGUI(){
-		Character = new Player(30,30,50,50);
+		Character = new Player(30,30,20,20);
 		game = new GameGraphics(Character, this);
 		gui = new GUI();
 		gui.guiMain(game);		
