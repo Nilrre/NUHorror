@@ -12,11 +12,13 @@ import javax.swing.Timer;
 
 import edu.neumont.csc150.d.Controller.Control;
 import edu.neumont.csc150.d.Model.Player;
+import edu.neumont.csc150.d.Model.Wall;
 
 public class GameGraphics extends JPanel implements ActionListener, KeyListener {
 
 	private Player character;
 	private Control control;
+	public Wall wall = new Wall(300,200,700,100);
 
 	public GameGraphics(Player chara, Control c) {
 		setBackground(Color.black);
@@ -35,10 +37,19 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		super.paint(g);
 		g.setColor(Color.white);
 		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
+
 		
+		g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
 		this.repaint();
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		character.Collision(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+		control.move();
+		this.repaint();
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -73,11 +84,5 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
-		control.move();
-		this.repaint();
-	}
 
 }

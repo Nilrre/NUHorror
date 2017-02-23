@@ -16,7 +16,7 @@ public class GUI implements ActionListener{
 	
 	public void guiMain(GameGraphics game) {
 		frame = new JFrame("NUHorror");
-		mainPanel();
+//		mainPanel();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.getContentPane().add(game);
