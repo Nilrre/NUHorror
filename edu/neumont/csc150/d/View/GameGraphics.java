@@ -17,30 +17,28 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	private Player character;
 	private Control control;
-	
+
 	public GameGraphics(Player chara, Control c) {
 		setBackground(Color.black);
 		character = chara;
 		control = c;
-		
+
 		setFocusable(true);
 		addKeyListener(this);
 
 		Timer timer = new Timer(1000 / 60, this);
 		timer.start();
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.white);
-
 		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
-
+		
 		this.repaint();
 	}
-	
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -72,15 +70,14 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		control.move();
 		this.repaint();
-			
 	}
-	
-	
+
 }

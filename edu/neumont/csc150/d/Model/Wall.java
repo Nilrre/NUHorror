@@ -1,6 +1,6 @@
 package edu.neumont.csc150.d.Model;
 
-public class Wall {
+public class Wall extends Object {
 	
 	private int x, y, height, width;
 	

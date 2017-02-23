@@ -1,8 +1,8 @@
 package edu.neumont.csc150.d.Controller;
 
 import edu.neumont.csc150.d.Model.Player;
-import edu.neumont.csc50.d.View.GUI;
-import edu.neumont.csc50.d.View.GameGraphics;
+import edu.neumont.csc150.d.View.GUI;
+import edu.neumont.csc150.d.View.GameGraphics;
 
 public class Control {
 	private boolean dPressed = false;
@@ -12,17 +12,15 @@ public class Control {
 	private Player Character;
 	private GameGraphics game;
 	private GUI gui;
-	
-	public Control(){
-	}
+	public Control(){}
 	
 	public void ControlGUI(){
-		Character = new Player(30,30,20,20);
+		Character = new Player(30,30,10,10);
 		game = new GameGraphics(Character, this);
 		gui = new GUI();
 		gui.guiMain(game);		
 	}
-	
+		
 	public void move() {
 		if (wPressed) {
 			Character.moveUp();
@@ -70,4 +68,5 @@ public class Control {
 	public void setwPressed(boolean wPressed) {
 		this.wPressed = wPressed;
 	}
+
 }

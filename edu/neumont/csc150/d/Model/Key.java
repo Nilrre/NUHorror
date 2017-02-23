@@ -1,6 +1,6 @@
 package edu.neumont.csc150.d.Model;
 
-public class Key {
+public class Key extends Object {
 	private int amount;
 	
 	public Key() {}

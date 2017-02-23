@@ -1,6 +1,8 @@
 package edu.neumont.csc150.d.Model;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player extends Object implements Serializable {
 	private int x,y,xVel,yVel;
 	private final int width = 50, height = 50;
 	
@@ -40,7 +42,7 @@ public class Player {
         	x -= xVel;
         }
 	}
-	
+		
 	public int getX() {
 		return x;
 	}
@@ -71,4 +73,5 @@ public class Player {
 	public int getHeight() {
 		return height;
 	}
+
 }

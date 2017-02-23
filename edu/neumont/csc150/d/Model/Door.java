@@ -1,6 +1,8 @@
 package edu.neumont.csc150.d.Model;
 
-public class Door {
+import java.io.Serializable;
+
+public class Door extends Object implements Serializable{
 	private boolean locked;
 	private int x, y, width, height;
 	
