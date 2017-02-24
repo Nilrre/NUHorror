@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Player extends Object implements Serializable {
 	private int x, y, xVel, yVel;
 	private final int width = 50, height = 50;
+	public boolean colliding = false;
 
 	public Player() {
 	}
@@ -17,36 +18,32 @@ public class Player extends Object implements Serializable {
 	}
 
 	// need to figure this out
-	public void Collision(int x, int y, int w, int h) {
-		if (this.getX() + this.getWidth() >= x && 
-				this.getX() <= x + w) {
-			
-			if (this.getY() <= y + h 
-					&& this.getY() >= y+ h - this.getyVel()) {
-				this.setY(y+h);
-			} 
-			
-			
-			if (this.getY() + this.getHeight() >= y 
-					&& this.getY() + this.getHeight() <= y + this.getyVel()) {
-				this.setY(y-this.getHeight());
+	public void Collision(int otherX, int otherY, int otherW, int otherH) {
+		if (this.getX() + this.getWidth() >= otherX && this.getX() <= otherX + otherW) {
+
+			if (this.getY() <= otherY + otherH && this.getY() >= otherY + otherH - this.getyVel()) {
+				this.setY(otherY + otherH);
+				colliding = true;
 			}
-			
-		} if (this.getY() + this.getHeight() >= y && this.getY() <= y+h) {
-			
-			
-			
-			if (this.getX() + this.getWidth() <= x + this.getxVel() 
-			&& this.getX()+this.getWidth() >= x) {
-				this.setX(x-this.getWidth());
-			} 
-			
-			
-			if (this.getX() <= x+w 
-					&&this.getX() >= x+w-this.getxVel()) {
-				this.setX(x + w);
+
+			if (this.getY() + this.getHeight() >= otherY && this.getY() + this.getHeight() <= otherY + this.getyVel()) {
+				this.setY(otherY - this.getHeight());
+				colliding = true;
 			}
-		}
+
+		} else colliding = false;
+		if (this.getY() + this.getHeight() >= otherY && this.getY() <= otherY + otherH) {
+
+			if (this.getX() + this.getWidth() <= otherX + this.getxVel() && this.getX() + this.getWidth() >= otherX) {
+				this.setX(otherX - this.getWidth());
+				colliding = true;
+			}
+
+			if (this.getX() <= otherX + otherW && this.getX() >= otherX + otherW - this.getxVel()) {
+				this.setX(otherX + otherW);
+				colliding = true;
+			}
+		} else colliding = false;
 	}
 
 	public void moveUp() {
