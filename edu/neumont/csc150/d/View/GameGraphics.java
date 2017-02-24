@@ -45,7 +45,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		character.Collision(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+//		character.Collision(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+		wall.collider(character);
 		control.move();
 		this.repaint();
 	}

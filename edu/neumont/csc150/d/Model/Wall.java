@@ -1,6 +1,6 @@
 package edu.neumont.csc150.d.Model;
 
-public class Wall extends Object {
+public class Wall extends Object implements SolidObject {
 	
 	private int x, y, height, width;
 	
@@ -11,6 +11,11 @@ public class Wall extends Object {
 		this.setWidth(width);
 		this.setX(x);
 		this.setY(y);
+	}
+	
+	@Override
+	public void collider(Player p) {
+		p.Collision(this.x, this.y, this.width, this.height);
 	}
 	
 	/**
