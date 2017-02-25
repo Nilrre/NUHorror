@@ -2,11 +2,17 @@ package edu.neumont.csc150.d.View;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,6 +24,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	private Player character;
 	private Control control;
+	private Image Errlin;
 	public Wall wall = new Wall(300,200,700,100);
 
 	public GameGraphics(Player chara, Control c) {
@@ -36,7 +43,11 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.white);
-		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
+//		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
+		ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
+		Errlin = image.getImage();
+		Graphics2D d = (Graphics2D)g; 
+		d.drawImage(Errlin, character.getX(), character.getY(), this);
 
 		
 		g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
