@@ -16,7 +16,6 @@ public class Player extends Object implements Serializable {
 		this.setyVel(yVel);
 	}
 
-	// need to figure this out
 	public boolean Collision(int otherX, int otherY, int otherW, int otherH) {
 		boolean colliding = false;
 

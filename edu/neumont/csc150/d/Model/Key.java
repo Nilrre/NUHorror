@@ -18,9 +18,9 @@ public class Key extends Object implements SolidObject {
 	@Override
 	public void collider(Player p) {
 		p.Collision(this.x, this.y, this.width, this.height);
-		if(p.colliding) {
+//		if(p.colliding) {
 			//TODO Collect the key and add to inventory or array of keys
-		}
+//		}
 	}
 	
 	public int getAmount() {
