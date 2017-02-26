@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class Player extends Object implements Serializable {
 	private int x, y, xVel, yVel;
 	private final int width = 50, height = 50;
-	public boolean colliding = false;
 
 	public Player() {
 	}
@@ -18,7 +17,9 @@ public class Player extends Object implements Serializable {
 	}
 
 	// need to figure this out
-	public void Collision(int otherX, int otherY, int otherW, int otherH) {
+	public boolean Collision(int otherX, int otherY, int otherW, int otherH) {
+		boolean colliding = false;
+
 		if (this.getX() + this.getWidth() >= otherX && this.getX() <= otherX + otherW) {
 
 			if (this.getY() <= otherY + otherH && this.getY() >= otherY + otherH - this.getyVel()) {
@@ -31,7 +32,8 @@ public class Player extends Object implements Serializable {
 				colliding = true;
 			}
 
-		} else colliding = false;
+		} else
+			colliding = false;
 		if (this.getY() + this.getHeight() >= otherY && this.getY() <= otherY + otherH) {
 
 			if (this.getX() + this.getWidth() <= otherX + this.getxVel() && this.getX() + this.getWidth() >= otherX) {
@@ -43,7 +45,10 @@ public class Player extends Object implements Serializable {
 				this.setX(otherX + otherW);
 				colliding = true;
 			}
-		} else colliding = false;
+		} else {
+			colliding = false;
+		}
+		return colliding;
 	}
 
 	public void moveUp() {
