@@ -24,7 +24,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	private Player character;
 	private Control control;
-	private Image Errlin;
+	private Image Errlin, ErrlinDown, ErrlinUp, ErrlinLeft, ErrlinRight;
 	public Wall wall = new Wall(300,200,700,100);
 
 	public GameGraphics(Player chara, Control c) {
@@ -47,8 +47,28 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
 		Errlin = image.getImage();
 		Graphics2D d = (Graphics2D)g; 
-		d.drawImage(Errlin, character.getX(), character.getY(), this);
-
+		d.drawImage(Errlin, character.getX(), character.getY(), 60, 60, this);
+		
+		//Walking Down
+		if (control.issPressed()) {
+		ImageIcon image1 = new ImageIcon("Errlin Walk//front//animated.gif");
+		ErrlinDown = image1.getImage();
+		d.drawImage(ErrlinDown, character.getX(), character.getY(), 60, 60, this);
+		}
+		
+		//Walking Up
+		else if (control.iswPressed()) {
+			ImageIcon image1 = new ImageIcon("Errlin Walk//Back//0.png");
+			ErrlinUp = image1.getImage();
+			d.drawImage(ErrlinUp, character.getX(), character.getY(), 60, 60, this);
+		}
+		
+		//Walking to the right
+		else if (control.isdPressed()) {
+			ImageIcon image1 = new ImageIcon("Errlin Walk//side//2.png");
+			ErrlinRight = image1.getImage();
+			d.drawImage(ErrlinRight, character.getX(), character.getY(), 60, 60, this);	
+		}
 		
 		g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
 		this.repaint();
@@ -71,7 +91,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		} else if (e.getKeyCode() == KeyEvent.VK_W) {
 			control.setwPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			ImageIcon image1 = new ImageIcon("Errlin Walk//front//Errlin3.png");
+			ErrlinDown = image1.getImage();
 			control.setsPressed(true);
+			
 		}
 		this.repaint();
 	}
@@ -86,6 +109,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setwPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			control.setsPressed(false);
+			ImageIcon image1 = new ImageIcon("Errlin Walk//front//Errlin3.png");
+			ErrlinDown = image1.getImage();
 		}
 		this.repaint();
 	}
