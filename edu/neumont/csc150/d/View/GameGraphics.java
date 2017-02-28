@@ -88,7 +88,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			
 			//Walking Up
 			else if (control.iswPressed()) {
-				ImageIcon image1 = new ImageIcon("Errlin Walk//Back//0.png");
+				ImageIcon image1 = new ImageIcon("Errlin Walk//Back//animated.gif");
 				ErrlinUp = image1.getImage();
 				d.drawImage(ErrlinUp, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
