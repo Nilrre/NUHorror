@@ -18,9 +18,9 @@ public class GUI implements ActionListener {
 	private JButton NewGame, LoadGame, Quit, Resume, MainMenu;
 	private JPanel window;
 	private GameGraphics test;
-	private Floor1 thisFloor;
 	private Control control;
 	private Audio audio = new Audio();
+
 	public void guiMain(GameGraphics game, Control c) {
 		frame = new JFrame("NUHorror");
 		test = game;
@@ -28,7 +28,6 @@ public class GUI implements ActionListener {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//		frame.getContentPane().add(test);
 		try {
 			mainPanel();
 		} catch (IOException e) {
@@ -38,7 +37,7 @@ public class GUI implements ActionListener {
 		audio.mainMenuMusic();
 		frame.setVisible(true);
 	}
-	
+
 	public void guiGame(GameGraphics game, Control c) {
 		frame = new JFrame("NUHorror");
 		test = game;
@@ -54,10 +53,9 @@ public class GUI implements ActionListener {
 	public void mainPanel() throws IOException {
 
 		window = new JPanel();
-//		FlowLayout lay = new FlowLayout(100, 500, 1000);
+		// FlowLayout lay = new FlowLayout(100, 500, 1000);
 		window.setLayout(null);
-		
-		
+
 		NewGame = new JButton("Start");
 		NewGame.setBounds(500, 1100, 250, 100);
 		NewGame.setIcon(new ImageIcon("Pics//Start.jpg"));
@@ -73,7 +71,7 @@ public class GUI implements ActionListener {
 		Quit.setIcon(new ImageIcon("Pics//Quit.jpg"));
 		Quit.setIconTextGap(-30);
 		Quit.addActionListener(this);
-		
+
 		frame.getContentPane().add(NewGame);
 		frame.getContentPane().add(LoadGame);
 		frame.getContentPane().add(Quit);
@@ -86,11 +84,9 @@ public class GUI implements ActionListener {
 		if (e.getSource() == NewGame) {
 			frame.dispose();
 			guiGame(test, control);
-		} 
-		else if (e.getSource() == LoadGame) {
+		} else if (e.getSource() == LoadGame) {
 
-		} 
-		else if (e.getSource() == Quit) {
+		} else if (e.getSource() == Quit) {
 			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 		}
 
