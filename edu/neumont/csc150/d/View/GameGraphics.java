@@ -70,31 +70,40 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 //			g.drawString("Wassup", 300, 1200);		
 //		}
 		g.setColor(Color.white);
-		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
-		ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
-		Errlin = image.getImage();
-		d.drawImage(Errlin, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
-		
-		//Walking Down
-		if (control.issPressed()) {
-		ImageIcon image1 = new ImageIcon("Errlin Walk//front//animated.gif");
-		ErrlinDown = image1.getImage();
-		d.drawImage(ErrlinDown, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
-		}
-		
-		//Walking Up
-		else if (control.iswPressed()) {
-			ImageIcon image1 = new ImageIcon("Errlin Walk//Back//0.png");
-			ErrlinUp = image1.getImage();
-			d.drawImage(ErrlinUp, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
-		}
-		
-		//Walking to the right
-		else if (control.isdPressed()) {
-			ImageIcon image1 = new ImageIcon("Errlin Walk//side//2.png");
-			ErrlinRight = image1.getImage();
-			d.drawImage(ErrlinRight, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);	
-		}
+//		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
+		if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
+			ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
+			Errlin = image.getImage();
+			d.drawImage(Errlin, character.getX(), character.getY(), 60, 60, this);
+			}
+			
+			//Walking Down
+			else if (control.issPressed()) {
+			ImageIcon image1 = new ImageIcon("Errlin Walk//front//animated.gif");
+			ErrlinDown = image1.getImage();
+			d.drawImage(ErrlinDown, character.getX(), character.getY(), 60, 60, this);
+			}
+			
+			//Walking Up
+			else if (control.iswPressed()) {
+				ImageIcon image1 = new ImageIcon("Errlin Walk//Back//0.png");
+				ErrlinUp = image1.getImage();
+				d.drawImage(ErrlinUp, character.getX(), character.getY(), 60, 60, this);
+			}
+			
+			//Walking to the right
+			else if (control.isdPressed()) {
+				ImageIcon image1 = new ImageIcon("Errlin Walk//side//animated.gif");
+				ErrlinRight = image1.getImage();
+				d.drawImage(ErrlinRight, character.getX(), character.getY(), 60, 60, this);	
+			}
+			
+			//walking to the right
+			else if (control.isaPressed()) {
+				ImageIcon image1 = new ImageIcon("Errlin Walk//side//animated.gif");
+				ErrlinLeft = image1.getImage();
+				d.drawImage(ErrlinLeft, character.getX() + 60, character.getY(), -60, 60, this);
+			}
 		this.repaint();
 	}
 
