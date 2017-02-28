@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import edu.neumont.csc150.d.Controller.Control;
+import edu.neumont.csc150.d.Model.Door;
 import edu.neumont.csc150.d.Model.Player;
 import edu.neumont.csc150.d.Model.Wall;
 
@@ -25,7 +26,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Player character;
 	private Control control;
 	private Image Errlin, ErrlinDown, ErrlinUp, ErrlinLeft, ErrlinRight;
-	public Wall wall = new Wall(300,200,700,100);
+	public Wall wall = new Wall(300,200,300,100);
+	public Wall nextWall = new Wall(500,300,200,200);
+	public Door door = new Door(100,100,20,20,false);
 
 	public GameGraphics(Player chara, Control c) {
 		setBackground(Color.black);
@@ -70,14 +73,49 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			d.drawImage(ErrlinRight, character.getX(), character.getY(), 60, 60, this);	
 		}
 		
-		g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+		
+		if(control.isFloor1() == true){
+			g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+			g.drawRect(door.getX(), door.getY(), door.getWidth(), door.getWidth());
+		}else if(control.isFloor2() == true){
+			g.drawRect(nextWall.getX(), nextWall.getY(), nextWall.getWidth(), nextWall.getHeight());
+		}
 		this.repaint();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 //		character.Collision(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
-		wall.collider(character);
+		if(control.isFloor1()){
+			wall.collider(character);			
+			
+			if (character.Collision(door.getX(), door.getY(), door.getWidth(), door.getHeight()) == true) {
+				if (door.isLocked() == false) {
+					control.setFloor1(false);
+					control.setFloor2(true);
+				} else if (door.isLocked() == true && character.hasKey() == true) {
+					door.setLocked(false);
+				} else {
+					// Draw String "I cannot enter without a key"
+				}
+			}
+	//
+//			if (player.Collision(key.getX(), key.getY(), key.getWidth(), key.getHeight()) == true) {
+////				 if(player pressed "i"){
+//				isThere = false;
+//				player.setKey(true);
+////				 }
+//			} 
+			
+//			if (player.Collision(npc.getX(), npc.GetY(), npc.getWidth(), npc.getHeight()) == true) {
+				// if(player pressed "i"){
+				// drawString npc.getSaying();
+				// }
+//			}
+		}else if(control.isFloor2() == true){
+			nextWall.collider(character);
+		}
+		
 		control.move();
 		this.repaint();
 	}

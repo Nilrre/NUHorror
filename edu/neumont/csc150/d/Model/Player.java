@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class Player extends Object implements Serializable {
 	private int x, y, xVel, yVel;
-	private final int width = 50, height = 50;
+	private final int width = 60, height = 60;
+	private boolean key = false;
 
 	public Player() {
 	}
@@ -16,6 +17,15 @@ public class Player extends Object implements Serializable {
 		this.setyVel(yVel);
 	}
 
+	public boolean hasKey() {
+		if(key == true){
+			key = true;
+		}else {
+			key = false;
+		}
+		return key;
+	}
+	
 	public boolean Collision(int otherX, int otherY, int otherW, int otherH) {
 		boolean colliding = false;
 
@@ -113,5 +123,14 @@ public class Player extends Object implements Serializable {
 	public int getHeight() {
 		return height;
 	}
+	
+	public boolean isKey() {
+		return key;
+	}
+	
+	public void setKey(boolean key) {
+		this.key = key;
+	}
+
 
 }

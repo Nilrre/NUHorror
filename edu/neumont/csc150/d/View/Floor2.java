@@ -16,7 +16,7 @@ import edu.neumont.csc150.d.Model.Wall;
 
 public class Floor2 extends JPanel implements ActionListener, KeyListener {
 
-	private Wall wall1 = new Wall(400,400,200,200);
+	private Wall wall1 = new Wall(800,800,200,200);
 	private Player player;
 	private Control control;
 	

@@ -22,6 +22,7 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener {
 	private Wall wall1 = new Wall(400, 400, 200, 200);
 	private Door door = new Door(300, 300, 30, 30, false);
 	private Key key = new Key(1, 200, 200, 10, 10);
+	private boolean isThere = true;
 
 	// keep
 	private Player player;
@@ -30,7 +31,8 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener {
 	public Floor1(Player p, Control c) {
 		player = p;
 		control = c;
-
+		setBackground(Color.black);
+		
 		setFocusable(true);
 		addKeyListener(this);
 
@@ -43,7 +45,13 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener {
 		super.paint(g);
 		g.setColor(Color.white);
 		g.fillOval(player.getX(), player.getY(), player.getWidth(), player.getHeight());
-		g.drawRect(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
+		g.fillRect(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
+		g.fillRect(door.getX(), door.getY(), door.getWidth(), door.getHeight());
+		
+		// for the key
+		if (isThere == true) {
+			// g.fillOval()
+		}
 		this.repaint();
 	}
 
@@ -77,33 +85,41 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
+		if(e.getKeyCode() == KeyEvent.VK_I){
+			
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		player.Collision(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
-
-		if (player.Collision(door.getX(), door.getY(), door.getWidth(), door.getHeight()) == true) {
-			if (door.isLocked() == false) {
-				// load next room
-				// } else if (door.isLocked() == true && player.hasKey() ==
-				// true) {
-				// door.setLocked(false);
-			} else {
-				// Draw String "I cannot enter without a key"
-			}
-		} else if (player.Collision(key.getX(), key.getY(), key.getWidth(), key.getHeight()) == true) {
+		
+//		if (player.Collision(door.getX(), door.getY(), door.getWidth(), door.getHeight()) == true) {
+//			if (door.isLocked() == false) {
+//				control.setFloor1(false);
+//				control.setFloor2(true);
+//			} else if (door.isLocked() == true && player.hasKey() == true) {
+//				door.setLocked(false);
+//			} else {
+//				// Draw String "I cannot enter without a key"
+//			}
+//		}
+//
+//		if (player.Collision(key.getX(), key.getY(), key.getWidth(), key.getHeight()) == true) {
+////			 if(player pressed "i"){
+//			isThere = false;
+//			player.setKey(true);
+////			 }
+//		} 
+		
+//		if (player.Collision(npc.getX(), npc.GetY(), npc.getWidth(), npc.getHeight()) == true) {
 			// if(player pressed "i"){
-			// make key disappear
+			// drawString npc.getSaying();
 			// }
-		}
-		// else if(player.Collision(npc.getX(), npc.GetY(), npc.getWidth(), npc.getHeight()) == true){
-		// drawString npc.getSaying();
-		// }
+//		}
 
 		control.move();
 		this.repaint();
-	}
 
+	}
 }
