@@ -1,6 +1,7 @@
 package edu.neumont.csc150.d.View;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -45,6 +46,14 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		if (character.getY() > 900) {
+			g.setColor(Color.BLUE);
+			g.fillRect(200, 900, 2200, 500);
+			g.setFont(new Font("Impact", Font.BOLD, 100));
+			g.setColor(Color.BLACK);
+			g.drawString("Wassup", 300, 1200);
+			
+		}
 		g.setColor(Color.white);
 //		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
 		ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
@@ -72,8 +81,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			ErrlinRight = image1.getImage();
 			d.drawImage(ErrlinRight, character.getX(), character.getY(), 60, 60, this);	
 		}
-		
-		
+			
 		if(control.isFloor1() == true){
 			g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
 			g.drawRect(door.getX(), door.getY(), door.getWidth(), door.getWidth());
@@ -129,8 +137,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		} else if (e.getKeyCode() == KeyEvent.VK_W) {
 			control.setwPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			ImageIcon image1 = new ImageIcon("Errlin Walk//front//Errlin3.png");
-			ErrlinDown = image1.getImage();
 			control.setsPressed(true);
 			
 		}
@@ -147,8 +153,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setwPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			control.setsPressed(false);
-			ImageIcon image1 = new ImageIcon("Errlin Walk//front//Errlin3.png");
-			ErrlinDown = image1.getImage();
 		}
 		this.repaint();
 	}
