@@ -70,7 +70,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 //			g.drawString("Wassup", 300, 1200);		
 //		}
 		g.setColor(Color.white);
-//		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
+		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
 		ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
 		Errlin = image.getImage();
 		d.drawImage(Errlin, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
