@@ -15,7 +15,7 @@ import edu.neumont.csc150.d.Controller.Control;
 
 public class GUI implements ActionListener {
 	private JFrame frame;
-	private JButton NewGame, LoadGame, Quit, Resume, MainMenu;
+	private JButton NewGame, Errlin, Lawrence, David, LoadGame, Quit, Resume, MainMenu;
 	private JPanel window;
 	private GameGraphics test;
 	private Control control;
@@ -35,6 +35,14 @@ public class GUI implements ActionListener {
 			e.printStackTrace();
 		}
 		audio.mainMenuMusic();
+		frame.setVisible(true);
+	}
+	
+	public void guiCharacterSelect() {
+		frame = new JFrame("Character Select");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		characterSelectPanel();
 		frame.setVisible(true);
 	}
 
@@ -78,12 +86,47 @@ public class GUI implements ActionListener {
 		frame.getContentPane().add(new MenuGraphics("Pics//MainMenu.jpg"));
 
 	}
+	
+	public void characterSelectPanel() {
+		window = new JPanel();
+		GridLayout layout = new GridLayout(1,3,10,10);
+		window.setLayout(layout);
+		
+		Errlin = new JButton("Errlin");
+		Errlin.setIcon(new ImageIcon("Art//character portraits//Errlin"));
+		Errlin.addActionListener(this);
+		Lawrence = new JButton("Lawrence");
+		Lawrence.setIcon(new ImageIcon("Art//character portraits//Lawrence"));
+		Lawrence.addActionListener(this);
+		David = new JButton("David");
+		David.setIcon(new ImageIcon("Art//character portraits//David"));
+		David.addActionListener(this);
+		
+//		Errlin.setBounds(500, 500, 2000, 1000);
+		window.add(Errlin);
+		window.add(Lawrence);
+		window.add(David);
+		
+		frame.getContentPane().add(window);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == NewGame) {
 			frame.dispose();
 			guiGame(test, control);
+//			guiCharacterSelect();
+//			if (e.getSource() == Errlin) {
+//				guiGame(test, control);
+//			}
+//			
+//			else if (e.getSource() == Lawrence) {
+//				guiGame(test, control);
+//			}
+//			
+//			else if (e.getSource() == David) {
+//				guiGame(test, control);
+//			}
 		} else if (e.getSource() == LoadGame) {
 
 		} else if (e.getSource() == Quit) {

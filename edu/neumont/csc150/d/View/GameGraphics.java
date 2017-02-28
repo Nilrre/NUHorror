@@ -26,7 +26,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	private Player character;
 	private Control control;
-	private Image Errlin, ErrlinDown, ErrlinUp, ErrlinLeft, ErrlinRight;
+	private Image theCommons, floor2, Errlin, ErrlinDown, ErrlinUp, ErrlinLeft, ErrlinRight;
 	public Wall wall = new Wall(300,200,300,100);
 	public Wall nextWall = new Wall(500,300,200,200);
 	public Door door = new Door(100,100,20,20,false);
@@ -46,47 +46,54 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		if (character.getY() > 900) {
-			g.setColor(Color.BLUE);
-			g.fillRect(200, 900, 2200, 500);
-			g.setFont(new Font("Impact", Font.BOLD, 100));
-			g.setColor(Color.BLACK);
-			g.drawString("Wassup", 300, 1200);
-			
+	
+		Graphics2D d = (Graphics2D)g; 
+
+		if(control.isFloor1() == true){
+			ImageIcon commons = new ImageIcon("Art//Floor//Commons.png");
+			theCommons = commons.getImage();
+			d.drawImage(theCommons, this.getX(),this.getY(), this.getWidth(), this.getHeight(), this);	
+			g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+			g.drawRect(door.getX(), door.getY(), door.getWidth(), door.getWidth());
+		}else if(control.isFloor2() == true){
+			ImageIcon theSecondFloor = new ImageIcon("Art//Floor//Floor2.png");
+			floor2 = theSecondFloor.getImage();
+			d.drawImage(floor2, this.getX(),this.getY(), this.getWidth(), this.getHeight(), this);
+			g.drawRect(nextWall.getX(), nextWall.getY(), nextWall.getWidth(), nextWall.getHeight());
 		}
+		
+//		if (character.getY() > 900) {
+//			g.setColor(Color.BLUE);
+//			g.fillRect(200, 900, 2200, 500);
+//			g.setFont(new Font("Impact", Font.BOLD, 100));
+//			g.setColor(Color.BLACK);
+//			g.drawString("Wassup", 300, 1200);		
+//		}
 		g.setColor(Color.white);
 //		g.fillOval(character.getX(), character.getY(), character.getWidth(), character.getHeight());
 		ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
 		Errlin = image.getImage();
-		Graphics2D d = (Graphics2D)g; 
-		d.drawImage(Errlin, character.getX(), character.getY(), 60, 60, this);
+		d.drawImage(Errlin, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 		
 		//Walking Down
 		if (control.issPressed()) {
 		ImageIcon image1 = new ImageIcon("Errlin Walk//front//animated.gif");
 		ErrlinDown = image1.getImage();
-		d.drawImage(ErrlinDown, character.getX(), character.getY(), 60, 60, this);
+		d.drawImage(ErrlinDown, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 		}
 		
 		//Walking Up
 		else if (control.iswPressed()) {
 			ImageIcon image1 = new ImageIcon("Errlin Walk//Back//0.png");
 			ErrlinUp = image1.getImage();
-			d.drawImage(ErrlinUp, character.getX(), character.getY(), 60, 60, this);
+			d.drawImage(ErrlinUp, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 		}
 		
 		//Walking to the right
 		else if (control.isdPressed()) {
 			ImageIcon image1 = new ImageIcon("Errlin Walk//side//2.png");
 			ErrlinRight = image1.getImage();
-			d.drawImage(ErrlinRight, character.getX(), character.getY(), 60, 60, this);	
-		}
-			
-		if(control.isFloor1() == true){
-			g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
-			g.drawRect(door.getX(), door.getY(), door.getWidth(), door.getWidth());
-		}else if(control.isFloor2() == true){
-			g.drawRect(nextWall.getX(), nextWall.getY(), nextWall.getWidth(), nextWall.getHeight());
+			d.drawImage(ErrlinRight, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);	
 		}
 		this.repaint();
 	}

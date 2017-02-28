@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,11 +21,13 @@ public class CharacterSelect implements ActionListener{
 		panel.setLayout(layout);
 		
 		Errlin = new JButton("Errlin");
+		Errlin.setIcon(new ImageIcon("Art//character portraits//Errlin"));
 		Lawrence = new JButton("Lawrence");
+		Lawrence.setIcon(new ImageIcon("Art//character portraits//Lawrence"));
 		David = new JButton("David");
+		David.setIcon(new ImageIcon("Art//character portraits//David"));
 		
-		Errlin.setBounds(500, 500, 2000, 1000);
-		
+//		Errlin.setBounds(500, 500, 2000, 1000);
 		panel.add(Errlin);
 		panel.add(Lawrence);
 		panel.add(David);

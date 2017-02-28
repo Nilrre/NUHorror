@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Player extends Object implements Serializable {
 	private int x, y, xVel, yVel;
-	private final int width = 60, height = 60;
+	private final int width = 80, height = 80;
 	private boolean key = false;
 
 	public Player() {
