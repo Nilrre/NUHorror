@@ -50,16 +50,18 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		Graphics2D d = (Graphics2D)g; 
 
 		if(control.isFloor1() == true){
-			ImageIcon commons = new ImageIcon("Art//Floor//Commons.png");
+			ImageIcon commons = new ImageIcon("Pics//floors//commons of horror.png");
 			theCommons = commons.getImage();
 			d.drawImage(theCommons, this.getX(),this.getY(), this.getWidth(), this.getHeight(), this);	
 			g.fillRect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
 			g.drawRect(door.getX(), door.getY(), door.getWidth(), door.getWidth());
 		}else if(control.isFloor2() == true){
-			ImageIcon theSecondFloor = new ImageIcon("Art//Floor//Floor2.png");
+			ImageIcon theSecondFloor = new ImageIcon("Pics//floors//floor 2.png");
 			floor2 = theSecondFloor.getImage();
 			d.drawImage(floor2, this.getX(),this.getY(), this.getWidth(), this.getHeight(), this);
 			g.drawRect(nextWall.getX(), nextWall.getY(), nextWall.getWidth(), nextWall.getHeight());
+		}else if (control.isFloor3() == true) {
+			
 		}
 		
 //		if (character.getY() > 900) {
@@ -74,35 +76,35 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
 			ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
 			Errlin = image.getImage();
-			d.drawImage(Errlin, character.getX(), character.getY(), 60, 60, this);
+			d.drawImage(Errlin, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
 			
 			//Walking Down
 			else if (control.issPressed()) {
 			ImageIcon image1 = new ImageIcon("Errlin Walk//front//animated.gif");
 			ErrlinDown = image1.getImage();
-			d.drawImage(ErrlinDown, character.getX(), character.getY(), 60, 60, this);
+			d.drawImage(ErrlinDown, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
 			
 			//Walking Up
 			else if (control.iswPressed()) {
 				ImageIcon image1 = new ImageIcon("Errlin Walk//Back//0.png");
 				ErrlinUp = image1.getImage();
-				d.drawImage(ErrlinUp, character.getX(), character.getY(), 60, 60, this);
+				d.drawImage(ErrlinUp, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
 			
 			//Walking to the right
 			else if (control.isdPressed()) {
 				ImageIcon image1 = new ImageIcon("Errlin Walk//side//animated.gif");
 				ErrlinRight = image1.getImage();
-				d.drawImage(ErrlinRight, character.getX(), character.getY(), 60, 60, this);	
+				d.drawImage(ErrlinRight, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);	
 			}
 			
 			//walking to the right
 			else if (control.isaPressed()) {
 				ImageIcon image1 = new ImageIcon("Errlin Walk//side//animated.gif");
 				ErrlinLeft = image1.getImage();
-				d.drawImage(ErrlinLeft, character.getX() + 60, character.getY(), -60, 60, this);
+				d.drawImage(ErrlinLeft, character.getX() + 60, character.getY(), -(character.getWidth()), character.getHeight(), this);
 			}
 		this.repaint();
 	}

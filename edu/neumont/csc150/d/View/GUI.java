@@ -53,8 +53,8 @@ public class GUI implements ActionListener {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.getContentPane().add(test);
 		audio.commonsMusic();
+		frame.getContentPane().add(test);
 		frame.setVisible(true);
 	}
 
