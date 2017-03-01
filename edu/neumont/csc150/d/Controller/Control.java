@@ -34,7 +34,7 @@ public class Control {
 		// f2 = new Floor2(Character, this);
 		// }
 		gui = new GUI();
-		gui.guiMain(game, this);
+		gui.guiMain(game, this, Character);
 	}
 
 	public void move() {

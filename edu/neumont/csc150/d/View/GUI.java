@@ -1,5 +1,7 @@
 package edu.neumont.csc150.d.View;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import edu.neumont.csc150.d.Controller.Control;
+import edu.neumont.csc150.d.Model.Player;
 
 public class GUI implements ActionListener {
 	private JFrame frame;
@@ -20,12 +24,12 @@ public class GUI implements ActionListener {
 	private GameGraphics test;
 	private Control control;
 	private Audio audio = new Audio();
-
-	public void guiMain(GameGraphics game, Control c) {
+	private Player player;
+	public void guiMain(GameGraphics game, Control c, Player p) {
 		frame = new JFrame("NUHorror");
 		test = game;
 		control = c;
-
+		player = p;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		try {
@@ -53,8 +57,18 @@ public class GUI implements ActionListener {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		audio.commonsMusic();
 		frame.getContentPane().add(test);
+		
+		if (control.isFloor1() == true) {
+			audio.commonsMusic();
+		}
+		else if (control.isFloor2() == true) {
+			audio.basementMusic();
+		}
+		else if (control.isFloor3() == true) {
+			audio.roomMusic();
+		}
+		
 		frame.setVisible(true);
 	}
 
@@ -92,17 +106,37 @@ public class GUI implements ActionListener {
 		GridLayout layout = new GridLayout(1,3,10,10);
 		window.setLayout(layout);
 		
-		Errlin = new JButton("Errlin");
+		Errlin = new JButton();
 		Errlin.setIcon(new ImageIcon("Pics//character portraits//Errlin.png"));
+		Errlin.setForeground(Color.red);
+		Errlin.setVerticalAlignment(SwingConstants.BOTTOM);
+		Errlin.setVerticalTextPosition(SwingConstants.BOTTOM);
+		Errlin.setText("Errlin");
+		Errlin.setFont(new Font("Impact", Font.PLAIN, 100));
+		Errlin.setIconTextGap(-800);
 		Errlin.addActionListener(this);
-		Lawrence = new JButton("Lawrence");
+		
+		Lawrence = new JButton();
 		Lawrence.setIcon(new ImageIcon("Pics//character portraits//Lawrence.png"));
+		Lawrence.setForeground(Color.red);
+		Lawrence.setVerticalAlignment(SwingConstants.BOTTOM);
+		Lawrence.setVerticalTextPosition(SwingConstants.BOTTOM);
+		Lawrence.setText("Lawrence");
+		Lawrence.setFont(new Font("Impact", Font.PLAIN, 100));
+		Lawrence.setIconTextGap(-890);
 		Lawrence.addActionListener(this);
-		David = new JButton("David");
+		
+		
+		David = new JButton();
 		David.setIcon(new ImageIcon("Pics//character portraits//David.png"));
+		David.setForeground(Color.red);
+		David.setVerticalAlignment(SwingConstants.BOTTOM);
+		David.setVerticalTextPosition(SwingConstants.BOTTOM);
+		David.setText("David");
+		David.setFont(new Font("Impact", Font.PLAIN, 100));
+		David.setIconTextGap(-700);
 		David.addActionListener(this);
 		
-//		Errlin.setBounds(500, 500, 2000, 1000);
 		window.add(Errlin);
 		window.add(Lawrence);
 		window.add(David);
@@ -114,24 +148,32 @@ public class GUI implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == NewGame) {
 			frame.dispose();
+//			guiGame(test, control);
+			guiCharacterSelect();
+		} 
+		if (e.getSource() == Errlin) {
+			frame.dispose();
 			guiGame(test, control);
-//			guiCharacterSelect();
-//			if (e.getSource() == Errlin) {
-//				guiGame(test, control);
-//			}
-//			
-//			else if (e.getSource() == Lawrence) {
-//				guiGame(test, control);
-//			}
-//			
-//			else if (e.getSource() == David) {
-//				guiGame(test, control);
-//			}
-		} else if (e.getSource() == LoadGame) {
-
-		} else if (e.getSource() == Quit) {
+			player.setEarl(true);
+		}
+		
+		if (e.getSource() == Lawrence) {
+			frame.dispose();
+			guiGame(test, control);
+			player.setLaw(true);
+		}
+		
+		if (e.getSource() == David) {
+			frame.dispose();
+			guiGame(test, control);
+			player.setDave(true);
+		}
+		
+		else if (e.getSource() == LoadGame) {
+		} 
+		
+		else if (e.getSource() == Quit) {
 			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 		}
-
 	}
 }

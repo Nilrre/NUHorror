@@ -28,7 +28,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	private Player character;
 	private Control control;
-	private Image theCommons, floor2, floor3, basement, Errlin, ErrlinDown, ErrlinUp, ErrlinLeft, ErrlinRight;
+	private Image theCommons, floor2, floor3, basement, standing, down, up, left, right;
 	private String Dialouge;
 
 	// floor1
@@ -155,44 +155,115 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		// }
 		// g.fillOval(character.getX(), character.getY(), character.getWidth(),
 		// character.getHeight());
+		
+		if (character.isEarl() == true) {
 		if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
 			ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
-			Errlin = image.getImage();
-			d.drawImage(Errlin, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
+			standing = image.getImage();
+			d.drawImage(standing, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 		}
-
 		// Walking Down
 		else if (control.issPressed()) {
 			ImageIcon image1 = new ImageIcon("Errlin Walk//front//animated.gif");
-			ErrlinDown = image1.getImage();
-			d.drawImage(ErrlinDown, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+			down = image1.getImage();
+			d.drawImage(down, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 					this);
 		}
-
 		// Walking Up
 		else if (control.iswPressed()) {
 			ImageIcon image1 = new ImageIcon("Errlin Walk//Back//animated.gif");
-			ErrlinUp = image1.getImage();
-			d.drawImage(ErrlinUp, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+			up = image1.getImage();
+			d.drawImage(up, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 					this);
 		}
-
 		// Walking to the right
 		else if (control.isdPressed()) {
 			ImageIcon image1 = new ImageIcon("Errlin Walk//side//animated.gif");
-			ErrlinRight = image1.getImage();
-			d.drawImage(ErrlinRight, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+			right = image1.getImage();
+			d.drawImage(right, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 					this);
 		}
-
 		// walking to the right
 		else if (control.isaPressed()) {
 			ImageIcon image1 = new ImageIcon("Errlin Walk//side//animated.gif");
-			ErrlinLeft = image1.getImage();
-			d.drawImage(ErrlinLeft, character.getX() + 60, character.getY(), -(character.getWidth()),
+			left = image1.getImage();
+			d.drawImage(left, character.getX() + 60, character.getY(), -(character.getWidth()),
 					character.getHeight(), this);
+			}
 		}
-
+		
+		else if (character.isLaw() == true) {
+			if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
+				ImageIcon image = new ImageIcon("Lawrence Walk//front//0.png");
+				standing = image.getImage();
+				d.drawImage(standing, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
+			}
+			// Walking Down
+			else if (control.issPressed()) {
+				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//0.png");
+				down = image1.getImage();
+				d.drawImage(down, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+						this);
+			}
+			// Walking Up
+			else if (control.iswPressed()) {
+				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//0.png");
+				up = image1.getImage();
+				d.drawImage(up, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+						this);
+			}
+			// Walking to the right
+			else if (control.isdPressed()) {
+				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//0.png");
+				right = image1.getImage();
+				d.drawImage(right, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+						this);
+			}
+			// walking to the right
+			else if (control.isaPressed()) {
+				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//0.png");
+				left = image1.getImage();
+				d.drawImage(left, character.getX() + 60, character.getY(), -(character.getWidth()),
+						character.getHeight(), this);
+				}
+		}
+		
+		else if (character.isDave() == true) {
+			if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
+				ImageIcon image = new ImageIcon("David Walk//front//0.png");
+				standing = image.getImage();
+				d.drawImage(standing, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
+			}
+			// Walking Down
+			else if (control.issPressed()) {
+				ImageIcon image1 = new ImageIcon("David Walk//front//0.png");
+				down = image1.getImage();
+				d.drawImage(down, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+						this);
+			}
+			// Walking Up
+			else if (control.iswPressed()) {
+				ImageIcon image1 = new ImageIcon("David Walk//front//0.png");
+				up = image1.getImage();
+				d.drawImage(up, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+						this);
+			}
+			// Walking to the right
+			else if (control.isdPressed()) {
+				ImageIcon image1 = new ImageIcon("David Walk//front//0.png");
+				right = image1.getImage();
+				d.drawImage(right, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+						this);
+			}
+			// walking to the right
+			else if (control.isaPressed()) {
+				ImageIcon image1 = new ImageIcon("David Walk//front//0.png");
+				left = image1.getImage();
+				d.drawImage(left, character.getX() + 60, character.getY(), -(character.getWidth()),
+						character.getHeight(), this);
+				}
+		}
+		
 		this.repaint();
 	}
 

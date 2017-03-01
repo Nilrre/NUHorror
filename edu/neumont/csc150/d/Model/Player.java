@@ -6,6 +6,7 @@ public class Player extends Object implements Serializable {
 	private int x, y, xVel, yVel;
 	private final int width = 80, height = 80;
 	private boolean key = false;
+	private boolean Earl = false, Law = false, Dave = false;
 
 	public Player() {
 	}
@@ -130,6 +131,48 @@ public class Player extends Object implements Serializable {
 	
 	public void setKey(boolean key) {
 		this.key = key;
+	}
+
+	/**
+	 * @return the earl
+	 */
+	public boolean isEarl() {
+		return Earl;
+	}
+
+	/**
+	 * @param earl the earl to set
+	 */
+	public void setEarl(boolean earl) {
+		Earl = earl;
+	}
+
+	/**
+	 * @return the law
+	 */
+	public boolean isLaw() {
+		return Law;
+	}
+
+	/**
+	 * @param law the law to set
+	 */
+	public void setLaw(boolean law) {
+		Law = law;
+	}
+
+	/**
+	 * @return the dave
+	 */
+	public boolean isDave() {
+		return Dave;
+	}
+
+	/**
+	 * @param dave the dave to set
+	 */
+	public void setDave(boolean dave) {
+		Dave = dave;
 	}
 
 
