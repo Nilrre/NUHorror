@@ -83,15 +83,15 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			theCommons = commons.getImage();
 			d.drawImage(theCommons, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			g.fillRect(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
-			g.fillRect(wall2.getX(), wall2.getY(), wall2.getWidth(), wall2.getHeight());
-			g.fillRect(wall3.getX(), wall3.getY(), wall3.getWidth(), wall3.getHeight());
-			g.fillRect(wall4.getX(), wall4.getY(), wall4.getWidth(), wall4.getHeight());
-			g.fillRect(wall5.getX(), wall5.getY(), wall5.getWidth(), wall5.getHeight());
-			g.fillRect(wall6.getX(), wall6.getY(), wall6.getWidth(), wall6.getHeight());
-			g.fillRect(wall7.getX(), wall7.getY(), wall7.getWidth(), wall7.getHeight());
-			g.fillRect(wall8.getX(), wall8.getY(), wall8.getWidth(), wall8.getHeight());
-			g.fillRect(wall9.getX(), wall9.getY(), wall9.getWidth(), wall9.getHeight());
+//			g.fillRect(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
+//			g.fillRect(wall2.getX(), wall2.getY(), wall2.getWidth(), wall2.getHeight());
+//			g.fillRect(wall3.getX(), wall3.getY(), wall3.getWidth(), wall3.getHeight());
+//			g.fillRect(wall4.getX(), wall4.getY(), wall4.getWidth(), wall4.getHeight());
+//			g.fillRect(wall5.getX(), wall5.getY(), wall5.getWidth(), wall5.getHeight());
+//			g.fillRect(wall6.getX(), wall6.getY(), wall6.getWidth(), wall6.getHeight());
+//			g.fillRect(wall7.getX(), wall7.getY(), wall7.getWidth(), wall7.getHeight());
+//			g.fillRect(wall8.getX(), wall8.getY(), wall8.getWidth(), wall8.getHeight());
+//			g.fillRect(wall9.getX(), wall9.getY(), wall9.getWidth(), wall9.getHeight());
 
 			g.drawRect(door1.getX(), door1.getY(), door1.getWidth(), door1.getWidth());
 			g.drawRect(door2.getX(), door2.getY(), door2.getWidth(), door2.getWidth());
@@ -110,11 +110,11 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			floor2 = theSecondFloor.getImage();
 			d.drawImage(floor2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			g.fillRect(wall10.getX(), wall10.getY(), wall10.getWidth(), wall10.getHeight());
-			g.fillRect(wall11.getX(), wall11.getY(), wall11.getWidth(), wall11.getHeight());
-			g.fillRect(wall12.getX(), wall12.getY(), wall12.getWidth(), wall12.getHeight());
-			g.fillRect(wall13.getX(), wall13.getY(), wall13.getWidth(), wall13.getHeight());
-			g.fillRect(wall14.getX(), wall14.getY(), wall14.getWidth(), wall14.getHeight());
+//			g.fillRect(wall10.getX(), wall10.getY(), wall10.getWidth(), wall10.getHeight());
+//			g.fillRect(wall11.getX(), wall11.getY(), wall11.getWidth(), wall11.getHeight());
+//			g.fillRect(wall12.getX(), wall12.getY(), wall12.getWidth(), wall12.getHeight());
+//			g.fillRect(wall13.getX(), wall13.getY(), wall13.getWidth(), wall13.getHeight());
+//			g.fillRect(wall14.getX(), wall14.getY(), wall14.getWidth(), wall14.getHeight());
 
 			g.drawRect(door3.getX(), door3.getY(), door3.getWidth(), door3.getWidth());
 			g.drawRect(door4.getX(), door4.getY(), door4.getWidth(), door4.getWidth());
@@ -131,9 +131,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				}
 			}
 		} else if (control.isFloor3() == true) {
-			ImageIcon theThirdFloor = new ImageIcon("Pics//floors//.png");
+			ImageIcon theThirdFloor = new ImageIcon("Pics//floors//floor 3.png");
 			floor3 = theThirdFloor.getImage();
-			d.drawImage(floor3, this.getX(), this.getY(), this.getHeight(), this.getHeight(), this);
+			d.drawImage(floor3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			for (int y = 0; y < this.getHeight(); y += 50) {
 				for (int i = 0; i < this.getWidth(); i += 50) {
@@ -144,6 +144,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				}
 			}
 		}
+		
 
 		// if (character.getY() > 900) {
 		// g.setColor(Color.BLUE);
@@ -207,7 +208,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					character.setY(900);
 				}else if(door.equals(door1)){
 					control.setFloor1(false);
-					control.setBasement(true);
+					control.setFloor3(true);
 //					character.setX();
 //					character.setY();
 				}
