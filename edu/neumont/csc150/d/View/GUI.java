@@ -93,13 +93,13 @@ public class GUI implements ActionListener {
 		window.setLayout(layout);
 		
 		Errlin = new JButton("Errlin");
-		Errlin.setIcon(new ImageIcon("Art//character portraits//Errlin"));
+		Errlin.setIcon(new ImageIcon("Pics//character portraits//Errlin.png"));
 		Errlin.addActionListener(this);
 		Lawrence = new JButton("Lawrence");
-		Lawrence.setIcon(new ImageIcon("Art//character portraits//Lawrence"));
+		Lawrence.setIcon(new ImageIcon("Pics//character portraits//Lawrence.png"));
 		Lawrence.addActionListener(this);
 		David = new JButton("David");
-		David.setIcon(new ImageIcon("Art//character portraits//David"));
+		David.setIcon(new ImageIcon("Pics//character portraits//David.png"));
 		David.addActionListener(this);
 		
 //		Errlin.setBounds(500, 500, 2000, 1000);

@@ -21,11 +21,11 @@ public class CharacterSelect implements ActionListener{
 		panel.setLayout(layout);
 		
 		Errlin = new JButton("Errlin");
-		Errlin.setIcon(new ImageIcon("Art//character portraits//Errlin"));
+		Errlin.setIcon(new ImageIcon("Art//character portraits//Errlin.png"));
 		Lawrence = new JButton("Lawrence");
-		Lawrence.setIcon(new ImageIcon("Art//character portraits//Lawrence"));
+		Lawrence.setIcon(new ImageIcon("Art//character portraits//Lawrence.png"));
 		David = new JButton("David");
-		David.setIcon(new ImageIcon("Art//character portraits//David"));
+		David.setIcon(new ImageIcon("Art//character portraits//David.png"));
 		
 //		Errlin.setBounds(500, 500, 2000, 1000);
 		panel.add(Errlin);
