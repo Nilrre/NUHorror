@@ -2,7 +2,7 @@ package edu.neumont.csc150.d.Model;
 
 import java.io.Serializable;
 
-public class Door extends Object implements Serializable{
+public class Door extends Object implements Serializable, SolidObject{
 	private boolean locked;
 	private int x, y, width, height;
 	
@@ -54,6 +54,15 @@ public class Door extends Object implements Serializable{
 
 	public void setLocked(boolean locked) {
 		this.locked = locked;
+	}
+
+	@Override
+	public boolean collider(Player p) {
+		if(p.Collision(this.x, this.y, this.width, this.height)==true){
+			return true;
+		}else 
+			return false;
+	
 	}
 	
 }

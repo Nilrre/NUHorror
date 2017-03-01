@@ -9,6 +9,9 @@ public class Control {
 	private boolean aPressed = false;
 	private boolean sPressed = false;
 	private boolean wPressed = false;
+	private boolean pPressed = false;
+	private boolean iPressed = false;
+
 	private Player Character;
 	private GameGraphics game;
 	private boolean floor1 = true;
@@ -19,7 +22,7 @@ public class Control {
 	private GUI gui;
 
 	public Control() {
-	
+
 	}
 
 	public void ControlGUI() {
@@ -112,5 +115,21 @@ public class Control {
 
 	public void setFloor2(boolean floor2) {
 		this.floor2 = floor2;
+	}
+
+	public boolean ispPressed() {
+		return pPressed;
+	}
+
+	public void setpPressed(boolean pPressed) {
+		this.pPressed = pPressed;
+	}
+
+	public boolean isiPressed() {
+		return iPressed;
+	}
+
+	public void setiPressed(boolean iPressed) {
+		this.iPressed = iPressed;
 	}
 }

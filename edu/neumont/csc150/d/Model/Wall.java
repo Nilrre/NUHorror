@@ -6,7 +6,7 @@ public class Wall extends Object implements SolidObject {
 	
 	public Wall() {}
 	
-	public Wall(int x, int y, int height, int width){
+	public Wall(int x, int y, int width, int height){
 		this.setHeight(height);
 		this.setWidth(width);
 		this.setX(x);
@@ -14,8 +14,12 @@ public class Wall extends Object implements SolidObject {
 	}
 	
 	@Override
-	public void collider(Player p) {
-		p.Collision(this.x, this.y, this.width, this.height);
+	public boolean collider(Player p) {
+		if(p.Collision(this.x, this.y, this.width, this.height)==true){
+			return true;
+		}else 
+			return false;
+	
 	}
 	
 	/**
