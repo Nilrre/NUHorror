@@ -59,15 +59,15 @@ public class GUI implements ActionListener {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.getContentPane().add(test);
 		
-		if (control.isFloor1() == true) {
-			audio.commonsMusic();
-		}
-		else if (control.isFloor2() == true) {
+//		if (control.isFloor1() == true) {
 			audio.basementMusic();
-		}
-		else if (control.isFloor3() == true) {
-			audio.roomMusic();
-		}
+//		}
+//		if (control.isFloor2() == true) {
+//			audio.mainMenuMusic();
+//		}
+//		if (control.isFloor3() == true) {
+//			audio.mainMenuMusic();
+//		}
 		
 		frame.setVisible(true);
 	}

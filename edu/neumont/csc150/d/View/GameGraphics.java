@@ -30,7 +30,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Control control;
 	private Image theCommons, floor2, floor3, basement, standing, down, up, left, right;
 	private String Dialouge;
-
+	private Audio audio;
+	
 	// floor1
 	private Wall wall1 = new Wall(650, 900, 500, 50);
 	private Wall wall2 = new Wall(650, 1175, 500, 50);
@@ -61,10 +62,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Door door6 = new Door(2500, 850, 50, 300, false);
 	private Door door7 = new Door(1550, 1300, 625, 50, false);
 
-	public GameGraphics(Player chara, Control c) {
+	public GameGraphics(Player chara, Control c, Audio a) {
 		character = chara;
 		control = c;
-
+		audio = a;
 		setFocusable(true);
 		addKeyListener(this);
 

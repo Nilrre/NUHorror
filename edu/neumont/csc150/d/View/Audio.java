@@ -25,7 +25,7 @@ public class Audio {
 	public void commonsMusic() {
 		URL url = Audio.class.getResource("AwkwardMeeting.wav");
 		AudioClip clip = Applet.newAudioClip(url);
-		clip.loop();
+		clip.play();
 	}
 	
 	//Basement Music

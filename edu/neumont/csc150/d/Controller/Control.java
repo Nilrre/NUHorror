@@ -1,6 +1,7 @@
 package edu.neumont.csc150.d.Controller;
 
 import edu.neumont.csc150.d.Model.Player;
+import edu.neumont.csc150.d.View.Audio;
 import edu.neumont.csc150.d.View.GUI;
 import edu.neumont.csc150.d.View.GameGraphics;
 
@@ -18,7 +19,7 @@ public class Control {
 	private boolean floor2 = false;
 	private boolean floor3 = false;
 	private boolean basement = false;
-
+	private Audio audio = new Audio();
 	private GUI gui;
 
 	public Control() {
@@ -27,7 +28,7 @@ public class Control {
 
 	public void ControlGUI() {
 		Character = new Player(30, 30, 6, 6);
-		game = new GameGraphics(Character, this);
+		game = new GameGraphics(Character, this, audio);
 		// if(floor1 == true){
 		// f1 = new Floor1(Character, this);
 		// }else if(floor2 == true){
