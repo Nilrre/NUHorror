@@ -91,6 +91,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Door door12 = new Door(750, 875, 200, 650, false);
 	private Door door13 = new Door(450, 50, 50, 250, true);
 	private Door door14 = new Door(1200, 1250, 200, 150, true);
+	Timer timer = new Timer(1000 / 60, this);
 
 	public GameGraphics(Player chara, Control c) {
 		character = chara;
@@ -99,7 +100,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		setFocusable(true);
 		addKeyListener(this);
 
-		Timer timer = new Timer(1000 / 60, this);
 		timer.start();
 	}
 
@@ -123,7 +123,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			d.drawImage(theCommons, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			if (key1Visible) {
-				key1 = new Key(1, 80, 300, 20, 20);
+				key1 = new Key(1, 0, 300, 100, 40);
 				ImageIcon key = new ImageIcon("Pics//Key.png");
 				keys = key.getImage();
 				d.drawImage(keys, key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight(), this);
@@ -510,6 +510,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setiPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_P) {
 			control.setpPressed(true);
+			timer.stop();
 		}
 
 		this.repaint();
