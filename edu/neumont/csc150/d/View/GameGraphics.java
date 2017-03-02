@@ -28,7 +28,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	private Player character;
 	private Control control;
-	private Image theCommons, floor2, floor3, basement, room1, room2, room3, standing, down, up, left, right;
+	private Image theCommons, floor2, floor3, basement, keys, room1, room2, room3, standing, down, up, left, right;
 	private String Dialouge;
 	private Audio audio;
 
@@ -123,8 +123,11 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			d.drawImage(theCommons, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			if (key1Visible) {
-				key1 = new Key(1, 100, 100, 20, 20);
-				g.fillOval(key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight());
+				key1 = new Key(1, 80, 300, 20, 20);
+				ImageIcon key = new ImageIcon("Pics//Key.png");
+				keys = key.getImage();
+				d.drawImage(keys, key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight(), this);
+//				g.fillOval(key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight());
 			}
 
 			// for (int y = 0; y < this.getHeight(); y += 50) {
