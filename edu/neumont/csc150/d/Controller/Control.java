@@ -26,7 +26,7 @@ public class Control {
 	}
 
 	public void ControlGUI() {
-		Character = new Player(30, 30, 6, 6);
+		Character = new Player(2100, 1150, 20, 20);
 		game = new GameGraphics(Character, this);
 		// if(floor1 == true){
 		// f1 = new Floor1(Character, this);

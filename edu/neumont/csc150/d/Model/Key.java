@@ -4,7 +4,6 @@ public class Key extends Object implements SolidObject {
 	
 	private int amount, x, y, width, height;
 	
-	
 	public Key() {}
 	
 	public Key(int amount, int x, int y, int w, int h) {
