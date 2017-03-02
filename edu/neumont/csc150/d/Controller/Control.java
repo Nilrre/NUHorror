@@ -19,7 +19,11 @@ public class Control {
 	private boolean floor2 = false;
 	private boolean floor3 = false;
 	private boolean basement = false;
-	private Audio audio = new Audio();
+//	private Audio audio = new Audio();
+	private boolean room1 = false;
+	private boolean room2 = false;
+	private boolean room3 = false;
+
 	private GUI gui;
 
 	public Control() {
@@ -28,7 +32,7 @@ public class Control {
 
 	public void ControlGUI() {
 		Character = new Player(2100, 1150, 20, 20);
-		game = new GameGraphics(Character, this, audio);
+		game = new GameGraphics(Character, this);
 		// if(floor1 == true){
 		// f1 = new Floor1(Character, this);
 		// }else if(floor2 == true){
@@ -133,4 +137,29 @@ public class Control {
 	public void setiPressed(boolean iPressed) {
 		this.iPressed = iPressed;
 	}
+	
+	public boolean isRoom1() {
+		return room1;
+	}
+	
+	public void setRoom1(boolean room1) {
+		this.room1 = room1;
+	}
+	
+	public boolean isRoom2() {
+		return room2;
+	}
+	
+	public void setRoom2(boolean room2) {
+		this.room2 = room2;
+	}
+	
+	public boolean isRoom3() {
+		return room3;
+	}
+	
+	public void setRoom3(boolean room3) {
+		this.room3 = room3;
+	}
 }
+
