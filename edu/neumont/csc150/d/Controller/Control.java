@@ -18,6 +18,9 @@ public class Control {
 	private boolean floor2 = false;
 	private boolean floor3 = false;
 	private boolean basement = false;
+	private boolean room1 = false;
+	private boolean room2 = false;
+	private boolean room3 = false;
 
 	private GUI gui;
 
@@ -132,4 +135,29 @@ public class Control {
 	public void setiPressed(boolean iPressed) {
 		this.iPressed = iPressed;
 	}
+	
+	public boolean isRoom1() {
+		return room1;
+	}
+	
+	public void setRoom1(boolean room1) {
+		this.room1 = room1;
+	}
+	
+	public boolean isRoom2() {
+		return room2;
+	}
+	
+	public void setRoom2(boolean room2) {
+		this.room2 = room2;
+	}
+	
+	public boolean isRoom3() {
+		return room3;
+	}
+	
+	public void setRoom3(boolean room3) {
+		this.room3 = room3;
+	}
 }
+

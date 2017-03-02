@@ -28,7 +28,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	private Player character;
 	private Control control;
-	private Image theCommons, floor2, floor3, basement, standing, down, up, left, right;
+	private Image theCommons, floor2, floor3, basement, room1, room2, room3, standing, down, up, left, right;
 	private String Dialouge;
 
 	// place into each floor/room
@@ -122,7 +122,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			d.drawImage(theCommons, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			if (key1Visible) {
-				key1 = new Key(1, 30, 30, 20, 20);
+				key1 = new Key(1, 100, 100, 20, 20);
 				g.fillOval(key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight());
 			}
 
@@ -173,6 +173,36 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
 			// }
 			// }
+		} else if (control.isRoom1()) {
+			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room1.png");
+			room1 = Room.getImage();
+			d.drawImage(room1, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+
+			for (int y = 0; y < this.getHeight(); y += 50) {
+				for (int i = 0; i < this.getWidth(); i += 50) {
+					g.drawString("-", i, y);
+					g.drawString("|", i, y);
+					g.drawString(Integer.toString(y), this.getWidth() - 30, y);
+					g.drawString(Integer.toString(i), i, this.getHeight() - 30);
+				}
+			}
+		} else if (control.isRoom2()) {
+			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
+			room2 = Room.getImage();
+			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+		
+			for (int y = 0; y < this.getHeight(); y += 50) {
+				for (int i = 0; i < this.getWidth(); i += 50) {
+					g.drawString("-", i, y);
+					g.drawString("|", i, y);
+					g.drawString(Integer.toString(y), this.getWidth() - 30, y);
+					g.drawString(Integer.toString(i), i, this.getHeight() - 30);
+				}
+			}
+		} else if (control.isRoom3()) {
+			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room3.png");
+			room3 = Room.getImage();
+			d.drawImage(room3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 		}
 
 		// if (character.getY() > 900) {
@@ -312,11 +342,14 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					character.setX(2350);
 					character.setY(900);
 				} else if (door.equals(door3)) {
-					// first room in floor 2
+					control.setFloor2(false);
+					control.setRoom1(true);
 					// character.setX(x in new room);
 					// character.setY(y in new room);
 				} else if (door.equals(door4)) {
 					// second room in floor 2
+					control.setFloor2(false);
+					control.setRoom2(true);
 					// character.setX(x in new room);
 					// character.setY(y in new room);
 				} else if (door.equals(door5)) {
@@ -376,7 +409,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	public void keyCollision(Key key) {
 		if (key.collider(character)) {
 			if (control.isiPressed() == true) {
-//				change to if statements like in doors
+				// change to if statements like in doors
 				key1Visible = false;
 				character.setKey(true);
 			}
@@ -408,7 +441,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 			pong.collider(character);
 
-			keyCollision(key1);
+			if (key1Visible) {
+				keyCollision(key1);
+			}
 
 			doorCollision(door1);
 			doorCollision(door2);
