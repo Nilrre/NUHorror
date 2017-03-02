@@ -230,27 +230,27 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			}
 			// Walking Down
 			else if (control.issPressed()) {
-				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//0.png");
+				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//animated.gif");
 				down = image1.getImage();
 				d.drawImage(down, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
 			// Walking Up
 			else if (control.iswPressed()) {
-				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//0.png");
+				ImageIcon image1 = new ImageIcon("Lawrence Walk//back//animated.gif");
 				up = image1.getImage();
 				d.drawImage(up, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
 			// Walking to the right
 			else if (control.isdPressed()) {
-				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//0.png");
+				ImageIcon image1 = new ImageIcon("Lawrence Walk//side//animated.gif");
 				right = image1.getImage();
 				d.drawImage(right, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
 			// walking to the right
 			else if (control.isaPressed()) {
-				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//0.png");
+				ImageIcon image1 = new ImageIcon("Lawrence Walk//side//animated.gif");
 				left = image1.getImage();
 				d.drawImage(left, character.getX() + 60, character.getY(), -(character.getWidth()),
 						character.getHeight(), this);
@@ -266,27 +266,27 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			}
 			// Walking Down
 			else if (control.issPressed()) {
-				ImageIcon image1 = new ImageIcon("David Walk//front//0.png");
+				ImageIcon image1 = new ImageIcon("David Walk//front//animated.gif");
 				down = image1.getImage();
 				d.drawImage(down, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
 			// Walking Up
 			else if (control.iswPressed()) {
-				ImageIcon image1 = new ImageIcon("David Walk//front//0.png");
+				ImageIcon image1 = new ImageIcon("David Walk//back//animated.gif");
 				up = image1.getImage();
 				d.drawImage(up, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
 			// Walking to the right
 			else if (control.isdPressed()) {
-				ImageIcon image1 = new ImageIcon("David Walk//front//0.png");
+				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				right = image1.getImage();
 				d.drawImage(right, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
 			// walking to the right
 			else if (control.isaPressed()) {
-				ImageIcon image1 = new ImageIcon("David Walk//front//0.png");
+				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				left = image1.getImage();
 				d.drawImage(left, character.getX() + 60, character.getY(), -(character.getWidth()),
 						character.getHeight(), this);
