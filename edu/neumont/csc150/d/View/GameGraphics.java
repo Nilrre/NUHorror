@@ -31,6 +31,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Image theCommons, floor2, floor3, basement, keys, room1, room2, room3, standing, down, up, left, right;
 	private String Dialouge;
 	private Audio audio;
+	private boolean f2 = false, f3 = false, b = false;
 
 	// place into each floor/room
 	private boolean key1Visible = true;
@@ -47,7 +48,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall8 = new Wall(2275, 400, 50, 800);
 	private Wall wall9 = new Wall(2275, 0, 100, 125);
 	private Wall pong = new Wall(825, 650, 425, 200);
-
 	private Door door1 = new Door(950, 925, 50, 200, false);
 	private Door door2 = new Door(2275, 125, 100, 275, false);
 	private Door MainDoor = new Door(2275, 1200, 200, 250, true);
@@ -58,10 +58,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall12 = new Wall(1500, 850, 50, 150);
 	private Wall wall13 = new Wall(2150, 0, 450, 850);
 	private Wall wall14 = new Wall(2160, 1080, 540, 270);
-
-	private Door door3 = new Door(60, 275, 315, 210, true);
-	private Door door4 = new Door(1400, 625, 150, 425, true);
-	private Door door5 = new Door(1400, 1000, 150, 475, true);
+	private Door door3 = new Door(60, 275, 315, 210, false);
+	private Door door4 = new Door(1400, 625, 150, 425, false);
+	private Door door5 = new Door(1400, 1000, 150, 475, false);
 	private Door door6 = new Door(2500, 850, 50, 300, false);
 	private Door door7 = new Door(1550, 1250, 625, 100, false);
 
@@ -73,7 +72,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall19 = new Wall(2500, 0, 100, 670);
 	private Wall wall20 = new Wall(1900, 50, 300, 600);
 	private Wall wall28 = new Wall(650, 500, 100, 50);
-
 	private Door door8 = new Door(500, 75, 200, 250, true);
 	private Door door9 = new Door(500, 800, 200, 250, true);
 	private Door door10 = new Door(500, 1250, 500, 150, false);
@@ -87,16 +85,45 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall25 = new Wall(1200, 0, 1350, 425);
 	private Wall wall26 = new Wall(1400, 825, 1150, 575);
 	private Wall wall27 = new Wall(1425, 425, 1150, 150);
-
 	private Door door12 = new Door(750, 875, 200, 650, false);
 	private Door door13 = new Door(450, 50, 50, 250, true);
 	private Door door14 = new Door(1200, 1250, 200, 150, true);
-	Timer timer = new Timer(1000 / 60, this);
+
+	// room1
+	private Wall wall29 = new Wall(0, 0, 100, 1350);
+	private Wall wall30 = new Wall(0, 0, 1250, 150);
+	private Wall wall31 = new Wall(0, 1230, 2550, 100);
+	private Wall wall32 = new Wall(2350, 0, 200, 475);
+	private Wall wall33 = new Wall(2350, 975, 200, 375);
+	private Wall wall34 = new Wall(100, 150, 125, 125);
+	private Wall wall35 = new Wall(310, 375, 115, 875);
+	private Wall wall36 = new Wall(600, 375, 115, 875);
+	private Wall wall37 = new Wall(965, 375, 115, 875);
+	private Wall wall38 = new Wall(1200, 375, 115, 875);
+	private Wall wall39 = new Wall(1450, 375, 115, 875);
+	private Wall wall40 = new Wall(1765, 375, 115, 875);
+	private Wall wall41 = new Wall(1990, 375, 115, 875);
+	private Wall wall42 = new Wall(820, 275, 150, 120);
+	private Wall wall43 = new Wall(1550, 275, 150, 120);
+	private Door door15 = new Door(2350, 475, 100, 500, false);
+	private Door door17 = door15;
+
+	// room2
+	private Wall wall44 = new Wall(0, 0, 100, 1350);
+	private Wall wall45 = new Wall(150, 50, 100, 150);
+	private Wall wall46 = new Wall(450, 235, 120, 1000);
+	private Wall wall47 = new Wall(875, 235, 120, 1000);
+	private Wall wall48 = new Wall(1125, 350, 1375, 900);
+	private Wall wall49 = new Wall(1125, 0, 1375, 900);
+	private Door door16 = new Door(1125, 150, 100, 200, false);
+	private Door door18 = door16, door19 = door16;
+
+	public Timer timer = new Timer(1000 / 60, this);
 
 	public GameGraphics(Player chara, Control c) {
 		character = chara;
 		control = c;
-//		audio = a;
+		// audio = a;
 		setFocusable(true);
 		addKeyListener(this);
 
@@ -127,7 +154,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				ImageIcon key = new ImageIcon("Pics//Key.png");
 				keys = key.getImage();
 				d.drawImage(keys, key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight(), this);
-//				g.fillOval(key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight());
+				// g.fillOval(key1.getX(), key1.getY(), key1.getWidth(),
+				// key1.getHeight());
 			}
 
 			// for (int y = 0; y < this.getHeight(); y += 50) {
@@ -194,7 +222,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
 			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
-		
+
 			for (int y = 0; y < this.getHeight(); y += 50) {
 				for (int i = 0; i < this.getWidth(); i += 50) {
 					g.drawString("-", i, y);
@@ -338,26 +366,30 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				if (door.equals(door1)) {
 					control.setFloor1(false);
 					control.setBasement(true);
+					b = false;
 					character.setX(800);
 					character.setY(750);
 				} else if (door.equals(door2)) {
 					control.setFloor1(false);
 					control.setFloor2(true);
-					character.setX(2350);
+					f2 = true;
+					character.setX(2250);
 					character.setY(900);
 				} else if (door.equals(door3)) {
 					control.setFloor2(false);
 					control.setRoom1(true);
-					// character.setX(x in new room);
-					// character.setY(y in new room);
+					character.setX(2150);
+					character.setY(600);
 				} else if (door.equals(door4)) {
 					// second room in floor 2
 					control.setFloor2(false);
 					control.setRoom2(true);
-					// character.setX(x in new room);
-					// character.setY(y in new room);
+					character.setX(950);
+					character.setY(100);
 				} else if (door.equals(door5)) {
 					// third room in floor 2
+					control.setRoom3(true);
+					control.setFloor2(false);
 					// character.setX(x in new room);
 					// character.setY(y in new room);
 				} else if (door.equals(door6)) {
@@ -368,41 +400,85 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				} else if (door.equals(door7)) {
 					control.setFloor2(false);
 					control.setFloor3(true);
+					f3 = true;
+					f2 = false;
 					character.setX(2300);
 					character.setY(850);
 				} else if (door.equals(door8)) {
 					// first room in floor 3
-					// character.setX(x in new room);
-					// character.setY(y in new room);
+					control.setRoom1(true);
+					control.setFloor3(false);
+					character.setX(2150);
+					character.setY(600);
 				} else if (door.equals(door9)) {
 					// second room in floor 3
-					// character.setX(x in new room);
-					// character.setY(y in new room);
+					control.setRoom2(true);
+					control.setFloor3(false);
+					character.setX(950);
+					character.setY(100);
 				} else if (door.equals(door10)) {
 					// third room in floor 3
+					control.setRoom3(true);
+					control.setFloor3(false);
 					// character.setX(x in new room);
 					// character.setY(y in new room);
 				} else if (door.equals(door11)) {
 					control.setFloor3(false);
 					control.setFloor2(true);
+					f2 = true;
+					f3 = false;
 					character.setX(1700);
 					character.setY(1050);
 				} else if (door.equals(door12)) {
 					control.setFloor1(true);
 					control.setBasement(false);
+					b = true;
 					character.setX(600);
 					character.setY(1000);
 				} else if (door.equals(door13)) {
 					// first room in basement
-					// character.setX(x in new room);
-					// character.setY(y in new room);
+					control.setRoom2(true);
+					control.setBasement(false);
+					character.setX(950);
+					character.setY(100);
 				} else if (door.equals(door14)) {
 					// bunker room in basement
 					// character.setX(x in new room);
 					// character.setY(y in new room);
+				} else if (door.equals(door15)) {
+					// first room in second floor
+					control.setFloor2(false);
+					control.setRoom1(true);
+					character.setX(2150);
+					character.setY(600);
+				} else if (door.equals(door16)) {
+					// second room in second floor
+					control.setFloor2(false);
+					control.setRoom2(true);
+					character.setX(950);
+					character.setY(100);
+				} else if (door.equals(door17)) {
+					// first room in third floor
+					control.setFloor3(false);
+					control.setRoom1(true);
+					character.setX(2150);
+					character.setY(600);
+				} else if (door.equals(door18)) {
+					// second room in third floor
+					control.setFloor3(false);
+					control.setRoom2(true);
+					character.setX(950);
+					character.setY(100);
+				} else if (door.equals(door19)) {
+					// second room in basement
+					control.setBasement(false);
+					control.setRoom2(true);
+					character.setX(950);
+					character.setY(100);
 				}
 			} else if (door.isLocked() == true && character.hasKey() == true) {
 				door.setLocked(false);
+				character.setKey(false);
 			} else {
 				Dialouge = "I cannot enter without a key";
 				// inside draw string put in dialouge
@@ -490,6 +566,41 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			doorCollision(door12);
 			doorCollision(door13);
 			doorCollision(door14);
+		} else if (control.isRoom1()) {
+			wall29.collider(character);
+			wall30.collider(character);
+			wall31.collider(character);
+			wall32.collider(character);
+			wall33.collider(character);
+			wall34.collider(character);
+			wall35.collider(character);
+			wall36.collider(character);
+			wall37.collider(character);
+			wall38.collider(character);
+			wall39.collider(character);
+			wall40.collider(character);
+			wall41.collider(character);
+			wall42.collider(character);
+			wall43.collider(character);
+
+			if (f2)
+				doorCollision(door15);
+			if (f3)
+				doorCollision(door17);
+		} else if (control.isRoom2()) {
+			wall44.collider(character);
+			wall45.collider(character);
+			wall46.collider(character);
+			wall47.collider(character);
+			wall48.collider(character);
+			wall49.collider(character);
+
+			if (f2)
+				doorCollision(door16);
+			if (f3)
+				doorCollision(door18);
+			if (b)
+				doorCollision(door19);
 		}
 
 		control.move();
