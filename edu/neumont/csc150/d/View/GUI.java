@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
@@ -19,12 +21,13 @@ import edu.neumont.csc150.d.Model.Player;
 
 public class GUI implements ActionListener {
 	private JFrame frame;
-	private JButton NewGame, Errlin, Lawrence, David, LoadGame, Quit, Resume, MainMenu;
-	private JPanel window;
+	private JButton NewGame, Errlin, Lawrence, David, LoadGame, SaveGame, Quit, Resume, MainMenu;
+	private JPanel window, pause;
 	private GameGraphics test;
 	private Control control;
 	private Audio audio = new Audio();
 	private Player player;
+	private boolean paused = false;
 	public void guiMain(GameGraphics game, Control c, Player p) {
 		frame = new JFrame("NUHorror");
 		test = game;
@@ -69,6 +72,10 @@ public class GUI implements ActionListener {
 //			audio.mainMenuMusic();
 //		}
 		
+//			if (paused = true) {
+//				pausePanel();	
+//			}
+			
 		frame.setVisible(true);
 	}
 
@@ -98,7 +105,6 @@ public class GUI implements ActionListener {
 		frame.getContentPane().add(LoadGame);
 		frame.getContentPane().add(Quit);
 		frame.getContentPane().add(new MenuGraphics("Pics//MainMenu.jpg"));
-
 	}
 	
 	public void characterSelectPanel() {
@@ -143,6 +149,31 @@ public class GUI implements ActionListener {
 		
 		frame.getContentPane().add(window);
 	}
+	
+	public void pausePanel() {
+		pause = new JPanel();
+//		FlowLayout lay = new FlowLayout(100, 500, 1000);
+		pause.setLayout(null);
+		
+		Resume = new JButton("Resume");
+		Resume.setBounds(1150, 400, 250, 100);
+		pause.add(Resume);
+		Resume.addActionListener(this);
+		LoadGame = new JButton("Load");
+		LoadGame.setBounds(1150, 600, 250, 100);
+		pause.add(LoadGame);
+		LoadGame.addActionListener(this);
+		SaveGame = new JButton("Save");
+		SaveGame.setBounds(1150, 800, 250, 100);
+		pause.add(SaveGame);
+		SaveGame.addActionListener(this);
+		MainMenu = new JButton("Exit");
+		MainMenu.setBounds(1150, 1000, 250, 100);
+		pause.add(MainMenu);
+		MainMenu.addActionListener(this);
+		
+		frame.getContentPane().add(pause);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -169,11 +200,43 @@ public class GUI implements ActionListener {
 			player.setDave(true);
 		}
 		
+		else if (e.getSource() == Resume) {
+			
+		}
+		
+		else if (e.getSource() == SaveGame) {
+			
+		}
+		
 		else if (e.getSource() == LoadGame) {
-		} 
+		}
+		
+		else if (e.getSource() == MainMenu) {
+			frame.dispose();
+			guiMain(test, control, player);
+		}
 		
 		else if (e.getSource() == Quit) {
 			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 		}
 	}
+
+//	@Override
+//	public void keyPressed(KeyEvent e) {
+//		if (e.getKeyCode() == KeyEvent.VK_P) {
+//			paused = true;
+//		}
+//	}
+//
+//	@Override
+//	public void keyReleased(KeyEvent e) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void keyTyped(KeyEvent e) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 }

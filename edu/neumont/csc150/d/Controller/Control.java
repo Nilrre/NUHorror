@@ -32,7 +32,7 @@ public class Control {
 
 	public void ControlGUI() {
 		Character = new Player(2100, 1150, 20, 20);
-		game = new GameGraphics(Character, this);
+		game = new GameGraphics(Character, this, gui);
 		// if(floor1 == true){
 		// f1 = new Floor1(Character, this);
 		// }else if(floor2 == true){
