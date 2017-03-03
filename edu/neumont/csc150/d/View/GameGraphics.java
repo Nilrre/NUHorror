@@ -167,96 +167,53 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				if (this.character.isEarl()) {
 					ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
 					playerArt = character.getImage();
-					d.drawImage(playerArt, 65, 260, 800, 1000, this);
+					d.drawImage(playerArt, 65, 460, 800, 800, this);
 					g.setColor(Color.BLUE);
 					g.setFont(new Font("Impact", Font.PLAIN, 50));
 					Dialouge = "We will figure it out. Don't worry about it.";
 					g.drawString(Dialouge, 700, 900);
-				}
-
-				if (this.character.isLaw()) {
-					ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
-					playerArt = character.getImage();
-					d.drawImage(playerArt, 65, 260, 800, 1000, this);
-					g.setColor(Color.BLUE);
-					g.setFont(new Font("Impact", Font.PLAIN, 50));
-					Dialouge = "I just want a switch";
-					g.drawString(Dialouge, 700, 900);
-				}
-
-				if (this.character.isDave()) {
-					ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
-					playerArt = character.getImage();
-					d.drawImage(playerArt, 65, 260, 800, 1000, this);
-					g.setColor(Color.BLUE);
-					g.setFont(new Font("Impact", Font.PLAIN, 50));
-					// Dialouge = "The Legend of Zelda: Breathe of the Wild is
-					// coming";
-					g.drawString(Dialouge, 700, 900);
-				}
-			}
-			// }
-
-			// for (int y = 0; y < this.getHeight(); y += 50) {
-			// for (int i = 0; i < this.getWidth(); i += 50) {
-			// g.drawString("-", i, y);
-			// g.drawString("|", i, y);
-			// g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-			// }
-			// }
+					}
+					
+					if (this.character.isLaw()) {
+						ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
+						playerArt = character.getImage();
+						d.drawImage(playerArt, 65, 460, 800, 800, this);
+						 g.setColor(Color.BLUE);
+						 g.setFont(new Font("Impact", Font.PLAIN, 50));
+						 Dialouge = "I just want a switch";
+						 g.drawString(Dialouge, 700, 900);
+						}
+					
+					if (this.character.isDave()) {
+						ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
+						playerArt = character.getImage();
+						d.drawImage(playerArt, 65, 460, 800, 800, this);
+						 g.setColor(Color.BLUE);
+						 g.setFont(new Font("Impact", Font.PLAIN, 50));
+						 Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
+						 g.drawString(Dialouge, 700, 900);
+						}
+				 }
 		} else if (control.isFloor2()) {
 			ImageIcon theSecondFloor = new ImageIcon("Pics//floors//floor 2.png");
 			floor2 = theSecondFloor.getImage();
 			d.drawImage(floor2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			// for (int y = 0; y < this.getHeight(); y += 50) {
-			// for (int i = 0; i < this.getWidth(); i += 50) {
-			// g.drawString("-", i, y);
-			// g.drawString("|", i, y);
-			// g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-			// }
-			// }
 		} else if (control.isFloor3()) {
 			ImageIcon theThirdFloor = new ImageIcon("Pics//floors//floor 3.png");
 			floor3 = theThirdFloor.getImage();
 			d.drawImage(floor3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			// for (int y = 0; y < this.getHeight(); y += 50) {
-			// for (int i = 0; i < this.getWidth(); i += 50) {
-			// g.drawString("-", i, y);
-			// g.drawString("|", i, y);
-			// g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-			// }
-			// }
 		} else if (control.isBasement()) {
 			ImageIcon theBasement = new ImageIcon("Pics//floors//basement of horror.png");
 			basement = theBasement.getImage();
 			d.drawImage(basement, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			// for (int y = 0; y < this.getHeight(); y += 50) {
-			// for (int i = 0; i < this.getWidth(); i += 50) {
-			// g.drawString("-", i, y);
-			// g.drawString("|", i, y);
-			// g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-			// }
-			// }
 		} else if (control.isRoom1()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room1.png");
 			room1 = Room.getImage();
 			d.drawImage(room1, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			for (int y = 0; y < this.getHeight(); y += 50) {
-				for (int i = 0; i < this.getWidth(); i += 50) {
-					g.drawString("-", i, y);
-					g.drawString("|", i, y);
-					g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-					g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-				}
-			}
 		} else if (control.isRoom2()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
@@ -382,14 +339,14 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			else if (control.isdPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				right = image1.getImage();
-				d.drawImage(right, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+				d.drawImage(right, character.getX() + 60, character.getY(), -(character.getWidth()), character.getHeight(),
 						this);
 			}
 			// walking to the right
 			else if (control.isaPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				left = image1.getImage();
-				d.drawImage(left, character.getX() + 60, character.getY(), -(character.getWidth()),
+				d.drawImage(left, character.getX(), character.getY(), character.getWidth(),
 						character.getHeight(), this);
 			}
 		}
