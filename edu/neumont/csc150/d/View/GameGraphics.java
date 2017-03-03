@@ -167,7 +167,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					if (this.character.isEarl()) {
 					ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
 					playerArt = character.getImage();
-					d.drawImage(playerArt, 65, 260, 800, 1000, this);
+					d.drawImage(playerArt, 65, 460, 800, 800, this);
 					g.setColor(Color.BLUE);
 					g.setFont(new Font("Impact", Font.PLAIN, 50));
 					Dialouge = "We will figure it out. Don't worry about it.";
@@ -177,7 +177,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					if (this.character.isLaw()) {
 						ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
 						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 260, 800, 1000, this);
+						d.drawImage(playerArt, 65, 460, 800, 800, this);
 						 g.setColor(Color.BLUE);
 						 g.setFont(new Font("Impact", Font.PLAIN, 50));
 						 Dialouge = "I just want a switch";
@@ -187,10 +187,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					if (this.character.isDave()) {
 						ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
 						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 260, 800, 1000, this);
+						d.drawImage(playerArt, 65, 460, 800, 800, this);
 						 g.setColor(Color.BLUE);
 						 g.setFont(new Font("Impact", Font.PLAIN, 50));
-						 Dialouge = "The Legend of Zelda: Breathe of the Wild is coming";
+						 Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
 						 g.drawString(Dialouge, 700, 900);
 						}
 				 }
@@ -381,14 +381,14 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			else if (control.isdPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				right = image1.getImage();
-				d.drawImage(right, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+				d.drawImage(right, character.getX() + 60, character.getY(), -(character.getWidth()), character.getHeight(),
 						this);
 			}
 			// walking to the right
 			else if (control.isaPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				left = image1.getImage();
-				d.drawImage(left, character.getX() + 60, character.getY(), -(character.getWidth()),
+				d.drawImage(left, character.getX(), character.getY(), character.getWidth(),
 						character.getHeight(), this);
 			}
 		}
