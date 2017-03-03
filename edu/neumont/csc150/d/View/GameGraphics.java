@@ -62,7 +62,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall14 = new Wall(2160, 1080, 540, 270);
 	private Door door3 = new Door(60, 275, 315, 210, false);
 	private Door door4 = new Door(1400, 625, 150, 425, false);
-	private Door door5 = new Door(1400, 1000, 150, 475, false);
+	// private Door door5 = new Door(1400, 1000, 150, 475, false);
 	private Door door6 = new Door(2500, 850, 50, 300, false);
 	private Door door7 = new Door(1550, 1250, 625, 100, false);
 
@@ -76,7 +76,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall28 = new Wall(650, 500, 100, 50);
 	private Door door8 = new Door(500, 75, 200, 250, true);
 	private Door door9 = new Door(500, 800, 200, 250, true);
-	private Door door10 = new Door(500, 1250, 500, 150, false);
+	// private Door door10 = new Door(500, 1250, 500, 150, false);
 	private Door door11 = new Door(2500, 670, 100, 505, false);
 
 	// basement
@@ -132,16 +132,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		// audio = a;
 		setFocusable(true);
 		addKeyListener(this);
-
 		timer.start();
-	}
-
-	public void draw(Wall wall1, Graphics g) {
-		g.fillRect(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
-	}
-
-	public void draw(Door wall1, Graphics g) {
-		g.drawRect(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
 	}
 
 	@Override
@@ -167,125 +158,61 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					d.drawImage(dialogueBox, 10, 800, 2500, 500, this);
 
 					if (this.character.isEarl()) {
-					ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
-					playerArt = character.getImage();
-					d.drawImage(playerArt, 65, 460, 800, 800, this);
-					g.setColor(Color.BLUE);
-					g.setFont(new Font("Impact", Font.PLAIN, 50));
-					Dialouge = "We will figure it out. Don't worry about it.";
-					g.drawString(Dialouge, 700, 900);
+						ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
+						playerArt = character.getImage();
+						d.drawImage(playerArt, 65, 460, 800, 800, this);
+						g.setColor(Color.BLUE);
+						g.setFont(new Font("Impact", Font.PLAIN, 50));
+						Dialouge = "We will figure it out. Don't worry about it.";
+						g.drawString(Dialouge, 700, 900);
 					}
 
 					if (this.character.isLaw()) {
 						ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
 						playerArt = character.getImage();
 						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						 g.setColor(Color.BLUE);
-						 g.setFont(new Font("Impact", Font.PLAIN, 50));
-						 Dialouge = "I just want a switch";
-						 g.drawString(Dialouge, 700, 900);
-						}
-					
+						g.setColor(Color.BLUE);
+						g.setFont(new Font("Impact", Font.PLAIN, 50));
+						Dialouge = "I just want a switch";
+						g.drawString(Dialouge, 700, 900);
+					}
+
 					if (this.character.isDave()) {
 						ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
 						playerArt = character.getImage();
 						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						 g.setColor(Color.BLUE);
-						 g.setFont(new Font("Impact", Font.PLAIN, 50));
-						 Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
-						 g.drawString(Dialouge, 700, 900);
-						}
-				 }
+						g.setColor(Color.BLUE);
+						g.setFont(new Font("Impact", Font.PLAIN, 50));
+						Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
+						g.drawString(Dialouge, 700, 900);
+					}
+				}
 			}
-
-			// for (int y = 0; y < this.getHeight(); y += 50) {
-			// for (int i = 0; i < this.getWidth(); i += 50) {
-			// g.drawString("-", i, y);
-			// g.drawString("|", i, y);
-			// g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-			// }
-			// }
 		} else if (control.isFloor2()) {
 			ImageIcon theSecondFloor = new ImageIcon("Pics//floors//floor 2.png");
 			floor2 = theSecondFloor.getImage();
 			d.drawImage(floor2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
-
-			// for (int y = 0; y < this.getHeight(); y += 50) {
-			// for (int i = 0; i < this.getWidth(); i += 50) {
-			// g.drawString("-", i, y);
-			// g.drawString("|", i, y);
-			// g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-			// }
-			// }
 		} else if (control.isFloor3()) {
 			ImageIcon theThirdFloor = new ImageIcon("Pics//floors//floor 3.png");
 			floor3 = theThirdFloor.getImage();
 			d.drawImage(floor3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
-
-			// for (int y = 0; y < this.getHeight(); y += 50) {
-			// for (int i = 0; i < this.getWidth(); i += 50) {
-			// g.drawString("-", i, y);
-			// g.drawString("|", i, y);
-			// g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-			// }
-			// }
 		} else if (control.isBasement()) {
 			ImageIcon theBasement = new ImageIcon("Pics//floors//basement of horror.png");
 			basement = theBasement.getImage();
 			d.drawImage(basement, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
-
-			// for (int y = 0; y < this.getHeight(); y += 50) {
-			// for (int i = 0; i < this.getWidth(); i += 50) {
-			// g.drawString("-", i, y);
-			// g.drawString("|", i, y);
-			// g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-			// g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-			// }
-			// }
 		} else if (control.isRoom1()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room1.png");
 			room1 = Room.getImage();
 			d.drawImage(room1, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
-
-			for (int y = 0; y < this.getHeight(); y += 50) {
-				for (int i = 0; i < this.getWidth(); i += 50) {
-					g.drawString("-", i, y);
-					g.drawString("|", i, y);
-					g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-					g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-				}
-			}
 		} else if (control.isRoom2()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
 			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
-
-			for (int y = 0; y < this.getHeight(); y += 50) {
-				for (int i = 0; i < this.getWidth(); i += 50) {
-					g.drawString("-", i, y);
-					g.drawString("|", i, y);
-					g.drawString(Integer.toString(y), this.getWidth() - 30, y);
-					g.drawString(Integer.toString(i), i, this.getHeight() - 30);
-				}
-			}
 		} else if (control.isRoom3()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room3.png");
 			room3 = Room.getImage();
 			d.drawImage(room3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 		}
-
-		// if (character.getY() > 900) {
-		// g.setColor(Color.BLUE);
-		// g.fillRect(200, 900, 2200, 500);
-		// g.setFont(new Font("Impact", Font.BOLD, 100));
-		// g.setColor(Color.BLACK);
-		// g.drawString("Wassup", 300, 1200);
-		// }
-		// g.fillOval(character.getX(), character.getY(), character.getWidth(),
-		// character.getHeight());
 
 		if (character.isEarl() == true) {
 			if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
@@ -383,15 +310,15 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			else if (control.isdPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				right = image1.getImage();
-				d.drawImage(right, character.getX() + 60, character.getY(), -(character.getWidth()), character.getHeight(),
-						this);
+				d.drawImage(right, character.getX() + 60, character.getY(), -(character.getWidth()),
+						character.getHeight(), this);
 			}
 			// walking to the right
 			else if (control.isaPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				left = image1.getImage();
-				d.drawImage(left, character.getX(), character.getY(), character.getWidth(),
-						character.getHeight(), this);
+				d.drawImage(left, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+						this);
 			}
 		}
 
@@ -425,12 +352,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					control.setRoom2(true);
 					character.setX(950);
 					character.setY(100);
-				} else if (door.equals(door5)) {
-					// third room in floor 2
-					control.setRoom3(true);
-					control.setFloor2(false);
-					// character.setX(x in new room);
-					// character.setY(y in new room);
 				} else if (door.equals(door6)) {
 					control.setFloor1(true);
 					control.setFloor2(false);
@@ -455,12 +376,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					control.setFloor3(false);
 					character.setX(950);
 					character.setY(100);
-				} else if (door.equals(door10)) {
-					// third room in floor 3
-					control.setRoom3(true);
-					control.setFloor3(false);
-					// character.setX(x in new room);
-					// character.setY(y in new room);
 				} else if (door.equals(door11)) {
 					control.setFloor3(false);
 					control.setFloor2(true);
@@ -558,7 +473,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			wall8.collider(character);
 			wall9.collider(character);
 
-			pong.collider(character);
+			if (pong.collider(character)) {
+				Dialouge = "I can interact with the ping pong table";
+				// put in new frame for pong game
+			}
 
 			if (key1Visible) {
 				keyCollision(key1);
@@ -577,7 +495,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 			doorCollision(door3);
 			doorCollision(door4);
-			doorCollision(door5);
 			doorCollision(door6);
 			doorCollision(door7);
 		} else if (control.isFloor3()) {
@@ -591,7 +508,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 			doorCollision(door8);
 			doorCollision(door9);
-			doorCollision(door10);
 			doorCollision(door11);
 		} else if (control.isBasement()) {
 			wall21.collider(character);
@@ -659,9 +575,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_P) {
-				control.setpPressed(true);
-				timer.stop();
-			}
+			control.setpPressed(true);
+			timer.stop();
+		}
 
 		this.repaint();
 	}
@@ -690,5 +606,4 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		// TODO Auto-generated method stub
 
 	}
-
 }
