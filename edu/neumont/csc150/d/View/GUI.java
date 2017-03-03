@@ -21,13 +21,15 @@ import edu.neumont.csc150.d.Model.Player;
 
 public class GUI implements ActionListener {
 	private JFrame frame;
-	private JButton NewGame, Errlin, Lawrence, David, LoadGame, SaveGame, Quit, Resume, MainMenu;
+	public JButton NewGame, Errlin, Lawrence, David, LoadGame, SaveGame, Quit, Resume, MainMenu;
 	private JPanel window, pause;
 	private GameGraphics test;
 	private Control control;
 	private Audio audio = new Audio();
 	private Player player;
 	private boolean paused = false;
+	
+	
 	public void guiMain(GameGraphics game, Control c, Player p) {
 		frame = new JFrame("NUHorror");
 		test = game;

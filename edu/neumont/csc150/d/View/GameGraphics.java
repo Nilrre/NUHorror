@@ -9,11 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -32,7 +30,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			left, right, playerArt;
 	private String Dialouge = "";
 	private Audio audio;
-	private boolean f2 = false, f3 = false, b = false, dialougeVisible = false;
+	private boolean f2 = false, f3 = false, b = false;
 	private GUI gui;
 
 	// place into each floor/room
@@ -127,19 +125,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		control = c;
 		// audio = a;
 		gui = g;
+
 		// audio = a;
 		setFocusable(true);
 		addKeyListener(this);
 
 		timer.start();
-	}
-
-	public void draw(Wall wall1, Graphics g) {
-		g.fillRect(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
-	}
-
-	public void draw(Door wall1, Graphics g) {
-		g.drawRect(wall1.getX(), wall1.getY(), wall1.getWidth(), wall1.getHeight());
 	}
 
 	@Override
@@ -172,28 +163,28 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					g.setFont(new Font("Impact", Font.PLAIN, 50));
 					Dialouge = "We will figure it out. Don't worry about it.";
 					g.drawString(Dialouge, 700, 900);
-					}
-					
-					if (this.character.isLaw()) {
-						ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
-						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						 g.setColor(Color.BLUE);
-						 g.setFont(new Font("Impact", Font.PLAIN, 50));
-						 Dialouge = "I just want a switch";
-						 g.drawString(Dialouge, 700, 900);
-						}
-					
-					if (this.character.isDave()) {
-						ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
-						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						 g.setColor(Color.BLUE);
-						 g.setFont(new Font("Impact", Font.PLAIN, 50));
-						 Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
-						 g.drawString(Dialouge, 700, 900);
-						}
-				 }
+				}
+
+				if (this.character.isLaw()) {
+					ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
+					playerArt = character.getImage();
+					d.drawImage(playerArt, 65, 460, 800, 800, this);
+					g.setColor(Color.BLUE);
+					g.setFont(new Font("Impact", Font.PLAIN, 50));
+					Dialouge = "I just want a switch";
+					g.drawString(Dialouge, 700, 900);
+				}
+
+				if (this.character.isDave()) {
+					ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
+					playerArt = character.getImage();
+					d.drawImage(playerArt, 65, 460, 800, 800, this);
+					g.setColor(Color.BLUE);
+					g.setFont(new Font("Impact", Font.PLAIN, 50));
+					Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
+					g.drawString(Dialouge, 700, 900);
+				}
+			}
 		} else if (control.isFloor2()) {
 			ImageIcon theSecondFloor = new ImageIcon("Pics//floors//floor 2.png");
 			floor2 = theSecondFloor.getImage();
@@ -232,16 +223,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			room3 = Room.getImage();
 			d.drawImage(room3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 		}
-
-		// if (character.getY() > 900) {
-		// g.setColor(Color.BLUE);
-		// g.fillRect(200, 900, 2200, 500);
-		// g.setFont(new Font("Impact", Font.BOLD, 100));
-		// g.setColor(Color.BLACK);
-		// g.drawString("Wassup", 300, 1200);
-		// }
-		// g.fillOval(character.getX(), character.getY(), character.getWidth(),
-		// character.getHeight());
 
 		if (character.isEarl() == true) {
 			if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
@@ -339,15 +320,15 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			else if (control.isdPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				right = image1.getImage();
-				d.drawImage(right, character.getX() + 60, character.getY(), -(character.getWidth()), character.getHeight(),
-						this);
+				d.drawImage(right, character.getX() + 60, character.getY(), -(character.getWidth()),
+						character.getHeight(), this);
 			}
 			// walking to the right
 			else if (control.isaPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
 				left = image1.getImage();
-				d.drawImage(left, character.getX(), character.getY(), character.getWidth(),
-						character.getHeight(), this);
+				d.drawImage(left, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+						this);
 			}
 		}
 
@@ -616,9 +597,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setsPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(true);
+		} else if (e.getKeyCode() == KeyEvent.VK_O) {
+		
 		} else if (e.getKeyCode() == KeyEvent.VK_P) {
-			control.setpPressed(true);
-			timer.stop();
+				timer.stop();
 		}
 
 		this.repaint();
@@ -638,24 +620,15 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		// else if (e.getKeyCode() == KeyEvent.VK_I) {
 		// control.setiPressed(false);
 		// }
-		else if (e.getKeyCode() == KeyEvent.VK_P) {
-			control.setpPressed(false);
-		}
+		// else if (e.getKeyCode() == KeyEvent.VK_P) {
+		// control.setpPressed(false);
+		// }
 
 		this.repaint();
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if (dialougeVisible == true) {
-			if (e.getKeyCode() == KeyEvent.VK_I) {
-				dialougeVisible = false;
-			}
-		} else if (dialougeVisible == false) {
-			if (e.getKeyCode() == KeyEvent.VK_I) {
-				dialougeVisible = true;
-			}
-		}
+		
 	}
-
 }
