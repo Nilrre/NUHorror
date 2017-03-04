@@ -12,6 +12,7 @@ public class Control {
 	private boolean wPressed = false;
 	private boolean pPressed = false;
 	private boolean iPressed = false;
+	private boolean oPressed = false;
 
 	private Player Character;
 	private GameGraphics game;
@@ -160,6 +161,14 @@ public class Control {
 	
 	public void setRoom3(boolean room3) {
 		this.room3 = room3;
+	}
+
+	public boolean isoPressed() {
+		return oPressed;
+	}
+
+	public void setoPressed(boolean oPressed) {
+		this.oPressed = oPressed;
 	}
 }
 

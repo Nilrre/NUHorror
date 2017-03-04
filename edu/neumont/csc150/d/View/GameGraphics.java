@@ -9,10 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -30,7 +28,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Control control;
 	private Image dialogueBox, theCommons, floor2, floor3, basement, keys, room1, room2, room3, standing, down, up,
 			left, right, playerArt;
-	private String Dialouge;
+	private String Dialouge = "";
+	private  ArrayList<String> Objectives = new ArrayList<String>();
+	private int ListSpot = 0;
 	private Audio audio;
 	private boolean f2 = false, f3 = false, b = false, p = false;
 	private GUI gui;
@@ -57,11 +57,11 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	// floor2
 	private Wall wall10 = new Wall(0, 275, 60, 250);
 	private Wall wall11 = new Wall(375, 275, 1150, 350);
-	private Wall wall12 = new Wall(1500, 850, 50, 150);
+	private Wall wall12 = new Wall(1500, 850, 50, 300);
 	private Wall wall13 = new Wall(2150, 0, 450, 850);
 	private Wall wall14 = new Wall(2160, 1080, 540, 270);
 	private Door door3 = new Door(60, 275, 315, 210, false);
-	private Door door4 = new Door(1400, 625, 150, 425, false);
+	private Door door4 = new Door(1400, 625, 100, 425, false);
 	// private Door door5 = new Door(1400, 1000, 150, 475, false);
 	private Door door6 = new Door(2500, 850, 50, 300, false);
 	private Door door7 = new Door(1550, 1250, 625, 100, false);
@@ -88,12 +88,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall26 = new Wall(1400, 825, 1150, 575);
 	private Wall wall27 = new Wall(1425, 425, 1150, 150);
 	private Door door12 = new Door(750, 875, 200, 650, false);
-	private Door door13 = new Door(450, 50, 50, 250, true);
+	private Door door13 = new Door(450, 50, 50, 250, false);
 	private Door door14 = new Door(1200, 1250, 200, 150, true);
 
 	// room1
 	private Wall wall29 = new Wall(0, 0, 100, 1350);
-	private Wall wall30 = new Wall(0, 0, 1250, 150);
+	private Wall wall30 = new Wall(0, 0, 2550, 150);
 	private Wall wall31 = new Wall(0, 1230, 2550, 100);
 	private Wall wall32 = new Wall(2350, 0, 200, 475);
 	private Wall wall33 = new Wall(2350, 975, 200, 375);
@@ -129,12 +129,92 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		control = c;
 		// audio = a;
 		gui = g;
-		// audio = a;
+		
+		Objectives.add("I need to find a key to use...");
+		Objectives.add("Now that I've got a key I should try to open a door and find out more about this place...");
+		Objectives.add("I have to find more keys...");
+		
 		setFocusable(true);
 		addKeyListener(this);
 		timer.start();
 	}
 
+	public void Speech(Graphics2D d, Graphics g){
+		if (control.isiPressed()) {
+			ImageIcon dialogue = new ImageIcon("Pics//box.png");
+			dialogueBox = dialogue.getImage();
+			d.drawImage(dialogueBox, 10, 800, 2500, 500, this);
+
+			if (this.character.isEarl()) {
+				ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
+				playerArt = character.getImage();
+				d.drawImage(playerArt, 65, 460, 800, 800, this);
+				g.setColor(Color.BLUE);
+				g.setFont(new Font("Impact", Font.PLAIN, 50));
+//				Dialouge = "We will figure it out. Don't worry about it.";
+				g.drawString(Dialouge, 700, 900);
+			}
+
+			if (this.character.isLaw()) {
+				ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
+				playerArt = character.getImage();
+				d.drawImage(playerArt, 65, 460, 800, 800, this);
+				g.setColor(Color.BLUE);
+				g.setFont(new Font("Impact", Font.PLAIN, 50));
+//				Dialouge = "I just want a switch";
+				g.drawString(Dialouge, 700, 900);
+			}
+
+			if (this.character.isDave()) {
+				ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
+				playerArt = character.getImage();
+				d.drawImage(playerArt, 65, 460, 800, 800, this);
+				g.setColor(Color.BLUE);
+				g.setFont(new Font("Impact", Font.PLAIN, 50));
+//				Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
+				g.drawString(Dialouge, 700, 900);
+			}
+		}
+	}
+	
+	public void Objective(Graphics2D d, Graphics g) {
+		if (control.isoPressed()) {
+			ImageIcon dialogue = new ImageIcon("Pics//box.png");
+			dialogueBox = dialogue.getImage();
+			d.drawImage(dialogueBox, 10, 800, 2500, 500, this);
+
+			if (this.character.isEarl()) {
+				ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
+				playerArt = character.getImage();
+				d.drawImage(playerArt, 65, 460, 800, 800, this);
+				g.setColor(Color.BLUE);
+				g.setFont(new Font("Impact", Font.PLAIN, 50));
+//				Dialouge = "We will figure it out. Don't worry about it.";
+				g.drawString(Objectives.get(ListSpot), 700, 900);
+			}
+
+			if (this.character.isLaw()) {
+				ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
+				playerArt = character.getImage();
+				d.drawImage(playerArt, 65, 460, 800, 800, this);
+				g.setColor(Color.BLUE);
+				g.setFont(new Font("Impact", Font.PLAIN, 50));
+//				Dialouge = "I just want a switch";
+				g.drawString(Objectives.get(ListSpot), 700, 900);
+			}
+
+			if (this.character.isDave()) {
+				ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
+				playerArt = character.getImage();
+				d.drawImage(playerArt, 65, 460, 800, 800, this);
+				g.setColor(Color.BLUE);
+				g.setFont(new Font("Impact", Font.PLAIN, 50));
+//				Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
+				g.drawString(Objectives.get(ListSpot), 700, 900);
+			}
+		}
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -151,67 +231,51 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				ImageIcon key = new ImageIcon("Pics//Key.png");
 				keys = key.getImage();
 				d.drawImage(keys, key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight(), this);
-
-				if (control.isiPressed()) {
-					ImageIcon dialogue = new ImageIcon("Pics//box.png");
-					dialogueBox = dialogue.getImage();
-					d.drawImage(dialogueBox, 10, 800, 2500, 500, this);
-
-					if (this.character.isEarl()) {
-						ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
-						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						g.setColor(Color.BLUE);
-						g.setFont(new Font("Impact", Font.PLAIN, 50));
-						Dialouge = "We will figure it out. Don't worry about it.";
-						g.drawString(Dialouge, 700, 900);
-					}
-
-					if (this.character.isLaw()) {
-						ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
-						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						g.setColor(Color.BLUE);
-						g.setFont(new Font("Impact", Font.PLAIN, 50));
-						Dialouge = "I just want a switch";
-						g.drawString(Dialouge, 700, 900);
-					}
-
-					if (this.character.isDave()) {
-						ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
-						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						g.setColor(Color.BLUE);
-						g.setFont(new Font("Impact", Font.PLAIN, 50));
-						Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
-						g.drawString(Dialouge, 700, 900);
-					}
-				}
 			}
+			Speech(d,g);
+			Objective(d, g);
 		} else if (control.isFloor2()) {
 			ImageIcon theSecondFloor = new ImageIcon("Pics//floors//floor 2.png");
 			floor2 = theSecondFloor.getImage();
 			d.drawImage(floor2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+			
+			Speech(d,g);
+			Objective(d, g);
 		} else if (control.isFloor3()) {
 			ImageIcon theThirdFloor = new ImageIcon("Pics//floors//floor 3.png");
 			floor3 = theThirdFloor.getImage();
 			d.drawImage(floor3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+		
+			Speech(d,g);
+			Objective(d, g);
 		} else if (control.isBasement()) {
 			ImageIcon theBasement = new ImageIcon("Pics//floors//basement of horror.png");
 			basement = theBasement.getImage();
 			d.drawImage(basement, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+		
+			Speech(d,g);
+			Objective(d, g);
 		} else if (control.isRoom1()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room1.png");
 			room1 = Room.getImage();
 			d.drawImage(room1, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+		
+			Speech(d, g);
+			Objective(d, g);
 		} else if (control.isRoom2()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
 			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+		
+			Speech(d, g);
+			Objective(d, g);
 		} else if (control.isRoom3()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room3.png");
 			room3 = Room.getImage();
 			d.drawImage(room3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+		
+			Speech(d,g);
+			Objective(d, g);
 		}
 
 		if (character.isEarl() == true) {
@@ -430,12 +494,13 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					character.setX(550);
 					character.setY(100);
 				}
+				
+				
 			} else if (door.isLocked() == true && character.hasKey() == true) {
 				door.setLocked(false);
 				character.setKey(false);
 			} else {
 				Dialouge = "I cannot enter without a key";
-				// inside draw string put in dialouge
 			}
 		}
 	}
@@ -444,7 +509,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		if (key.collider(character)) {
 			if (control.isiPressed() == true) {
 				// change to if statements like in doors
-				key1Visible = false;
+				if(key.equals(key1)){
+					key1Visible = false;
+					ListSpot++;
+//				} else if(key.equals(key2)) {
+					
+				}
 				character.setKey(true);
 			}
 		}
@@ -574,6 +644,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setsPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(true);
+		} else if (e.getKeyCode() == KeyEvent.VK_O) {
+			control.setoPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_P) {
 			control.setpPressed(true);
 			timer.stop();
@@ -594,6 +666,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setsPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(false);
+		} else if (e.getKeyCode() == KeyEvent.VK_O) {
+			control.setoPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_P) {
 			control.setpPressed(false);
 		}
