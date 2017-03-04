@@ -3,9 +3,10 @@ package edu.neumont.csc150.d.Model;
 public class Wall extends Object implements SolidObject {
 	
 	private int x, y, height, width;
+	private String saying;
 	
 	public Wall() {}
-	
+
 	public Wall(int x, int y, int width, int height){
 		this.setHeight(height);
 		this.setWidth(width);
@@ -76,6 +77,20 @@ public class Wall extends Object implements SolidObject {
 	 */
 	public void setWidth(int width) {
 		this.width = width;
+	}
+
+	/**
+	 * @return the saying
+	 */
+	public String getSaying() {
+		return saying;
+	}
+
+	/**
+	 * @param saying the saying to set
+	 */
+	public void setSaying(String saying) {
+		this.saying = saying;
 	}
 	
 	
