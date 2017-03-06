@@ -14,6 +14,12 @@ public class Audio {
 		clip.loop();
 	}
 	
+	public void mainMenuMusicStopped() {
+		URL url = Audio.class.getResource("Aftermath.wav");
+		AudioClip clip = Applet.newAudioClip(url);
+		clip.stop();
+	}
+	
 	//Classroom Music
 	public void roomMusic() {
 		URL url = Audio.class.getResource("ThunderDreams.wav");

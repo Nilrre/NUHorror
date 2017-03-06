@@ -24,6 +24,7 @@ public class Control {
 	private boolean room1 = false;
 	private boolean room2 = false;
 	private boolean room3 = false;
+	private boolean paused = false;
 
 	private GUI gui;
 

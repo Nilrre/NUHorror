@@ -22,6 +22,7 @@ import edu.neumont.csc150.d.Model.Key;
 import edu.neumont.csc150.d.Model.NPC;
 import edu.neumont.csc150.d.Model.Player;
 import edu.neumont.csc150.d.Model.Wall;
+import edu.neumont.csc150.d.Pong.Runner;
 
 public class GameGraphics extends JPanel implements ActionListener, KeyListener {
 
@@ -232,41 +233,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				ImageIcon key = new ImageIcon("Pics//Key.png");
 				keys = key.getImage();
 				d.drawImage(keys, key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight(), this);
-
-				if (control.isiPressed()) {
-					ImageIcon dialogue = new ImageIcon("Pics//box.png");
-					dialogueBox = dialogue.getImage();
-					d.drawImage(dialogueBox, 10, 800, 2500, 500, this);
-
-					if (this.character.isEarl()) {
-						ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
-						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						g.setColor(Color.BLUE);
-						g.setFont(new Font("Impact", Font.PLAIN, 50));
-//						Dialouge = "We will figure it out. Don't worry about it.";
-						g.drawString(Dialouge, 700, 900);
-					}
-
-					if (this.character.isLaw()) {
-						ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
-						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						g.setColor(Color.BLUE);
-						g.setFont(new Font("Impact", Font.PLAIN, 50));
-//						Dialouge = "I just want a switch";
-						g.drawString(Dialouge, 700, 900);
-					}
-
-					if (this.character.isDave()) {
-						ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
-						playerArt = character.getImage();
-						d.drawImage(playerArt, 65, 460, 800, 800, this);
-						g.setColor(Color.BLUE);
-						g.setFont(new Font("Impact", Font.PLAIN, 50));
-//						Dialouge = "The Legend of Zelda: Breath of the Wild is coming";
-						g.drawString(Dialouge, 700, 900);
-					}
 				}
 			Speech(d,g);
 			Objective(d, g);
@@ -421,7 +387,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 						this);
 				}
 			}
-		}
 		this.repaint();
 	}
 
@@ -585,9 +550,11 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				Dialouge = "I can interact with the ping pong table";
 				if(control.isiPressed()){
 //					load pause
-//					make pong frame
+					Runner run = new Runner();
+					run.runPongGame();
 				}
-			}else{
+			}
+			else {
 				Dialouge = "There's nothing to interact with";
 			}
 
@@ -689,9 +656,16 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setiPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			control.setoPressed(true);
-		} else if (e.getKeyCode() == KeyEvent.VK_P) {
+		}  
+			
+		if (e.getKeyCode() == KeyEvent.VK_P) {
+			if(control.ispPressed() == false){
 			control.setpPressed(true);
 			timer.stop();
+			}else {
+				control.setpPressed(false);
+				timer.start();
+			}
 		}
 
 		this.repaint();
@@ -711,15 +685,13 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setiPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			control.setoPressed(false);
-		} else if (e.getKeyCode() == KeyEvent.VK_P) {
-			control.setpPressed(false);
-		}
-		 else if (e.getKeyCode() == KeyEvent.VK_I) {
+		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 		 control.setiPressed(false);
 		 }
-		// else if (e.getKeyCode() == KeyEvent.VK_P) {
-		// control.setpPressed(false);
-		// }
+//		 else if (e.getKeyCode() == KeyEvent.VK_P) {
+//		 control.setpPressed(false);
+//		 timer.start();
+//		 }
 
 		this.repaint();
 	}

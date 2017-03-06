@@ -13,21 +13,24 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import edu.neumont.csc150.d.Controller.Control;
 import edu.neumont.csc150.d.Model.Player;
+import edu.neumont.csc150.d.Pong.Runner;
 
-public class GUI implements ActionListener {
+public class GUI implements ActionListener{
 	private JFrame frame;
 	public JButton NewGame, Errlin, Lawrence, David, LoadGame, SaveGame, Quit, Resume, MainMenu;
-	private JPanel window, pause;
+	private JPanel window;
 	private GameGraphics test;
 	private Control control;
 	private Audio audio = new Audio();
 	private Player player;
-	private boolean paused = false;
 	
 	
 	public void guiMain(GameGraphics game, Control c, Player p) {
@@ -62,22 +65,17 @@ public class GUI implements ActionListener {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		menuItems(frame);
 		frame.getContentPane().add(test);
-		
-//		if (control.isFloor1() == true) {
-			audio.basementMusic();
-//		}
-//		if (control.isFloor2() == true) {
-//			audio.mainMenuMusic();
-//		}
-//		if (control.isFloor3() == true) {
-//			audio.mainMenuMusic();
-//		}
-		
-//			if (paused = true) {
-//				pausePanel();	
-//			}
-			
+		audio.basementMusic();			
+		frame.setVisible(true);
+	}
+	
+	public void guiPauseMenu() {
+		frame = new JFrame("Paused");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		pausePanel();
 		frame.setVisible(true);
 	}
 
@@ -153,35 +151,51 @@ public class GUI implements ActionListener {
 	}
 	
 	public void pausePanel() {
-		pause = new JPanel();
+		window = new JPanel();
 //		FlowLayout lay = new FlowLayout(100, 500, 1000);
-		pause.setLayout(null);
+		window.setLayout(null);
 		
 		Resume = new JButton("Resume");
 		Resume.setBounds(1150, 400, 250, 100);
-		pause.add(Resume);
+		window.add(Resume);
 		Resume.addActionListener(this);
 		LoadGame = new JButton("Load");
 		LoadGame.setBounds(1150, 600, 250, 100);
-		pause.add(LoadGame);
+		window.add(LoadGame);
 		LoadGame.addActionListener(this);
 		SaveGame = new JButton("Save");
 		SaveGame.setBounds(1150, 800, 250, 100);
-		pause.add(SaveGame);
+		window.add(SaveGame);
 		SaveGame.addActionListener(this);
 		MainMenu = new JButton("Exit");
 		MainMenu.setBounds(1150, 1000, 250, 100);
-		pause.add(MainMenu);
+		window.add(MainMenu);
 		MainMenu.addActionListener(this);
 		
-		frame.getContentPane().add(pause);
+		frame.getContentPane().add(window);
+	}
+	
+	public void menuItems(JFrame frame) {
+		JMenuItem saveGame = new JMenuItem("Save Game");
+		saveGame.addActionListener(this);
+		JMenuItem loadGame = new JMenuItem("Load Game");
+		loadGame.addActionListener(this);
+		JMenuItem mainMenu = new JMenuItem("Main Menu");
+		mainMenu.addActionListener(this);
+		JMenu menu = new JMenu("Options");
+		JMenuBar menuBar = new JMenuBar();
+
+		menu.add(saveGame);
+		menu.add(loadGame);
+		menu.add(mainMenu);
+		menuBar.add(menu);
+		frame.setJMenuBar(menuBar);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == NewGame) {
 			frame.dispose();
-//			guiGame(test, control);
 			guiCharacterSelect();
 		} 
 		if (e.getSource() == Errlin) {
@@ -202,43 +216,22 @@ public class GUI implements ActionListener {
 			player.setDave(true);
 		}
 		
-		else if (e.getSource() == Resume) {
-			
-		}
-		
-		else if (e.getSource() == SaveGame) {
-			
-		}
-		
-		else if (e.getSource() == LoadGame) {
-		}
-		
-		else if (e.getSource() == MainMenu) {
-			frame.dispose();
-			guiMain(test, control, player);
-		}
-		
 		else if (e.getSource() == Quit) {
 			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 		}
+		
+		if (e.getSource() instanceof JMenuItem) {
+			JMenuItem menuItem = (JMenuItem)e.getSource();
+			if (menuItem.getText().equals("Save Game")) {
+			}
+			else if (menuItem.getText().equals("Load Game")) {
+			}
+			else if (menuItem.getText().equals("Main Menu")) {
+				frame.dispose();
+				guiMain(test, control, player);
+			}
+		}
+		
+		
 	}
-
-//	@Override
-//	public void keyPressed(KeyEvent e) {
-//		if (e.getKeyCode() == KeyEvent.VK_P) {
-//			paused = true;
-//		}
-//	}
-//
-//	@Override
-//	public void keyReleased(KeyEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void keyTyped(KeyEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 }
