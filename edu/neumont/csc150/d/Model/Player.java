@@ -7,6 +7,7 @@ public class Player extends Object implements Serializable {
 	private final int width = 80, height = 80;
 	private boolean key = false;
 	private boolean Earl = false, Law = false, Dave = false;
+	private char KeyType = '0';
 
 	public Player() {
 	}
@@ -173,6 +174,14 @@ public class Player extends Object implements Serializable {
 	 */
 	public void setDave(boolean dave) {
 		Dave = dave;
+	}
+
+	public char getKeyType() {
+		return KeyType;
+	}
+
+	public void setKeyType(char keyType) {
+		KeyType = keyType;
 	}
 
 

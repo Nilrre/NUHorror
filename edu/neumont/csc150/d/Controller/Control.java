@@ -24,8 +24,8 @@ public class Control {
 	private boolean room1 = false;
 	private boolean room2 = false;
 	private boolean room3 = false;
-	private boolean paused = false;
-
+	private boolean room4 = false;
+	private boolean room5 = false;
 	private GUI gui;
 
 	public Control() {
@@ -170,6 +170,22 @@ public class Control {
 
 	public void setoPressed(boolean oPressed) {
 		this.oPressed = oPressed;
+	}
+
+	public boolean isRoom4() {
+		return room4;
+	}
+
+	public void setRoom4(boolean room4) {
+		this.room4 = room4;
+	}
+
+	public boolean isRoom5() {
+		return room5;
+	}
+
+	public void setRoom5(boolean room5) {
+		this.room5 = room5;
 	}
 }
 

@@ -3,15 +3,17 @@ package edu.neumont.csc150.d.Model;
 public class Key extends Object implements SolidObject {
 	
 	private int amount, x, y, width, height;
+	private char KeyType;
 	
 	public Key() {}
 	
-	public Key(int amount, int x, int y, int w, int h) {
+	public Key(int amount, int x, int y, int w, int h, char type) {
 		this.setAmount(amount);
 		this.setX(x);
 		this.setY(y);
 		this.setWidth(w);
 		this.setHeight(h);
+		this.setKeyType(type);
 	}
 	
 	@Override
@@ -85,6 +87,14 @@ public class Key extends Object implements SolidObject {
 	 */
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public char getKeyType() {
+		return KeyType;
+	}
+
+	public void setKeyType(char keyType) {
+		KeyType = keyType;
 	}
 
 

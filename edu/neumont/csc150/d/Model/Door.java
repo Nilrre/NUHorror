@@ -5,15 +5,17 @@ import java.io.Serializable;
 public class Door extends Object implements Serializable, SolidObject{
 	private boolean locked;
 	private int x, y, width, height;
+	private char KeyType;
 	
 	public Door() {}
 	
-	public Door(int x, int y, int width, int height, boolean locked){
+	public Door(int x, int y, int width, int height, boolean locked, char type){
 		this.setHeight(height);
 		this.setLocked(locked);
 		this.setWidth(width);
 		this.setX(x);
 		this.setY(y);
+		this.setKeyType(type);
 	}
 	
 	public int getX() {
@@ -63,6 +65,14 @@ public class Door extends Object implements Serializable, SolidObject{
 		}else 
 			return false;
 	
+	}
+
+	public char getKeyType() {
+		return KeyType;
+	}
+
+	public void setKeyType(char keyType) {
+		KeyType = keyType;
 	}
 	
 }
