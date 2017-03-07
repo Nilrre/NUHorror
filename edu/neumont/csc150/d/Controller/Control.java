@@ -42,8 +42,8 @@ public class Control implements Serializable {
 		// }else if(floor2 == true){
 		// f2 = new Floor2(Character, this);
 		// }
-		gui = new GUI();
-		gui.guiMain(game, this, Character);
+		gui = new GUI(game, this, Character);
+		gui.guiMain();
 	}
 
 	public void move() {

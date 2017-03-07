@@ -1,13 +1,18 @@
 package edu.neumont.csc150.d.View;
 
 import java.awt.Color;
+
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -23,46 +28,77 @@ import edu.neumont.csc150.d.Controller.Control;
 import edu.neumont.csc150.d.Model.Player;
 import edu.neumont.csc150.d.Pong.Runner;
 
-public class GUI implements ActionListener{
+/*
+ *Class creates all the frames for the game. Class also houses the Java menu. Java Menu options
+ *include Save, Load, and Main Menu. 
+ */
+
+public class GUI implements ActionListener {
 	private JFrame frame;
-	public JButton NewGame, Errlin, Lawrence, David, LoadGame, SaveGame, Quit, Resume, MainMenu;
+	public JButton Errlin, Lawrence, David, NewGame, LoadGame, SaveGame, Quit, Resume, MainMenu;
 	private JPanel window;
 	private GameGraphics test;
 	private Control control;
 	private Audio audio = new Audio();
 	private Player player;
+	private ImageIcon img = new ImageIcon("Pics//NU.png");
+
 	
+	/**
+	 * builds a GUI object
+	 * @param game - Creates a reference to the already existing variable instance of GameGraphics
+	 * @param c - Creates a reference to the already existing variable instance of Control
+	 * @param p - Creates a reference to the already existing variable instance of Player
+	 */
 	
-	public void guiMain(GameGraphics game, Control c, Player p) {
-		frame = new JFrame("NUHorror");
+	public GUI(GameGraphics game, Control c, Player p) {
 		test = game;
 		control = c;
 		player = p;
+	}
+	
+	/**
+	 *Creates the frame for the Main Menu of the game. 
+	 */
+	
+	public void guiMain() {
+		frame = new JFrame("NUHorror");
+		frame.setIconImage(img.getImage());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		try {
 			mainPanel();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		audio.mainMenuMusic();
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Creates a new frame for the character select
+	 */
+	
 	public void guiCharacterSelect() {
 		frame = new JFrame("Character Select");
+		frame.setIconImage(img.getImage());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		characterSelectPanel();
 		frame.setVisible(true);
 	}
-
+	
+	/**
+	 * Creates a new frame for the actual game to be displayed on
+	 * @param game - Creates a reference to the varaible of type GameGraphics
+	 * @param c - Creates a reference to the variable of type Control
+	 */
+	
 	public void guiGame(GameGraphics game, Control c) {
 		frame = new JFrame("NUHorror");
+		frame.setIconImage(img.getImage());
 		test = game;
 		control = c;
-
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		menuItems(frame);
@@ -70,19 +106,14 @@ public class GUI implements ActionListener{
 		audio.basementMusic();			
 		frame.setVisible(true);
 	}
+
+	/**
+	 * Creates the buttons that are displayed on the Main Menu frame as well as the art
+	 * @throws IOException - catches any exception the coder might have created
+	 */
 	
-	public void guiPauseMenu() {
-		frame = new JFrame("Paused");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		pausePanel();
-		frame.setVisible(true);
-	}
-
 	public void mainPanel() throws IOException {
-
 		window = new JPanel();
-		// FlowLayout lay = new FlowLayout(100, 500, 1000);
 		window.setLayout(null);
 
 		NewGame = new JButton("Start");
@@ -106,6 +137,11 @@ public class GUI implements ActionListener{
 		frame.getContentPane().add(Quit);
 		frame.getContentPane().add(new MenuGraphics("Pics//MainMenu.jpg"));
 	}
+	
+	/**
+	 *Creates and sets the buttons and art displayed on the buttons to be displayed on characterSelect
+	 *frame
+	 */
 	
 	public void characterSelectPanel() {
 		window = new JPanel();
@@ -150,30 +186,11 @@ public class GUI implements ActionListener{
 		frame.getContentPane().add(window);
 	}
 	
-	public void pausePanel() {
-		window = new JPanel();
-//		FlowLayout lay = new FlowLayout(100, 500, 1000);
-		window.setLayout(null);
-		
-		Resume = new JButton("Resume");
-		Resume.setBounds(1150, 400, 250, 100);
-		window.add(Resume);
-		Resume.addActionListener(this);
-		LoadGame = new JButton("Load");
-		LoadGame.setBounds(1150, 600, 250, 100);
-		window.add(LoadGame);
-		LoadGame.addActionListener(this);
-		SaveGame = new JButton("Save");
-		SaveGame.setBounds(1150, 800, 250, 100);
-		window.add(SaveGame);
-		SaveGame.addActionListener(this);
-		MainMenu = new JButton("Exit");
-		MainMenu.setBounds(1150, 1000, 250, 100);
-		window.add(MainMenu);
-		MainMenu.addActionListener(this);
-		
-		frame.getContentPane().add(window);
-	}
+	/**
+	 * Creates the Java Menu items for the game
+	 * @param frame - the frame displayed. 
+	 * guiGame frame
+	 */
 	
 	public void menuItems(JFrame frame) {
 		JMenuItem saveGame = new JMenuItem("Save Game");
@@ -191,25 +208,31 @@ public class GUI implements ActionListener{
 		menuBar.add(menu);
 		frame.setJMenuBar(menuBar);
 	}
+	
+	/**
+	 * Creates action listeners for the Menu Items and the JButtons
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//Starts a new game
 		if (e.getSource() == NewGame) {
 			frame.dispose();
 			guiCharacterSelect();
 		} 
+		//In character select if Errlin is chosen, it loads up game with Errlin's character sprite 
 		if (e.getSource() == Errlin) {
 			frame.dispose();
 			guiGame(test, control);
 			player.setEarl(true);
 		}
-		
+		//In character select if Lawrence is chosen, it loads up game with Lawrence's character sprite 
 		if (e.getSource() == Lawrence) {
 			frame.dispose();
 			guiGame(test, control);
 			player.setLaw(true);
 		}
-		
+		//In character select if David is chosen, it loads up game with David's character sprite 
 		if (e.getSource() == David) {
 			frame.dispose();
 			guiGame(test, control);
@@ -228,7 +251,8 @@ public class GUI implements ActionListener{
 			}
 			else if (menuItem.getText().equals("Main Menu")) {
 				frame.dispose();
-				guiMain(test, control, player);
+				test.reset();
+				guiMain();
 			}
 		}
 		
