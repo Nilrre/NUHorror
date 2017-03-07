@@ -188,8 +188,7 @@ public class GUI implements ActionListener {
 	
 	/**
 	 * Creates the Java Menu items for the game
-	 * @param frame - the frame displayed. 
-	 * guiGame frame
+	 * @param frame - the frame displayed. (guiGame frame)
 	 */
 	
 	public void menuItems(JFrame frame) {
@@ -219,19 +218,22 @@ public class GUI implements ActionListener {
 		if (e.getSource() == NewGame) {
 			frame.dispose();
 			guiCharacterSelect();
-		} 
+		}
+		
 		//In character select if Errlin is chosen, it loads up game with Errlin's character sprite 
 		if (e.getSource() == Errlin) {
 			frame.dispose();
 			guiGame(test, control);
 			player.setEarl(true);
 		}
+		
 		//In character select if Lawrence is chosen, it loads up game with Lawrence's character sprite 
 		if (e.getSource() == Lawrence) {
 			frame.dispose();
 			guiGame(test, control);
 			player.setLaw(true);
 		}
+		
 		//In character select if David is chosen, it loads up game with David's character sprite 
 		if (e.getSource() == David) {
 			frame.dispose();
@@ -239,23 +241,27 @@ public class GUI implements ActionListener {
 			player.setDave(true);
 		}
 		
+		//On Main Menu if quit is selected the frame closes
 		else if (e.getSource() == Quit) {
 			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 		}
 		
+		//The Menu Items for the game
 		if (e.getSource() instanceof JMenuItem) {
 			JMenuItem menuItem = (JMenuItem)e.getSource();
+			
+			//Save game allows user to save everything
 			if (menuItem.getText().equals("Save Game")) {
 			}
+			//Load game allows player to load his previous progress 
 			else if (menuItem.getText().equals("Load Game")) {
 			}
+			//Main Menu allow player to go back to the main menu. Reseting all progress in the process
 			else if (menuItem.getText().equals("Main Menu")) {
 				frame.dispose();
 				test.reset();
 				guiMain();
 			}
 		}
-		
-		
 	}
 }
