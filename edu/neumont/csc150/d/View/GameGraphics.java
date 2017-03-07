@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import com.sun.org.apache.regexp.internal.CharacterArrayCharacterIterator;
+//import com.sun.org.apache.regexp.internal.CharacterArrayCharacterIterator;
 
 import edu.neumont.csc150.d.Controller.Control;
 import edu.neumont.csc150.d.Model.Door;
