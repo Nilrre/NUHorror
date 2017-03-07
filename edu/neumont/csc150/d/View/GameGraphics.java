@@ -33,7 +33,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Image dialogueBox, theCommons, floor2, floor3, basement, keys, room1, room2, room3, standing, down, up,
 			left, right, playerArt;
 	private String Dialouge = "There's nothing to interact with";
-	private  ArrayList<String> Objectives = new ArrayList<String>();
+	private ArrayList<String> Objectives = new ArrayList<String>();
 
 	private int ListSpot = 0;
 	private Audio audio;
@@ -151,45 +151,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		timer.start();
 	}
 
-	public void Speech(Graphics2D d, Graphics g) {
-		if (control.isiPressed()) {
-			ImageIcon dialogue = new ImageIcon("Pics//box.png");
-			dialogueBox = dialogue.getImage();
-			d.drawImage(dialogueBox, 10, 800, 2500, 500, this);
-
-			if (this.character.isEarl()) {
-				ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
-				playerArt = character.getImage();
-				d.drawImage(playerArt, 65, 460, 800, 800, this);
-				g.setColor(Color.BLUE);
-				g.setFont(new Font("Impact", Font.PLAIN, 50));
-				// Dialouge = "We will figure it out. Don't worry about it.";
-				g.drawString(Dialouge, 700, 900);
-			}
-
-			if (this.character.isLaw()) {
-				ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
-				playerArt = character.getImage();
-				d.drawImage(playerArt, 65, 460, 800, 800, this);
-				g.setColor(Color.BLUE);
-				g.setFont(new Font("Impact", Font.PLAIN, 50));
-				// Dialouge = "I just want a switch";
-				g.drawString(Dialouge, 700, 900);
-			}
-
-			if (this.character.isDave()) {
-				ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
-				playerArt = character.getImage();
-				d.drawImage(playerArt, 65, 460, 800, 800, this);
-				g.setColor(Color.BLUE);
-				g.setFont(new Font("Impact", Font.PLAIN, 50));
-				// Dialouge = "The Legend of Zelda: Breath of the Wild is
-				// coming";
-				g.drawString(Dialouge, 700, 900);
-			}
-		}
-	}
-
 	public void Objective(Graphics2D d, Graphics g) {
 		if (control.isoPressed()) {
 			ImageIcon dialogue = new ImageIcon("Pics//box.png");
@@ -229,6 +190,31 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		}
 	}
 
+	public void reset() {
+		this.character.setDave(false);
+		this.character.setEarl(false);
+		this.character.setLaw(false);
+		key1Visible = true;
+		key2Visible = true;
+		key3Visible = true;
+		character.setKey(false);
+		door3.setLocked(true);
+		door8.setLocked(true);
+		door13.setLocked(true);
+		ListSpot = 0;
+		control.setFloor1(true);
+		control.setBasement(false);
+		control.setFloor2(false);
+		control.setFloor3(false);
+		control.setRoom1(false);
+		control.setRoom2(false);
+		control.setRoom3(false);
+		control.setRoom4(false);
+		control.setRoom5(false);
+		character.setX(2100);
+		character.setY(1150);
+	}
+
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -246,28 +232,24 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				keys = key.getImage();
 				d.drawImage(keys, key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight(), this);
 			}
-			Speech(d, g);
 			Objective(d, g);
 		} else if (control.isFloor2()) {
 			ImageIcon theSecondFloor = new ImageIcon("Pics//floors//floor 2.png");
 			floor2 = theSecondFloor.getImage();
 			d.drawImage(floor2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			Speech(d, g);
 			Objective(d, g);
 		} else if (control.isFloor3()) {
 			ImageIcon theThirdFloor = new ImageIcon("Pics//floors//floor 3.png");
 			floor3 = theThirdFloor.getImage();
 			d.drawImage(floor3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			Speech(d, g);
 			Objective(d, g);
 		} else if (control.isBasement()) {
 			ImageIcon theBasement = new ImageIcon("Pics//floors//basement of horror.png");
 			basement = theBasement.getImage();
 			d.drawImage(basement, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			Speech(d, g);
 			Objective(d, g);
 		} else if (control.isRoom1()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room1.png");
@@ -281,14 +263,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				d.drawImage(keys, key2.getX(), key2.getY(), key1.getWidth(), key1.getHeight(), this);
 			}
 
-			Speech(d, g);
 			Objective(d, g);
 		} else if (control.isRoom2()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
 			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			Speech(d, g);
 			Objective(d, g);
 		} else if (control.isRoom3()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room1.png");
@@ -302,21 +282,18 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				d.drawImage(keys, key3.getX(), key3.getY(), key1.getWidth(), key1.getHeight(), this);
 			}
 
-			Speech(d, g);
 			Objective(d, g);
 		} else if (control.isRoom4()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
 			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			Speech(d, g);
 			Objective(d, g);
 		} else if (control.isRoom5()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
 			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			Speech(d, g);
 			Objective(d, g);
 		}
 
@@ -425,8 +402,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				left = image1.getImage();
 				d.drawImage(left, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
-				}
 			}
+		}
 		this.repaint();
 	}
 
@@ -597,13 +574,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 			if (pong.collider(character)) {
 				Dialouge = "I can interact with the ping pong table";
-				if(control.isiPressed()){
-//					load pause
+				if (control.isiPressed()) {
+					// load pause
 					Runner run = new Runner();
 					run.runPongGame();
 				}
-			}
-			else {
+			} else {
 				Dialouge = "There's nothing to interact with";
 			}
 
@@ -740,13 +716,13 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setiPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			control.setoPressed(true);
-		}  
-			
+		}
+
 		if (e.getKeyCode() == KeyEvent.VK_P) {
-			if(control.ispPressed() == false){
-			control.setpPressed(true);
-			timer.stop();
-			}else {
+			if (control.ispPressed() == false) {
+				control.setpPressed(true);
+				timer.stop();
+			} else {
 				control.setpPressed(false);
 				timer.start();
 			}
@@ -770,18 +746,18 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			control.setoPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
-		 control.setiPressed(false);
-		 }
-//		 else if (e.getKeyCode() == KeyEvent.VK_P) {
-//		 control.setpPressed(false);
-//		 timer.start();
-//		 }
+			control.setiPressed(false);
+		}
+		// else if (e.getKeyCode() == KeyEvent.VK_P) {
+		// control.setpPressed(false);
+		// timer.start();
+		// }
 
 		this.repaint();
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 }

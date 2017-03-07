@@ -228,6 +228,7 @@ public class GUI implements ActionListener{
 			}
 			else if (menuItem.getText().equals("Main Menu")) {
 				frame.dispose();
+				test.reset();
 				guiMain(test, control, player);
 			}
 		}
