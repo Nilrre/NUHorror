@@ -36,7 +36,6 @@ public class Door extends Object implements Serializable, SolidObject{
 	}
 	
 	/**
-	 * Gets x-position of this door
 	 * @return x-position
 	 */
 	public int getX() {
@@ -44,7 +43,6 @@ public class Door extends Object implements Serializable, SolidObject{
 	}
 
 	/**
-	 * Sets x-position of this door
 	 * @param x-position
 	 */
 	public void setX(int x) {
@@ -52,7 +50,6 @@ public class Door extends Object implements Serializable, SolidObject{
 	}
 
 	/**
-	 * Gets y-position of the door
 	 * @return y-position
 	 */
 	public int getY() {
@@ -60,7 +57,6 @@ public class Door extends Object implements Serializable, SolidObject{
 	}
 
 	/**
-	 * Sets y-position of the door
 	 * @param y-position
 	 */
 	public void setY(int y) {
@@ -68,7 +64,6 @@ public class Door extends Object implements Serializable, SolidObject{
 	}
 
 	/**
-	 * Gets the width of the Door
 	 * @return the width of the door
 	 */
 	public int getWidth() {
@@ -76,7 +71,6 @@ public class Door extends Object implements Serializable, SolidObject{
 	}
 
 	/**
-	 * Sets the width of the door
 	 * @param width of the door
 	 */
 	public void setWidth(int width) {
@@ -84,25 +78,36 @@ public class Door extends Object implements Serializable, SolidObject{
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return the height of the door
 	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * @param height of the door
+	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
 
+	/**
+	 * @return true if door is locked, false if door is unlocked
+	 */
 	public boolean isLocked() {
 		return locked;
 	}
 
+	/**
+	 * @param true if door is locked, false if door is unlocked 
+	 */
 	public void setLocked(boolean locked) {
 		this.locked = locked;
 	}
 
+	/**
+	 * Collision detection for the player
+	 */
 	@Override
 	public boolean collider(Player p) {
 		if(p.Collision(this.x, this.y, this.width, this.height)==true){
@@ -112,10 +117,16 @@ public class Door extends Object implements Serializable, SolidObject{
 	
 	}
 
+	/**
+	 * @return the doors character type
+	 */
 	public char getKeyType() {
 		return KeyType;
 	}
 
+	/**
+	 * @param char vlaue of the door
+	 */
 	public void setKeyType(char keyType) {
 		KeyType = keyType;
 	}

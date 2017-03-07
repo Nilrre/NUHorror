@@ -2,6 +2,11 @@ package edu.neumont.csc150.d.Model;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * @author Errlin Deleon
+ *
+ */
 public class Player extends Object implements Serializable {
 	private int x, y, xVel, yVel;
 	private final int width = 80, height = 80;
@@ -9,9 +14,19 @@ public class Player extends Object implements Serializable {
 	private boolean Earl = false, Law = false, Dave = false;
 	private char KeyType = '0';
 
+	/**
+	 * Default instance of parameter
+	 */
 	public Player() {
 	}
 
+	/**
+	 * Instance of parameter with parameters
+	 * @param x
+	 * @param y
+	 * @param xVel
+	 * @param yVel
+	 */
 	public Player(int x, int y, int xVel, int yVel) {
 		this.setX(x);
 		this.setxVel(xVel);
