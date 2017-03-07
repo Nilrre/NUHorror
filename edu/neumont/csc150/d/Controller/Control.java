@@ -1,11 +1,13 @@
 package edu.neumont.csc150.d.Controller;
 
+import java.io.Serializable;
+
 import edu.neumont.csc150.d.Model.Player;
 import edu.neumont.csc150.d.View.Audio;
 import edu.neumont.csc150.d.View.GUI;
 import edu.neumont.csc150.d.View.GameGraphics;
 
-public class Control {
+public class Control implements Serializable {
 	private boolean dPressed = false;
 	private boolean aPressed = false;
 	private boolean sPressed = false;
