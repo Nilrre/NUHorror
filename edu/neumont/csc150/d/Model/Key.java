@@ -1,12 +1,29 @@
 package edu.neumont.csc150.d.Model;
 
+/**
+ * 
+ * @author Errlin Deleon
+ *
+ */
 public class Key extends Object implements SolidObject {
 	
 	private int amount, x, y, width, height;
 	private char KeyType;
 	
+	/**
+	 * Default instance of door
+	 */
 	public Key() {}
 	
+	/**
+	 * Instance of door with no parameters
+	 * @param amount of keys
+	 * @param x position
+	 * @param y position
+	 * @param width 
+	 * @param height
+	 * @param char value
+	 */
 	public Key(int amount, int x, int y, int w, int h, char type) {
 		this.setAmount(amount);
 		this.setX(x);
@@ -16,6 +33,9 @@ public class Key extends Object implements SolidObject {
 		this.setKeyType(type);
 	}
 	
+	/**
+	 * Collision detection for the player
+	 */
 	@Override
 	public boolean collider(Player p) {
 		if(p.Collision(this.x, this.y, this.width, this.height)==true){
@@ -24,78 +44,82 @@ public class Key extends Object implements SolidObject {
 			return false;
 	
 	}
-	
-	public int getAmount() {
-		return amount;
-	}
 
+	/**
+	 * Sets amount of keys used
+	 * @param amount of keys
+	 */
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 	
 	/**
-	 * @return the x
+	 * @return the x position
 	 */
 	public int getX() {
 		return x;
 	}
 
 	/**
-	 * @param x the x to set
+	 * @param sets the x position
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
 	/**
-	 * @return the y
+	 * @return the y position
 	 */
 	public int getY() {
 		return y;
 	}
 
 	/**
-	 * @param y the y to set
+	 * @param sets the y position
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 
 	/**
-	 * @return the width
+	 * @return the width of the key
 	 */
 	public int getWidth() {
 		return width;
 	}
 
 	/**
-	 * @param width the width to set
+	 * @param sets the width of the key
 	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
 
 	/**
-	 * @return the height
+	 * @return the height of the key
 	 */
 	public int getHeight() {
 		return height;
 	}
 
 	/**
-	 * @param height the height to set
+	 * @param sets the height of the key
 	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
 
+	/**
+	 * @return char value of the key
+	 */
 	public char getKeyType() {
 		return KeyType;
 	}
 
+	/** 
+	 * @param char value of key
+	 */
 	public void setKeyType(char keyType) {
 		KeyType = keyType;
 	}
-
-
 }
