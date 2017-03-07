@@ -12,20 +12,35 @@ import edu.neumont.csc150.d.View.GameGraphics;
 
 public class SaveLoad {
 	
-	private void save(GameGraphics graphics) throws IOException {
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Saves//saveFile.nu"));
-		out.writeObject(graphics);
+	public void save(Control control, Player p) throws IOException {
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream
+				("Saves//saveGame.nu"));
+		ObjectOutputStream outChar = new ObjectOutputStream(new FileOutputStream
+				("Saves//saveCharacter.nu"));
+		out.writeObject(control);
+		outChar.writeObject(p);
 		out.flush();
+		outChar.flush();
 	}
 	
-	private void load(GameGraphics graphics, Player p) throws FileNotFoundException, IOException, ClassNotFoundException {
-//		character = p;
+	public void load(Control control, Player p) throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		ObjectInputStream in = new ObjectInputStream(new FileInputStream("Saves//saveFile.nu"));
+		ObjectInputStream in = new ObjectInputStream(new FileInputStream
+				("Saves//saveGame.nu"));
+		ObjectInputStream inChar = new ObjectInputStream(new FileInputStream
+				("Saves//saveCharacter.nu"));
 		
 		Object obj = in.readObject();
-		GameGraphics gg = (GameGraphics)obj;
+		Control cont = (Control)obj;
+		Object objChar = inChar.readObject();
+		Player character = (Player)objChar;
 		
-//		character.setX();
+		p.setX(character.getX());
+		p.setY(character.getY());
+		
+		control.setFloor1(cont.isFloor1());
+		control.setFloor2(cont.isFloor2());
+		control.setFloor3(cont.isFloor3());
+		
 	}
 }
