@@ -35,19 +35,20 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Player character;
 	private Control control;
 	private Image dialogueBox, theCommons, floor2, floor3, basement, keys, room1, room2, room3, standing, down, up,
-	left, right, playerArt;
-//	private String Dialouge = "There's nothing to interact with";
+			left, right, playerArt;
+	// private String Dialouge = "There's nothing to interact with";
 	private ArrayList<String> Objectives = new ArrayList<String>();
-	
-	//ListSpot - Each time a key is picked up +1 is added to ListSpot. This allows for the objectives to
-	//updated
+	private boolean document = true;
+
+	// ListSpot - Each time a key is picked up +1 is added to ListSpot. This
+	// allows for the objectives to
+	// updated
 	private int ListSpot = 0;
-	
+
 	private boolean f2 = false, f3 = false, b = false, p = false;
 	private GUI gui;
 
-	
-	//Places each key into a floor/room
+	// Places each key into a floor/room
 	private boolean key1Visible = true;
 	private Key key1 = new Key();
 	private boolean key2Visible = true;
@@ -55,7 +56,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private boolean key3Visible = true;
 	private Key key3 = new Key();
 
-	// Collision for all walls and doors as well as the ping pong table for commons area. Starting area.
+	// Collision for all walls and doors as well as the ping pong table for
+	// commons area. Starting area.
 	private Wall wall1 = new Wall(650, 900, 500, 50);
 	private Wall wall2 = new Wall(650, 1175, 500, 25);
 	private Wall wall3 = new Wall(1150, 900, 50, 300);
@@ -126,35 +128,45 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Door door15 = new Door(2350, 475, 100, 500, false, '0');
 	private Door door17 = new Door(2350, 475, 100, 500, false, '0');
 
-	// Collision for all walls and doors for room 2 
+	// Collision for all walls and doors for room 2
 	private Wall wall44 = new Wall(0, 0, 100, 1350);
 	private Wall wall45 = new Wall(150, 50, 100, 150);
 	private Wall wall46 = new Wall(450, 235, 120, 1000);
 	private Wall wall47 = new Wall(875, 235, 120, 1000);
 	private Wall wall48 = new Wall(1125, 350, 1375, 900);
 	private Wall wall49 = new Wall(1125, 0, 1375, 900);
+
+	private Wall Document = new Wall(200, 150, 50, 50);
+
 	private Door door16 = new Door(1125, 150, 100, 200, false, '0');
 	private Door door18 = new Door(1125, 150, 100, 200, false, '0');
 	private Door door19 = new Door(1125, 150, 100, 200, false, '0');
 
-	//Timer for movement within the game
+	// Timer for movement within the game
 	public Timer timer = new Timer(1000 / 60, this);
 
 	/**
-	 *builds a GameGraphics obj 
-	 * @param chara - Creates a reference to the already existing variable instance of Player
-	 * @param c - Creates a reference to the already existing variable instance of Control
-	 * @param g - Creates a reference to the already existing variable instance of GUI
+	 * builds a GameGraphics obj
+	 * 
+	 * @param chara
+	 *            - Creates a reference to the already existing variable
+	 *            instance of Player
+	 * @param c
+	 *            - Creates a reference to the already existing variable
+	 *            instance of Control
+	 * @param g
+	 *            - Creates a reference to the already existing variable
+	 *            instance of GUI
 	 */
-	
+
 	public GameGraphics(Player chara, Control c, GUI g) {
 		character = chara;
 		control = c;
 		gui = g;
 
-		//Dialogue of character letting player know what they need to do
+		// Dialogue of character letting player know what they need to do
 		Objectives.add("I need to find a key to use...");
-		Objectives.add("Now that I've got a key I should try to open a door and find out more about this place...");
+		Objectives.add("Now that I've got a key I should try to open a door and find out more about what happened...");
 		Objectives.add("I need to pick up that key");
 		Objectives.add("I should find another room to open");
 		Objectives.add("I need to pick up that key");
@@ -165,12 +177,15 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		addKeyListener(this);
 		timer.start();
 	}
-	
+
 	/**
-	 * Method sets objects that will let the player know what they need to do after pressing "O"
-	 * Letting them know in the form of character dialogue
-	 * @param d - Creates a graphics 2D object
-	 * @param g - Creates a graphics object
+	 * Method sets objects that will let the player know what they need to do
+	 * after pressing "O" Letting them know in the form of character dialogue
+	 * 
+	 * @param d
+	 *            - Creates a graphics 2D object
+	 * @param g
+	 *            - Creates a graphics object
 	 */
 
 	public void Objective(Graphics2D d, Graphics g) {
@@ -178,8 +193,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			ImageIcon dialogue = new ImageIcon("Pics//box.png");
 			dialogueBox = dialogue.getImage();
 			d.drawImage(dialogueBox, 10, 800, 2500, 500, this);
-			
-			//For Errlin character
+
+			// For Errlin character
 			if (this.character.isEarl()) {
 				ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
 				playerArt = character.getImage();
@@ -190,7 +205,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				g.drawString(Objectives.get(ListSpot), 700, 900);
 			}
 
-			//For Lawrence character
+			// For Lawrence character
 			if (this.character.isLaw()) {
 				ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
 				playerArt = character.getImage();
@@ -201,7 +216,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				g.drawString(Objectives.get(ListSpot), 700, 900);
 			}
 
-			//For David character
+			// For David character
 			if (this.character.isDave()) {
 				ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
 				playerArt = character.getImage();
@@ -215,7 +230,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		}
 	}
 
-	//Resets game after player chooses to go back to main menu
+	// Resets game after player chooses to go back to main menu
 	public void reset() {
 		this.character.setDave(false);
 		this.character.setEarl(false);
@@ -240,10 +255,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		character.setX(2100);
 		character.setY(1150);
 	}
-	
+
 	/**
-	 * Paint method that creates the floors, the keys, the doors, the characters, and the logic used to 
-	 * traverse through each of the rooms
+	 * Paint method that creates the floors, the keys, the doors, the
+	 * characters, and the logic used to traverse through each of the rooms
 	 */
 
 	@Override
@@ -251,13 +266,13 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		super.paint(g);
 		Graphics2D d = (Graphics2D) g;
 
-		//Draws image for the commons area of the game
+		// Draws image for the commons area of the game
 		if (control.isFloor1()) {
 			ImageIcon commons = new ImageIcon("Pics//floors//commons of horror.png");
 			theCommons = commons.getImage();
 			d.drawImage(theCommons, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
-			
-			//Checks to see if key is visible on floor
+
+			// Checks to see if key is visible on floor
 			if (key1Visible) {
 				key1 = new Key(1, 0, 300, 100, 40, 'a');
 				ImageIcon key = new ImageIcon("Pics//Key.png");
@@ -267,40 +282,40 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			Objective(d, g);
 		}
 
-		//Draws image for the second floor area of the game
+		// Draws image for the second floor area of the game
 		else if (control.isFloor2()) {
 			ImageIcon theSecondFloor = new ImageIcon("Pics//floors//floor 2.png");
 			floor2 = theSecondFloor.getImage();
 			d.drawImage(floor2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			Objective(d, g);
-		} 
-		
-		//Draws image for the third floor area of the game
+		}
+
+		// Draws image for the third floor area of the game
 		else if (control.isFloor3()) {
 			ImageIcon theThirdFloor = new ImageIcon("Pics//floors//floor 3.png");
 			floor3 = theThirdFloor.getImage();
 			d.drawImage(floor3, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			Objective(d, g);
-		} 
-		
-		//Draws image for the basement area of the game
+		}
+
+		// Draws image for the basement area of the game
 		else if (control.isBasement()) {
 			ImageIcon theBasement = new ImageIcon("Pics//floors//basement of horror.png");
 			basement = theBasement.getImage();
 			d.drawImage(basement, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			Objective(d, g);
-		} 
-		
-		//Draws image for the room 1 area of the game
+		}
+
+		// Draws image for the room 1 area of the game
 		else if (control.isRoom1()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room1.png");
 			room1 = Room.getImage();
 			d.drawImage(room1, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			//Checks to see if key is visible in room 1
+			// Checks to see if key is visible in room 1
 			if (key2Visible) {
 				key2 = new Key(1, 60, 1100, 100, 40, 'c');
 				ImageIcon key = new ImageIcon("Pics//Key.png");
@@ -309,24 +324,24 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			}
 
 			Objective(d, g);
-		} 
-		
-		//Draws image for the room 2 area of the game
+		}
+
+		// Draws image for the room 2 area of the game
 		else if (control.isRoom2()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
 			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			Objective(d, g);
-		} 
-		
-		//Draws image for the room 3 area of the game
+		}
+
+		// Draws image for the room 3 area of the game
 		else if (control.isRoom3()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room1.png");
 			room1 = Room.getImage();
 			d.drawImage(room1, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
-			//Checks to see if key is visible in room 2
+			// Checks to see if key is visible in room 2
 			if (key3Visible) {
 				key3 = new Key(1, 600, 850, 100, 40, 'e');
 				ImageIcon key = new ImageIcon("Pics//Key.png");
@@ -335,19 +350,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			}
 
 			Objective(d, g);
-		} 
-		
-		//Draws image for the room 4 area of the game
-		else if (control.isRoom4()) {
-			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
-			room2 = Room.getImage();
-			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+		}
 
-			Objective(d, g);
-		} 
-		
-		//Draws image for the room 5 area of the game
-		else if (control.isRoom5()) {
+		// Draws image for the room 4 area of the game
+		else if (control.isRoom4()) {
 			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
 			room2 = Room.getImage();
 			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
@@ -355,20 +361,33 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			Objective(d, g);
 		}
 
+		// Draws image for the room 5 area of the game
+		else if (control.isRoom5()) {
+			ImageIcon Room = new ImageIcon("Pics//floors//rooms//room2.png");
+			room2 = Room.getImage();
+			d.drawImage(room2, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+
+			Objective(d, g);
+
+			if (document) {
+				g.setColor(Color.GREEN);
+				g.fillRect(Document.getX(), Document.getY(), Document.getWidth(), Document.getHeight());
+			}
+		}
 		/**
-		 * Creates character animations for each character 
+		 * Creates character animations for each character
 		 */
-		
-		//If Errlin was chosen at character selection screen
+
+		// If Errlin was chosen at character selection screen
 		if (character.isEarl() == true) {
-			//Character standing animation
+			// Character standing animation
 			if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
 				ImageIcon image = new ImageIcon("Errlin Walk//front//Errlin2.png");
 				standing = image.getImage();
 				d.drawImage(standing, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
-			
+
 			// Walking Down animation for Errlin
 			else if (control.issPressed()) {
 				ImageIcon image1 = new ImageIcon("Errlin Walk//front//animated.gif");
@@ -376,15 +395,15 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				d.drawImage(down, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
-			
+
 			// Walking Up animation for Errlin
 			else if (control.iswPressed()) {
 				ImageIcon image1 = new ImageIcon("Errlin Walk//Back//animated.gif");
 				up = image1.getImage();
 				d.drawImage(up, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
-			
-			// Walking to the right animation for Errlin 
+
+			// Walking to the right animation for Errlin
 			else if (control.isdPressed()) {
 				ImageIcon image1 = new ImageIcon("Errlin Walk//side//animated.gif");
 				right = image1.getImage();
@@ -400,16 +419,16 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			}
 		}
 
-		//If Lawrence is chosen at character selection screen
+		// If Lawrence is chosen at character selection screen
 		else if (character.isLaw() == true) {
-			//Lawrence's standing animation
+			// Lawrence's standing animation
 			if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
 				ImageIcon image = new ImageIcon("Lawrence Walk//front//0.png");
 				standing = image.getImage();
 				d.drawImage(standing, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
-			
+
 			// Walking Down animation for Lawrence
 			else if (control.issPressed()) {
 				ImageIcon image1 = new ImageIcon("Lawrence Walk//front//animated.gif");
@@ -417,14 +436,14 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				d.drawImage(down, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
-			
+
 			// Walking Up animation for Lawrence
 			else if (control.iswPressed()) {
 				ImageIcon image1 = new ImageIcon("Lawrence Walk//back//animated.gif");
 				up = image1.getImage();
 				d.drawImage(up, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
-			
+
 			// Walking to the right animation for Lawrence
 			else if (control.isdPressed()) {
 				ImageIcon image1 = new ImageIcon("Lawrence Walk//side//animated.gif");
@@ -432,7 +451,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				d.drawImage(right, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
-			
+
 			// walking to the left animation for Lawrence
 			else if (control.isaPressed()) {
 				ImageIcon image1 = new ImageIcon("Lawrence Walk//side//animated.gif");
@@ -442,16 +461,16 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			}
 		}
 
-		//If David is chosen at character selection screen
+		// If David is chosen at character selection screen
 		else if (character.isDave() == true) {
-			//David's standing animation
+			// David's standing animation
 			if (!control.iswPressed() && !control.isaPressed() && !control.issPressed() && !control.isdPressed()) {
 				ImageIcon image = new ImageIcon("David Walk//front//0.png");
 				standing = image.getImage();
 				d.drawImage(standing, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
-			
+
 			// Walking Down animation for David
 			else if (control.issPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//front//animated.gif");
@@ -459,14 +478,14 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				d.drawImage(down, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
 						this);
 			}
-			
+
 			// Walking Up animation for David
 			else if (control.iswPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//back//animated.gif");
 				up = image1.getImage();
 				d.drawImage(up, character.getX(), character.getY(), character.getWidth(), character.getHeight(), this);
 			}
-			
+
 			// Walking to the right animation for David
 			else if (control.isdPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
@@ -474,7 +493,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				d.drawImage(right, character.getX() + 60, character.getY(), -(character.getWidth()),
 						character.getHeight(), this);
 			}
-			
+
 			// walking to the left animation for David
 			else if (control.isaPressed()) {
 				ImageIcon image1 = new ImageIcon("David Walk//side//animated.gif");
@@ -486,12 +505,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		this.repaint();
 	}
 
-// -----------------------------------------------------------------------------------------------------------------------------------------
-	//Checks to see if character is colliding with door
-	//If character has the right key then the door will open
+	// -----------------------------------------------------------------------------------------------------------------------------------------
+	// Checks to see if character is colliding with door
+	// If character has the right key then the door will open
 	public void doorCollision(Door door, char key) {
 		if (door.collider(character) == true) {
-//			Dialouge = "I do not have the right key for this door";
+			// Dialouge = "I do not have the right key for this door";
 			if (door.isLocked() == false) {
 				if (door.equals(door1)) {
 					control.setFloor1(false);
@@ -594,10 +613,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 					character.setX(550);
 					character.setY(100);
 				}
-			} 
-			else if (door.isLocked() == true && character.hasKey() == true) {
+			} else if (door.isLocked() == true && character.hasKey() == true) {
 				if (door.getKeyType() == key) {
-//					Dialouge = "";
+					// Dialouge = "";
 					ListSpot++;
 					door.setLocked(false);
 					character.setKey(false);
@@ -606,12 +624,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		}
 	}
 
-	//Checks the collision for the keys
-	//If player is colliding with key, they press "i" to pick it up
+	// Checks the collision for the keys
+	// If player is colliding with key, they press "i" to pick it up
 	public void keyCollision(Key key) {
 		if (key.collider(character)) {
 			if (control.isiPressed() == true) {
-//				Dialouge = "Let's see what this key is used for";
+				// Dialouge = "Let's see what this key is used for";
 				key1Visible = false;
 				if (key.equals(key1)) {
 					character.setKeyType(key.getKeyType());
@@ -631,11 +649,11 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		}
 	}
 
-	//Checks NPC Collision
+	// Checks NPC Collision
 	public void NPCCollision(NPC ai) {
 		if (ai.collider(character) == true) {
 			if (control.isiPressed() == true) {
-//				Dialouge = ai.getSaying();
+				// Dialouge = ai.getSaying();
 			}
 		}
 	}
@@ -643,9 +661,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	// --------------------------------------------------------------------------------------------------------------------------------------------
 
 	/*
-	 * Creates interactions with certain objects (Keys) 
+	 * Creates interactions with certain objects (Keys)
 	 */
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (control.isFloor1()) {
@@ -660,15 +678,16 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			wall9.collider(character);
 
 			if (pong.collider(character)) {
-//				Dialouge = "I can interact with the ping pong table";
+				// Dialouge = "I can interact with the ping pong table";
 				if (control.isiPressed()) {
 					// load pause
 					Runner run = new Runner();
 					run.runPongGame();
 				}
 			} else {
-//				Dialouge = "There's nothing to interact with";
-			} if (key1Visible) {
+				// Dialouge = "There's nothing to interact with";
+			}
+			if (key1Visible) {
 				keyCollision(key1);
 			}
 
@@ -687,7 +706,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			doorCollision(door4, character.getKeyType());
 			doorCollision(door6, character.getKeyType());
 			doorCollision(door7, character.getKeyType());
-			
+
 		} else if (control.isFloor3()) {
 			wall15.collider(character);
 			wall16.collider(character);
@@ -700,7 +719,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			doorCollision(door8, character.getKeyType());
 			doorCollision(door9, character.getKeyType());
 			doorCollision(door11, character.getKeyType());
-			
+
 		} else if (control.isBasement()) {
 			wall21.collider(character);
 			wall22.collider(character);
@@ -713,7 +732,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			doorCollision(door12, character.getKeyType());
 			doorCollision(door13, character.getKeyType());
 			doorCollision(door14, character.getKeyType());
-			
+
 		} else if (control.isRoom1()) {
 			wall29.collider(character);
 			wall30.collider(character);
@@ -736,7 +755,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			}
 
 			doorCollision(door15, character.getKeyType());
-			
+
 		} else if (control.isRoom2()) {
 			wall44.collider(character);
 			wall45.collider(character);
@@ -746,7 +765,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			wall49.collider(character);
 
 			doorCollision(door16, character.getKeyType());
-			
+
 		} else if (control.isRoom3()) {
 			wall29.collider(character);
 			wall30.collider(character);
@@ -769,7 +788,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			}
 
 			doorCollision(door17, character.getKeyType());
-			
+
 		} else if (control.isRoom4()) {
 			wall44.collider(character);
 			wall45.collider(character);
@@ -779,7 +798,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			wall49.collider(character);
 
 			doorCollision(door18, character.getKeyType());
-			
+
 		} else if (control.isRoom5()) {
 			wall44.collider(character);
 			wall45.collider(character);
@@ -788,16 +807,22 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			wall48.collider(character);
 			wall49.collider(character);
 
+			if (document) {
+				if (Document.collider(character)) {
+					if (control.isiPressed() == true) {
+						// place text file int here
+						document = false;
+					}
+				}
+			}
 			doorCollision(door19, character.getKeyType());
 		}
 		control.move();
 		this.repaint();
 	}
-	
+
 	/*
-	 * KeyEvents for certain pressed buttons
-	 * P = pause
-	 * I = Interaction
+	 * KeyEvents for certain pressed buttons P = pause I = Interaction
 	 */
 
 	@Override
@@ -812,8 +837,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setsPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			control.setoPressed(true);
-		} 
-		else if (e.getKeyCode() == KeyEvent.VK_I) {
+		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(true);
 		}
 
@@ -842,8 +866,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			control.setsPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			control.setoPressed(false);
-		} 
-		else if (e.getKeyCode() == KeyEvent.VK_I) {
+		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(false);
 		}
 
@@ -852,6 +875,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 }

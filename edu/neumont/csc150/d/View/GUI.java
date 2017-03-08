@@ -1,18 +1,11 @@
 package edu.neumont.csc150.d.View;
 
 import java.awt.Color;
-
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -25,9 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import edu.neumont.csc150.d.Controller.Control;
-import edu.neumont.csc150.d.Controller.SaveLoad;
+//import edu.neumont.csc150.d.Controller.SaveLoad;
 import edu.neumont.csc150.d.Model.Player;
-import edu.neumont.csc150.d.Pong.Runner;
 
 /*
  *Class creates all the frames for the game. Class also houses the Java menu. Java Menu options
@@ -42,7 +34,7 @@ public class GUI implements ActionListener {
 	private Control control;
 	private Audio audio = new Audio();
 	private Player player;
-	private SaveLoad sl = new SaveLoad();
+//	private SaveLoad sl = new SaveLoad();
 	private ImageIcon img = new ImageIcon("Pics//NU.png");
 
 	
@@ -105,7 +97,7 @@ public class GUI implements ActionListener {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		menuItems(frame);
 		frame.getContentPane().add(test);
-		audio.basementMusic();			
+		audio.roomMusic();
 		frame.setVisible(true);
 	}
 
@@ -254,19 +246,19 @@ public class GUI implements ActionListener {
 			
 			//Save game allows user to save everything
 			if (menuItem.getText().equals("Save Game")) {
-				try {
-					sl.save(control, player);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+//				try {
+//					sl.save(control, player);
+//				} catch (IOException e1) {
+//					e1.printStackTrace();
+//				}
 			}
 			//Load game allows player to load his previous progress 
 			else if (menuItem.getText().equals("Load Game")) {
-				try {
-					sl.load(control, player);
-				} catch (ClassNotFoundException | IOException e1) {
-					e1.printStackTrace();
-				}
+//				try {
+//					sl.load(control, player);
+//				} catch (ClassNotFoundException | IOException e1) {
+//					e1.printStackTrace();
+//				}
 			}
 			//Main Menu allow player to go back to the main menu. Reseting all progress in the process
 			else if (menuItem.getText().equals("Main Menu")) {
