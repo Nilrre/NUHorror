@@ -1,5 +1,6 @@
 package edu.neumont.csc150.d.View;
 
+import java.applet.AudioClip;
 import java.awt.Color;
 
 import java.awt.Font;
@@ -41,6 +42,7 @@ public class GUI implements ActionListener {
 	private GameGraphics test;
 	private Control control;
 	private Audio audio = new Audio();
+	private Audio audio2 = new Audio();
 	private Player player;
 	private SaveLoad sl = new SaveLoad();
 	private ImageIcon img = new ImageIcon("Pics//NU.png");
@@ -104,8 +106,11 @@ public class GUI implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		menuItems(frame);
+		audio.mainMenuMusicStopped();
+		
+		audio.gameMusic(control);
+		
 		frame.getContentPane().add(test);
-		audio.basementMusic();			
 		frame.setVisible(true);
 	}
 
@@ -272,6 +277,7 @@ public class GUI implements ActionListener {
 			else if (menuItem.getText().equals("Main Menu")) {
 				frame.dispose();
 				test.reset();
+				audio.stopMusic();
 				guiMain();
 			}
 		}
