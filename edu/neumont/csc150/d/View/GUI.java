@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import edu.neumont.csc150.d.Controller.Control;
+import edu.neumont.csc150.d.Controller.SaveLoad;
 //import edu.neumont.csc150.d.Controller.SaveLoad;
 import edu.neumont.csc150.d.Model.Player;
 
@@ -36,7 +37,7 @@ public class GUI implements ActionListener {
 	private Audio audio = new Audio();
 	private Audio audio2 = new Audio();
 	private Player player;
-//	private SaveLoad sl = new SaveLoad();
+	private SaveLoad sl = new SaveLoad();
 	private ImageIcon img = new ImageIcon("Pics//NU.png");
 
 	
@@ -238,6 +239,14 @@ public class GUI implements ActionListener {
 			frame.dispose();
 			guiGame(test, control);
 			player.setDave(true);
+		}
+		
+		if (e.getSource() == LoadGame) {
+			try {
+				sl.load(control, player);
+			} catch (ClassNotFoundException | IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 		
 		//On Main Menu if quit is selected the frame closes
