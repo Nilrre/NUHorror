@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import edu.neumont.csc150.d.Controller.Control;
+import edu.neumont.csc150.d.Controller.SaveLoad;
 import edu.neumont.csc150.d.Model.Player;
 import edu.neumont.csc150.d.Pong.Runner;
 
@@ -41,6 +42,7 @@ public class GUI implements ActionListener {
 	private Control control;
 	private Audio audio = new Audio();
 	private Player player;
+	private SaveLoad sl = new SaveLoad();
 	private ImageIcon img = new ImageIcon("Pics//NU.png");
 
 	
@@ -252,9 +254,19 @@ public class GUI implements ActionListener {
 			
 			//Save game allows user to save everything
 			if (menuItem.getText().equals("Save Game")) {
+				try {
+					sl.save(control, player);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 			//Load game allows player to load his previous progress 
 			else if (menuItem.getText().equals("Load Game")) {
+				try {
+					sl.load(control, player);
+				} catch (ClassNotFoundException | IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 			//Main Menu allow player to go back to the main menu. Reseting all progress in the process
 			else if (menuItem.getText().equals("Main Menu")) {

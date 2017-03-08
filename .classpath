@@ -2,10 +2,5 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="edu/neumont/csc150/d/Video/lib/sound.jar"/>
-	<classpathentry kind="lib" path="edu/neumont/csc150/d/Video/lib/jmf.jar"/>
-	<classpathentry kind="lib" path="edu/neumont/csc150/d/Video/lib/customizer.jar"/>
-	<classpathentry kind="lib" path="edu/neumont/csc150/d/Video/lib/mediaplayer.jar"/>
-	<classpathentry kind="lib" path="edu/neumont/csc150/d/Video/lib/multiplayer.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
