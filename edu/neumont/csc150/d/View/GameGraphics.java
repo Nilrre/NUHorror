@@ -116,7 +116,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 	private Wall wall26 = new Wall(1400, 825, 1150, 575);
 	private Wall wall27 = new Wall(1425, 425, 1150, 150);
 	private Door door12 = new Door(750, 875, 200, 650, false, '0');
-	private Door door13 = new Door(450, 50, 50, 250, false, 'e');
+	private Door door13 = new Door(450, 50, 50, 250, true, 'e');
 	private Door door14 = new Door(1200, 1250, 200, 150, true, 'f');
 
 	// Collision for all walls and doors for room 1
@@ -175,14 +175,14 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 		gui = g;
 
 		// Dialogue of character letting player know what they need to do
-		Objectives.add("I need to find a key to use...");
-		Objectives.add("Now that I've got a key I should try to open a door and find out more about what happened...");
-		Objectives.add("I need to pick up that key");
-		Objectives.add("I should find another room to open");
-		Objectives.add("I need to pick up that key");
-		Objectives.add("Whats up with all these keys?");
-		Objectives.add("Maybe there's something else I can find");
-		Objectives.add("Let's see what this says. I should check my files");
+		Objectives.add("Maybe there is something in the school that I could use.");
+		Objectives.add("I've got to figure out what this key's purpose is. Now where's the door?");
+		Objectives.add("There's another key. I should go pick it up.");
+		Objectives.add("I should find another room to open. I bet there's another key waiting for me.");
+		Objectives.add("What do you know. There's another key!");
+		Objectives.add("There are key's laying around everywhere");
+		Objectives.add("Maybe there's something else I can find besides these endless supply of keys.");
+		Objectives.add("Let's see what this says. I should check my files.");
 
 		setFocusable(true);
 		addKeyListener(this);
@@ -210,7 +210,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				ImageIcon character = new ImageIcon("Pics//character portraits//Errlin.png");
 				playerArt = character.getImage();
 				d.drawImage(playerArt, 65, 460, 800, 800, this);
-				g.setColor(Color.BLUE);
+				g.setColor(Color.RED);
 				g.setFont(new Font("Impact", Font.PLAIN, 50));
 				// Dialouge = "We will figure it out. Don't worry about it.";
 				g.drawString(Objectives.get(ListSpot), 700, 900);
@@ -221,7 +221,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				ImageIcon character = new ImageIcon("Pics//character portraits//Lawrence.png");
 				playerArt = character.getImage();
 				d.drawImage(playerArt, 65, 460, 800, 800, this);
-				g.setColor(Color.BLUE);
+				g.setColor(Color.RED);
 				g.setFont(new Font("Impact", Font.PLAIN, 50));
 				// Dialouge = "I just want a switch";
 				g.drawString(Objectives.get(ListSpot), 700, 900);
@@ -232,7 +232,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				ImageIcon character = new ImageIcon("Pics//character portraits//David.png");
 				playerArt = character.getImage();
 				d.drawImage(playerArt, 65, 460, 800, 800, this);
-				g.setColor(Color.BLUE);
+				g.setColor(Color.RED);
 				g.setFont(new Font("Impact", Font.PLAIN, 50));
 				// Dialouge = "The Legend of Zelda: Breath of the Wild is
 				// coming";
@@ -860,6 +860,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			wall48.collider(character);
 			wall49.collider(character);
 
+			//If special document is picked up a special txt file will be created in your directory that tells the story
 			if (document) {
 				if (Document.collider(character)) {
 					if (control.isiPressed() == true) {
@@ -958,6 +959,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			control.setsPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			control.setoPressed(true);
+			timer.stop();
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(true);
 		}
@@ -987,6 +989,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			control.setsPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			control.setoPressed(false);
+			timer.start();
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(false);
 		}
