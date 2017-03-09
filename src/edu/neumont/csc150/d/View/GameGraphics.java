@@ -63,7 +63,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 	private Key key2 = new Key();
 	private boolean key3Visible = true;
 	private Key key3 = new Key();
-	private boolean coxHere = true;
+//	private boolean coxHere = true;
 	private Enemy cox = new Enemy();
 
 	// Collision for all walls and doors as well as the ping pong table for
@@ -294,7 +294,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				d.drawImage(keys, key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight(), this);
 			}
 			
-			if (coxHere && !key1Visible) {
+			if (!key1Visible) {
 				cox = new Enemy(character);
 				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
 				mrCox = enemy.getImage();
@@ -356,7 +356,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				d.drawImage(keys, key2.getX(), key2.getY(), key1.getWidth(), key1.getHeight(), this);
 			}
 			
-			if (coxHere && !key2Visible) {
+			if (!key2Visible) {
 				cox = new Enemy(character);
 				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
 				mrCox = enemy.getImage();
@@ -389,7 +389,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				d.drawImage(keys, key3.getX(), key3.getY(), key1.getWidth(), key1.getHeight(), this);
 			}
 			
-			if (coxHere && !key3Visible) {
+			if (!key3Visible) {
 				cox = new Enemy(character);
 				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
 				mrCox = enemy.getImage();
@@ -738,8 +738,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			}
 			if (key1Visible) {
 				keyCollision(key1);
-			}
-			if (cox.collider(character)) {
+			} else if (cox.collider(character)) {
 				control.setGameOver(true);
 				control.setFloor1(false);
 			}
@@ -805,6 +804,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 
 			if (key2Visible) {
 				keyCollision(key2);
+			} else if (cox.collider(character)) {
+				control.setGameOver(true);
+				control.setFloor1(false);
 			}
 
 			doorCollision(door15, character.getKeyType());
@@ -838,6 +840,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 
 			if (key3Visible) {
 				keyCollision(key3);
+			} else if (cox.collider(character)) {
+				control.setGameOver(true);
+				control.setFloor1(false);
 			}
 
 			doorCollision(door17, character.getKeyType());
