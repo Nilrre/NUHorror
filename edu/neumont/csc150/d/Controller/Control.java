@@ -32,6 +32,7 @@ public class Control implements Serializable {
 	private boolean room3 = false;
 	private boolean room4 = false;
 	private boolean room5 = false;
+	private boolean gameOver = false;
 	private GUI gui;
 
 	/**
@@ -289,6 +290,20 @@ public class Control implements Serializable {
 	 */
 	public void setRoom5(boolean room5) {
 		this.room5 = room5;
+	}
+	
+	/**
+	 * @return the gameOver
+	 */
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
+	/**
+	 * @param gameOver the gameOver to set
+	 */
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
 	}
 }
 
