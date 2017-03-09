@@ -194,12 +194,17 @@ public class GUI implements ActionListener {
 	public void menuItems(JFrame frame) {
 		JMenuItem saveGame = new JMenuItem("Save Game");
 		saveGame.addActionListener(this);
+		saveGame.setFont(saveGame.getFont().deriveFont(25.0f));
 		JMenuItem loadGame = new JMenuItem("Load Game");
 		loadGame.addActionListener(this);
+		loadGame.setFont(loadGame.getFont().deriveFont(25.0f));
 		JMenuItem mainMenu = new JMenuItem("Main Menu");
 		mainMenu.addActionListener(this);
+		mainMenu.setFont(mainMenu.getFont().deriveFont(25.0f));
 		JMenu menu = new JMenu("Options");
+		menu.setFont(menu.getFont().deriveFont(20.0f));
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(menuBar.getFont().deriveFont(25.0f));
 
 		menu.add(saveGame);
 		menu.add(loadGame);
