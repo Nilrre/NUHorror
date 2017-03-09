@@ -27,6 +27,7 @@ import javax.swing.Timer;
 
 import edu.neumont.csc150.d.Controller.Control;
 import edu.neumont.csc150.d.Model.Door;
+import edu.neumont.csc150.d.Model.Enemy;
 import edu.neumont.csc150.d.Model.Key;
 import edu.neumont.csc150.d.Model.NPC;
 import edu.neumont.csc150.d.Model.Player;
@@ -42,7 +43,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 	private Player character;
 	private Control control;
 	private Image documents, dialogueBox, theCommons, floor2, floor3, basement, keys, room1, room2, room3, standing,
-			down, up, left, right, playerArt;
+			down, up, left, right, playerArt, mrCox, gameOver;
 	// private String Dialouge = "There's nothing to interact with";
 	private ArrayList<String> Objectives = new ArrayList<String>();
 	private boolean document = true;
@@ -62,6 +63,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 	private Key key2 = new Key();
 	private boolean key3Visible = true;
 	private Key key3 = new Key();
+	private boolean coxHere = true;
+	private Enemy cox = new Enemy();
 
 	// Collision for all walls and doors as well as the ping pong table for
 	// commons area. Starting area.
@@ -150,7 +153,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 	private Door door19 = new Door(1125, 150, 100, 200, false, '0');
 
 	// Timer for movement within the game
-	public Timer timer = new Timer(1000 / 60, this);
+	public Timer timer = new Timer(1000 / 30, this);
 
 	/**
 	 * builds a GameGraphics obj
@@ -240,6 +243,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 
 	// Resets game after player chooses to go back to main menu
 	public void reset() {
+		if(!timer.isRunning()){
+			timer.start();
+			}
 		this.character.setDave(false);
 		this.character.setEarl(false);
 		this.character.setLaw(false);
@@ -287,6 +293,13 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				keys = key.getImage();
 				d.drawImage(keys, key1.getX(), key1.getY(), key1.getWidth(), key1.getHeight(), this);
 			}
+			
+			if (coxHere && !key1Visible) {
+				cox = new Enemy(character);
+				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
+				mrCox = enemy.getImage();
+				d.drawImage(mrCox, cox.getX(), cox.getY(), cox.getWidth(), cox.getHeight(), this);
+			}
 			Objective(d, g);
 		}
 
@@ -315,6 +328,18 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			d.drawImage(basement, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 
 			Objective(d, g);
+		} 
+		// Draws an image for the Game Over Screen, stops the game, and centers the player position
+		else if (control.isGameOver()) {
+			ImageIcon youAreDead = new ImageIcon("Pics//Game-Over.jpg");
+			gameOver = youAreDead.getImage();
+			d.drawImage(gameOver, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
+			timer.stop();
+			
+			character.setX((this.getWidth() / 2) - 30);
+			character.setY(this.getHeight() / 2);
+			
+			Objective(d, g);
 		}
 
 		// Draws image for the room 1 area of the game
@@ -329,6 +354,13 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				ImageIcon key = new ImageIcon("Pics//Key.png");
 				keys = key.getImage();
 				d.drawImage(keys, key2.getX(), key2.getY(), key1.getWidth(), key1.getHeight(), this);
+			}
+			
+			if (coxHere && !key2Visible) {
+				cox = new Enemy(character);
+				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
+				mrCox = enemy.getImage();
+				d.drawImage(mrCox, cox.getX(), cox.getY(), cox.getWidth(), cox.getHeight(), this);
 			}
 
 			Objective(d, g);
@@ -355,6 +387,13 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				ImageIcon key = new ImageIcon("Pics//Key.png");
 				keys = key.getImage();
 				d.drawImage(keys, key3.getX(), key3.getY(), key1.getWidth(), key1.getHeight(), this);
+			}
+			
+			if (coxHere && !key3Visible) {
+				cox = new Enemy(character);
+				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
+				mrCox = enemy.getImage();
+				d.drawImage(mrCox, cox.getX(), cox.getY(), cox.getWidth(), cox.getHeight(), this);
 			}
 
 			Objective(d, g);
@@ -699,6 +738,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			}
 			if (key1Visible) {
 				keyCollision(key1);
+			}
+			if (cox.collider(character)) {
+				control.setGameOver(true);
+				control.setFloor1(false);
 			}
 
 			doorCollision(door1, character.getKeyType());
