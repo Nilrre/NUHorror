@@ -9,6 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -31,11 +38,11 @@ import edu.neumont.csc150.d.Pong.Runner;
  *are drawn in this class 
  */
 
-public class GameGraphics extends JPanel implements ActionListener, KeyListener {
+public class GameGraphics extends JPanel implements ActionListener, KeyListener, Serializable {
 	private Player character;
 	private Control control;
-	private Image dialogueBox, theCommons, floor2, floor3, basement, keys, room1, room2, room3, standing, down, up,
-			left, right, playerArt;
+	private Image documents, dialogueBox, theCommons, floor2, floor3, basement, keys, room1, room2, room3, standing,
+			down, up, left, right, playerArt;
 	// private String Dialouge = "There's nothing to interact with";
 	private ArrayList<String> Objectives = new ArrayList<String>();
 	private boolean document = true;
@@ -106,7 +113,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall26 = new Wall(1400, 825, 1150, 575);
 	private Wall wall27 = new Wall(1425, 425, 1150, 150);
 	private Door door12 = new Door(750, 875, 200, 650, false, '0');
-	private Door door13 = new Door(450, 50, 50, 250, true, 'e');
+	private Door door13 = new Door(450, 50, 50, 250, false, 'e');
 	private Door door14 = new Door(1200, 1250, 200, 150, true, 'f');
 
 	// Collision for all walls and doors for room 1
@@ -136,7 +143,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 	private Wall wall48 = new Wall(1125, 350, 1375, 900);
 	private Wall wall49 = new Wall(1125, 0, 1375, 900);
 
-	private Wall Document = new Wall(200, 150, 50, 50);
+	private Wall Document = new Wall(200, 150, 80, 60);
 
 	private Door door16 = new Door(1125, 150, 100, 200, false, '0');
 	private Door door18 = new Door(1125, 150, 100, 200, false, '0');
@@ -171,7 +178,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 		Objectives.add("I should find another room to open");
 		Objectives.add("I need to pick up that key");
 		Objectives.add("Whats up with all these keys?");
-		Objectives.add("");
+		Objectives.add("Maybe there's something else I can find");
+		Objectives.add("Let's see what this says. I should check my files");
 
 		setFocusable(true);
 		addKeyListener(this);
@@ -370,8 +378,10 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 			Objective(d, g);
 
 			if (document) {
-				g.setColor(Color.GREEN);
-				g.fillRect(Document.getX(), Document.getY(), Document.getWidth(), Document.getHeight());
+				ImageIcon GameDocument = new ImageIcon("Pics//Paper.png");
+				documents = GameDocument.getImage();
+				d.drawImage(documents, Document.getX(), Document.getY(), Document.getWidth(), Document.getHeight(),
+						this);
 			}
 		}
 		/**
@@ -811,7 +821,75 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener 
 				if (Document.collider(character)) {
 					if (control.isiPressed() == true) {
 						// place text file int here
+						FileOutputStream anotherFile;
+						File file = new File("BackStory.txt");
+						try {
+							anotherFile = new FileOutputStream(file, true);
+							PrintStream print = new PrintStream(anotherFile);
+							print.println("Cohort 32 Class Reunion");
+							print.println("");
+							print.println("It’s the year of 2032 and the class of 2019, cohort 32, has decided to have a class reunion.");
+							print.println("They decide it’s best if they all have the reunion at the school. That way they can see all");
+							print.println("of their former teachers and new students. It’s an exciting time for those past students of");
+							print.println("of their former teachers and new students. It’s an exciting time for those past students of");
+							print.println("cohort 32. The date for this specific event has been decided to be held on March 21st, 2032.");
+
+							print.println("");
+							print.println("");
+
+							print.println("Project Showcase");
+							print.println("");
+							print.println("The project showcase is also happening at this time, but the students were able to get the ay ok from,");
+							print.println("whoever is in charge of such things, and they finalized the date for the reunion to be March 21st, 2032.");
+							
+							print.println("");
+							print.println("");
+
+							print.println("The Biomechanical Outbreak");
+							print.println("");
+							print.println("During Neumont’s special project showcase event, A student decided that it would be a good idea to ");
+							print.println("showcase a biomechanical miniature lifeform to show to his fellow students and professors. His initial ");
+							print.println("idea was for the creature to be harmless and intriguing to his audience. But things took a turn for the ");
+							print.println("worse, and the creature was all but harmless. It began causing mayhem among the school. It found a host to latch on");
+							print.println("to which turned out to be an unlucky professor. After finding its host it worked on trapping everyone that was in the building.");
+							
+							print.println("");
+							print.println("");
+
+
+							print.println("The Worst Reunion Ever");
+							print.println("");
+							print.println("The students of Cohort 32 who attended their reunion got caught up in the");
+							print.println("mayhem, and no one was able to escape.");
+							
+							print.println("");
+							print.println("");
+
+							print.println("Where We Come In");
+							print.println("");
+							print.println("There were only three lucky souls who weren’t affected. These three are known");
+							print.println("as Lawrence Douglas, Errlin Deleon, and David Duran. They hadn’t been able to make it to the reunion. ");
+							print.println("They all agreed that they’d venture off to the school the very next day. The next day they came to school"); 
+							print.println("only to find that everything within a 25 mile radius of the school was completely covered in what seemed to be some kind of fleshy substance (Don’t ask). They all seemed");
+							print.println("weirded out and started to head back home, but Lawrence decided it would be a good idea to go check it out (decided it wouldn’t be as cliche if the black person decided to go check it out)");
+							print.println("With hesitation the gang decided it  would be best to go inside and see just what the hell was going on.");
+							
+							print.println("");
+							print.println("");
+
+							print.println("What Hell Have I Gotten Myself Into");
+							print.println("");
+							print.println("They journey inside the belly of the beast. They see all kinds of horrific things. Eventually they make it to one student who ");
+							print.println("has the answers as to what exactly is going on. They figure out that this student was the cause, but he knows how to undo his wrong doings. ");
+							print.println("They eventually figure out how to undo his wrong doings and set forth to find the monster known as, well we haven’t ");
+							print.println("come up with a name yet, Mr. Cox. We find and ultimately defeat the monster. The parasite, or whatever we plan to call it, is destroyed and Cox ");
+							print.println("is freed. All of the fleshy substance that covered the streets and insides of the school are all gone and everyone is saved.");
+
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						}
 						document = false;
+						ListSpot++;
 					}
 				}
 			}
