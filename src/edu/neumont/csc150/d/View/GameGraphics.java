@@ -180,8 +180,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 		Objectives.add("There's another key. I should go pick it up.");
 		Objectives.add("I should find another room to open. I bet there's another key waiting for me.");
 		Objectives.add("What do you know. There's another key!");
-		Objectives.add("There are key's laying around everywhere");
-		Objectives.add("Maybe there's something else I can find besides these endless supply of keys.");
+		Objectives.add("What's with all these KEYS!");
+		Objectives.add("Maybe there's something else I can find besides these endless supply of KEYS.");
 		Objectives.add("Let's see what this says. I should check my files.");
 
 		setFocusable(true);
