@@ -730,8 +730,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				// Dialouge = "I can interact with the ping pong table";
 				if (control.isiPressed()) {
 					// load pause
-					Runner run = new Runner();
-					run.runPongGame();
+//					Runner run = new Runner();
+//					run.runPongGame();
 				}
 			} else {
 				// Dialouge = "There's nothing to interact with";
