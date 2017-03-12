@@ -47,6 +47,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 	// private String Dialouge = "There's nothing to interact with";
 	private ArrayList<String> Objectives = new ArrayList<String>();
 	private boolean document = true;
+	private Audio audio = new Audio();
 
 	// ListSpot - Each time a key is picked up +1 is added to ListSpot. This
 	// allows for the objectives to
@@ -684,14 +685,17 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 					character.setKeyType(key.getKeyType());
 					key1Visible = false;
 					ListSpot++; // Moves to the next objective
+					audio.clip6.play();
 				} else if (key.equals(key2)) {
 					character.setKeyType(key.getKeyType());
 					key2Visible = false;
 					ListSpot++;
+					audio.clip6.play();
 				} else if (key.equals(key3)) {
 					character.setKeyType(key.getKeyType());
 					key3Visible = false;
 					ListSpot++;
+					audio.clip6.play();
 				}
 				character.setKey(true);
 			}
@@ -869,6 +873,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			if (document) {
 				if (Document.collider(character)) {
 					if (control.isiPressed() == true) {
+						audio.clip6.play();
 						// place text file int here
 						FileOutputStream anotherFile;
 						File file = new File("BackStory.txt");
@@ -963,8 +968,15 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			control.setsPressed(true);
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
+			if(control.isoPressed() == false) {
 			control.setoPressed(true);
+			audio.lawrenceSound();
 			timer.stop();
+			}
+			else {
+				control.setoPressed(false);
+				timer.start();
+			}
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(true);
 		}
@@ -992,9 +1004,6 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			control.setwPressed(false);
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			control.setsPressed(false);
-		} else if (e.getKeyCode() == KeyEvent.VK_O) {
-			control.setoPressed(false);
-			timer.start();
 		} else if (e.getKeyCode() == KeyEvent.VK_I) {
 			control.setiPressed(false);
 		}
