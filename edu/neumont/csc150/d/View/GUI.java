@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -89,9 +90,12 @@ public class GUI implements ActionListener {
 	 * Creates a new frame for the actual game to be displayed on
 	 * @param game - Creates a reference to the varaible of type GameGraphics
 	 * @param c - Creates a reference to the variable of type Control
+	 * @throws InterruptedException 
+	 * @throws IOException 
+	 * @throws UnsupportedAudioFileException 
 	 */
 	
-	public void guiGame(GameGraphics game, Control c) {
+	public void guiGame(GameGraphics game, Control c) throws UnsupportedAudioFileException, IOException, InterruptedException {
 		frame = new JFrame("NUHorror");
 		frame.setIconImage(img.getImage());
 		test = game;
@@ -194,12 +198,17 @@ public class GUI implements ActionListener {
 	public void menuItems(JFrame frame) {
 		JMenuItem saveGame = new JMenuItem("Save Game");
 		saveGame.addActionListener(this);
+		saveGame.setFont(saveGame.getFont().deriveFont(25.0f));
 		JMenuItem loadGame = new JMenuItem("Load Game");
 		loadGame.addActionListener(this);
+		loadGame.setFont(loadGame.getFont().deriveFont(25.0f));
 		JMenuItem mainMenu = new JMenuItem("Main Menu");
 		mainMenu.addActionListener(this);
+		mainMenu.setFont(mainMenu.getFont().deriveFont(25.0f));
 		JMenu menu = new JMenu("Options");
+		menu.setFont(menu.getFont().deriveFont(20.0f));
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(menuBar.getFont().deriveFont(25.0f));
 
 		menu.add(saveGame);
 		menu.add(loadGame);
@@ -218,26 +227,43 @@ public class GUI implements ActionListener {
 		if (e.getSource() == NewGame) {
 			frame.dispose();
 			guiCharacterSelect();
+			audio.itemPickUpSound();
 		}
 		
 		//In character select if Errlin is chosen, it loads up game with Errlin's character sprite 
 		if (e.getSource() == Errlin) {
 			frame.dispose();
-			guiGame(test, control);
+			try {
+				guiGame(test, control);
+			} catch (UnsupportedAudioFileException | IOException | InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			player.setEarl(true);
 		}
 		
 		//In character select if Lawrence is chosen, it loads up game with Lawrence's character sprite 
 		if (e.getSource() == Lawrence) {
+			audio.lawrenceSound();
 			frame.dispose();
-			guiGame(test, control);
+			try {
+				guiGame(test, control);
+			} catch (UnsupportedAudioFileException | IOException | InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			player.setLaw(true);
 		}
 		
 		//In character select if David is chosen, it loads up game with David's character sprite 
 		if (e.getSource() == David) {
 			frame.dispose();
-			guiGame(test, control);
+			try {
+				guiGame(test, control);
+			} catch (UnsupportedAudioFileException | IOException | InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			player.setDave(true);
 		}
 		
