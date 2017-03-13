@@ -177,12 +177,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 
 		// Dialogue of character letting player know what they need to do
 		Objectives.add("Maybe there is something in the school that I could use.");
-		Objectives.add("I've got to figure out what this key's purpose is. Now where's the door?");
+		Objectives.add("I've got to figure out what this key's purpose is.");
 		Objectives.add("There's another key. I should go pick it up.");
-		Objectives.add("I should find another room to open. I bet there's another key waiting for me.");
+		Objectives.add("I should find another room to open.");
 		Objectives.add("What do you know. There's another key!");
 		Objectives.add("What's with all these KEYS!");
-		Objectives.add("Maybe there's something else I can find besides these endless supply of KEYS.");
+		Objectives.add("Maybe there's something else I can find.");
 		Objectives.add("Let's see what this says. I should check my files.");
 
 		setFocusable(true);
@@ -744,6 +744,8 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				keyCollision(key1);
 			} else if (cox.collider(character)) {
 				control.setGameOver(true);
+				audio.stopMusic();
+				audio.death();
 				control.setFloor1(false);
 			}
 
@@ -810,7 +812,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				keyCollision(key2);
 			} else if (cox.collider(character)) {
 				control.setGameOver(true);
-				control.setFloor1(false);
+				audio.stopMusic();
+				audio.death();
+				control.setRoom1(false);
 			}
 
 			doorCollision(door15, character.getKeyType());
@@ -846,7 +850,9 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				keyCollision(key3);
 			} else if (cox.collider(character)) {
 				control.setGameOver(true);
-				control.setFloor1(false);
+				audio.stopMusic();
+				audio.death();
+				control.setRoom3(false);
 			}
 
 			doorCollision(door17, character.getKeyType());
@@ -970,7 +976,18 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 		} else if (e.getKeyCode() == KeyEvent.VK_O) {
 			if(control.isoPressed() == false) {
 			control.setoPressed(true);
-			audio.lawrenceSound();
+			
+			if (character.isLaw()) {
+				audio.lawDialogue(ListSpot);
+			}
+			
+			else if (character.isEarl()) {
+				audio.earlDialogue(ListSpot);
+			}
+			
+			else if (character.isDave()) {
+				audio.daveDialogue(ListSpot);
+			}
 			timer.stop();
 			}
 			else {

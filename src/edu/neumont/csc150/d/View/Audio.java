@@ -59,24 +59,138 @@ public class Audio {
 			clip.stop();
 		}
 	
-	//Music during chase sequences
-	//May not even use
-	public void chaseMusic() {
-		
-	}
-	
-	//Sound for item pick up
-	public void itemPickUpSound() {
-	}
-	
-	//May not use
-	public void walkingSound() {
-		
-	}
-	
-	public void lawrenceSound() {
+		//Lawrences button sound
+		public void lawrenceSound() {
 		URL url5 = Audio.class.getResource("Lawrence.wav");
 		AudioClip clip5 = Applet.newAudioClip(url5);
 		clip5.play();
-	}
+		}
+	
+		//Errlins button sound
+		public void errlinSound() {
+		URL url7 = Audio.class.getResource("Errlin.wav");
+		AudioClip clip7 = Applet.newAudioClip(url7);
+		clip7.play();
+		}
+	
+		//David's button sound
+		public void davidSound() {
+		URL url8 = Audio.class.getResource("David.wav");
+		AudioClip clip8 = Applet.newAudioClip(url8);
+		clip8.play();
+		}
+		
+		public void death() {
+			URL url9 = Audio.class.getResource("Death.wav");
+			AudioClip clip9 = Applet.newAudioClip(url9);
+			clip9.play();
+		}
+		
+		public void lawDialogue(int num) {
+			if(num == 0){
+				URL url10 = Audio.class.getResource("LawD1.wav");
+				AudioClip clip10 = Applet.newAudioClip(url10);
+				clip10.play();
+			}else if(num == 1){
+				URL url10 = Audio.class.getResource("LawD2.wav");
+				AudioClip clip10 = Applet.newAudioClip(url10);
+				clip10.play();
+			}else if(num == 2){
+				URL url10 = Audio.class.getResource("LawD3.wav");
+				AudioClip clip10 = Applet.newAudioClip(url10);
+				clip10.play();
+			}else if(num == 3){
+				URL url10 = Audio.class.getResource("LawD4.wav");
+				AudioClip clip10 = Applet.newAudioClip(url10);
+				clip10.play();
+			}else if(num == 4){
+				URL url10 = Audio.class.getResource("LawD5.wav");
+				AudioClip clip10 = Applet.newAudioClip(url10);
+				clip10.play();
+			}else if(num == 5){
+				URL url10 = Audio.class.getResource("LawD6.wav");
+				AudioClip clip10 = Applet.newAudioClip(url10);
+				clip10.play();
+			}else if(num == 6){
+				URL url10 = Audio.class.getResource("LawD7.wav");
+				AudioClip clip10 = Applet.newAudioClip(url10);
+				clip10.play();
+			}else if(num == 7){
+				URL url10 = Audio.class.getResource("LawD8.wav");
+				AudioClip clip10 = Applet.newAudioClip(url10);
+				clip10.play();
+			}
+		}
+		
+		public void daveDialogue(int num) {
+			if(num == 0){
+				URL url11 = Audio.class.getResource("Dave1.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 1){
+				URL url11 = Audio.class.getResource("Dave2.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 2){
+				URL url11 = Audio.class.getResource("Dave3.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 3){
+				URL url11 = Audio.class.getResource("Dave4.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 4){
+				URL url11 = Audio.class.getResource("Dave5.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 5){
+				URL url11 = Audio.class.getResource("Dave6.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 6){
+				URL url11 = Audio.class.getResource("Dave7.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 7){
+				URL url11 = Audio.class.getResource("Dave8.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}
+		}
+		
+		public void earlDialogue(int num) {
+			if(num == 0){
+				URL url11 = Audio.class.getResource("Earl1.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 1){
+				URL url11 = Audio.class.getResource("Earl2.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 2){
+				URL url11 = Audio.class.getResource("Earl3.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 3){
+				URL url11 = Audio.class.getResource("Earl4.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 4){
+				URL url11 = Audio.class.getResource("Earl5.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 5){
+				URL url11 = Audio.class.getResource("Earl6.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 6){
+				URL url11 = Audio.class.getResource("Earl7.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}else if(num == 7){
+				URL url11 = Audio.class.getResource("Earl8.wav");
+				AudioClip clip11 = Applet.newAudioClip(url11);
+				clip11.play();
+			}
+		}
 }

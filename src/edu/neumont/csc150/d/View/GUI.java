@@ -227,11 +227,11 @@ public class GUI implements ActionListener {
 		if (e.getSource() == NewGame) {
 			frame.dispose();
 			guiCharacterSelect();
-			audio.itemPickUpSound();
 		}
 		
 		//In character select if Errlin is chosen, it loads up game with Errlin's character sprite 
 		if (e.getSource() == Errlin) {
+			audio.errlinSound();
 			frame.dispose();
 			try {
 				guiGame(test, control);
@@ -257,6 +257,7 @@ public class GUI implements ActionListener {
 		
 		//In character select if David is chosen, it loads up game with David's character sprite 
 		if (e.getSource() == David) {
+			audio.davidSound();
 			frame.dispose();
 			try {
 				guiGame(test, control);
