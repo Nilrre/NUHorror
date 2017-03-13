@@ -1,7 +1,12 @@
 package edu.neumont.csc150.d.Model;
 
+import java.util.Random;
+
+import javax.swing.Timer;
+
 import edu.neumont.csc150.d.Model.Player;
 import edu.neumont.csc150.d.Model.SolidObject;
+import edu.neumont.csc150.d.View.GameGraphics;
 
 public class Enemy implements SolidObject{
 	
@@ -11,8 +16,16 @@ public class Enemy implements SolidObject{
 	public Enemy() {
 	}
 	
-	public Enemy(Player p) {
+	public Enemy(Player p, GameGraphics g) {
 		this.setCharacter(p);
+	}
+	
+	public void chase() {
+		Random random = new Random();
+		int movementX = random.nextInt((this.getX() + 100) - this.getX()) + this.getX();
+		int movementY = random.nextInt((this.getY() + 100) - this.getY()) + this.getY();
+		this.setX(movementX);
+		this.setY(movementY);
 	}
 	
 	@Override
