@@ -296,10 +296,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			}
 			
 			if (!key1Visible) {
-				cox = new Enemy(character);
+				cox = new Enemy();
 				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
 				mrCox = enemy.getImage();
-				d.drawImage(mrCox, cox.getX(), cox.getY(), cox.getWidth(), cox.getHeight(), this);
+				d.drawImage(mrCox, 2069, 451, cox.getWidth(), cox.getHeight(), this);
+				cox.setX(2069);
+				cox.setY(451);
 			}
 			Objective(d, g);
 		}
@@ -337,7 +339,7 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			d.drawImage(gameOver, this.getX(), this.getY(), this.getWidth(), this.getHeight(), this);
 			timer.stop();
 			
-			character.setX((this.getWidth() / 2) - 30);
+			character.setX((this.getWidth() / 2) - 50);
 			character.setY(this.getHeight() / 2);
 			
 			Objective(d, g);
@@ -358,10 +360,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			}
 			
 			if (!key2Visible) {
-				cox = new Enemy(character);
+				cox = new Enemy();
 				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
 				mrCox = enemy.getImage();
-				d.drawImage(mrCox, cox.getX(), cox.getY(), cox.getWidth(), cox.getHeight(), this);
+				d.drawImage(mrCox, 756, 756, cox.getWidth(), cox.getHeight(), this);
+				cox.setX(756);
+				cox.setY(756);
 			}
 
 			Objective(d, g);
@@ -391,10 +395,12 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 			}
 			
 			if (!key3Visible) {
-				cox = new Enemy(character);
+				cox = new Enemy();
 				ImageIcon enemy = new ImageIcon("Pics//Cox.gif");
 				mrCox = enemy.getImage();
-				d.drawImage(mrCox, cox.getX(), cox.getY(), cox.getWidth(), cox.getHeight(), this);
+				d.drawImage(mrCox, 1574, 740, cox.getWidth(), cox.getHeight(), this);
+				cox.setX(1574);
+				cox.setY(740);
 			}
 
 			Objective(d, g);
@@ -812,8 +818,11 @@ public class GameGraphics extends JPanel implements ActionListener, KeyListener,
 				keyCollision(key2);
 			} else if (cox.collider(character)) {
 				control.setGameOver(true);
+<<<<<<< HEAD:src/edu/neumont/csc150/d/View/GameGraphics.java
 				audio.stopMusic();
 				audio.death();
+=======
+>>>>>>> 2428d318be58fb9603baf4ee42110de99506e062:edu/neumont/csc150/d/View/GameGraphics.java
 				control.setRoom1(false);
 			}
 
